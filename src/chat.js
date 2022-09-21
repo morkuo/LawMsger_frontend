@@ -1,4 +1,4 @@
-import { setMsg, addClass, getJwtToken, setMessage, fetchGet, isImage } from './helper.js';
+import { setMsg, addClass, getJwtToken, setMessage, fetchGet, isImage, HOST } from './helper.js';
 import { socket } from './socket.js';
 
 let uploadfilesQueue = [];
@@ -586,7 +586,7 @@ async function uploadFile(authorization) {
 
   // console.log('Going to upload this: ', filesInput);
 
-  const api = `${window.location.origin}/api/1.0/message/upload`;
+  const api = `${HOST}/1.0/message/upload`;
 
   const res = await fetch(api, {
     method: 'POST',

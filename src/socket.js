@@ -1,9 +1,9 @@
-import { addClass, setMessage } from './helper.js';
+import { HOST, addClass, setMessage } from './helper.js';
 import { drawContactDivs, drawSidebar, drawGroups, drawDeleteGroupButton } from './sidebar.js';
 
 let jwtToken = localStorage.getItem('token');
 
-const socket = io({ query: { jwtToken } });
+const socket = io({ HOST, query: { jwtToken } });
 
 socket.on('connect', async () => {
   drawSidebar();

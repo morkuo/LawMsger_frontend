@@ -1,4 +1,4 @@
-import { setMsg, addClass, getJwtToken, setMessage, fetchGet } from './helper.js';
+import { setMsg, addClass, getJwtToken, setMessage, fetchGet, HOST } from './helper.js';
 import { socket } from './socket.js';
 import { addChatListenerToContactDivs, addGroupChatListenerToGroupDivs } from './chat.js';
 
@@ -107,7 +107,7 @@ async function drawDeleteGroupButton(groups) {
     deleteStarButton.addEventListener('click', async e => {
       let authorization = getJwtToken();
 
-      const api = `${window.location.origin}/api/1.0/group/leave`;
+      const api = `${HOST}/1.0/group/leave`;
 
       const payload = {
         groupName: groupNameDiv.innerText,
@@ -231,7 +231,7 @@ async function setParticipantsInfoToGroup(groups) {
   let authorization = getJwtToken();
 
   for (let group of groups) {
-    const api = `${window.location.origin}/api/1.0/group/participants?groupName=${group.name}`;
+    const api = `${HOST}/1.0/group/participants?groupName=${group.name}`;
 
     const res = await fetch(api, {
       method: 'GET',
@@ -295,7 +295,7 @@ function drawCreateGroupForm() {
 
   addClass('group-function', infoDiv, header, createForm, namePTag, nameInput, button);
 
-  const api = `${window.location.origin}/api/1.0/group`;
+  const api = `${HOST}/1.0/group`;
 
   button.addEventListener('click', async e => {
     e.preventDefault();
@@ -404,7 +404,7 @@ function drawAddAndDeleteParticipantsForm() {
     deleteButton
   );
 
-  const api = `${window.location.origin}/api/1.0/group`;
+  const api = `${HOST}/1.0/group`;
 
   addButton.addEventListener('click', async e => {
     e.preventDefault();

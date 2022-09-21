@@ -1,3 +1,5 @@
+const HOST = 'https://api.mortonkuo.solutions';
+
 function setMsg(messages, error = false, autoRemove = true, appendTo = '#main') {
   const container = document.querySelector(appendTo);
 
@@ -149,7 +151,7 @@ async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, se
 }
 
 async function fetchGet(apiPath) {
-  const apiUrl = `${window.location.origin}/api/1.0${apiPath}`;
+  const apiUrl = `${HOST}/1.0${apiPath}`;
 
   let authorization = getJwtToken();
 
@@ -219,4 +221,5 @@ export {
   setMessage,
   fetchGet,
   isImage,
+  HOST,
 };

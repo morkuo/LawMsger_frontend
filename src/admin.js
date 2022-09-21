@@ -37,7 +37,7 @@ function drawCreateUserForm() {
     button
   );
 
-  const signUpApi = `${window.location.origin}/api/1.0/user`;
+  const signUpApi = `${HOST}/1.0/user`;
 
   button.addEventListener('click', async e => {
     e.preventDefault();
@@ -79,7 +79,7 @@ function drawCreateUserForm() {
 }
 
 async function checkAdmin() {
-  const profileApi = `${window.location.origin}/api/1.0/user`;
+  const profileApi = `${HOST}/1.0/user`;
 
   let authorization = getJwtToken();
 
@@ -115,7 +115,7 @@ function drawDeleteUserForm() {
 
   addClass('admin', header, form, emailPTag, emailInput, button);
 
-  const signUpApi = `${window.location.origin}/api/1.0/user`;
+  const signUpApi = `${HOST}/1.0/user`;
 
   button.addEventListener('click', async e => {
     e.preventDefault();

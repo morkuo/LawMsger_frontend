@@ -1,4 +1,4 @@
-import { setMsg, addClass, getJwtToken } from './helper.js';
+import { setMsg, addClass, getJwtToken, HOST } from './helper.js';
 import { drawCreateUserForm, drawDeleteUserForm, checkAdmin } from './admin.js';
 
 main();
@@ -9,7 +9,7 @@ async function main() {
 }
 
 async function setNavbar() {
-  const profileApi = `${window.location.origin}/api/1.0/user`;
+  const profileApi = `${HOST}/1.0/user`;
 
   let authorization = getJwtToken();
 
@@ -169,7 +169,7 @@ function drawChangPasswordForm(e) {
 
     const authorization = getJwtToken();
 
-    const api = `${window.location.origin}/api/1.0/user`;
+    const api = `${HOST}/1.0/user`;
 
     const payload = {
       oldPassword: oldPasswordInput.value,

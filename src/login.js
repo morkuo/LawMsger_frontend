@@ -1,4 +1,11 @@
-import { addClass, storeToken, storeUserId, storeUsername, storeUserEmail } from './helper.js';
+import {
+  addClass,
+  storeToken,
+  storeUserId,
+  storeUsername,
+  storeUserEmail,
+  HOST,
+} from './helper.js';
 
 setSignInField();
 
@@ -34,7 +41,7 @@ function setSignInField() {
     button
   );
 
-  const signInApi = `${window.location.origin}/api/1.0/user/signin`;
+  const signInApi = `${HOST}/1.0/user/signin`;
 
   button.addEventListener('click', async e => {
     e.preventDefault();
