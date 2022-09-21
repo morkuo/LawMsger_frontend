@@ -3,7 +3,7 @@ import { drawContactDivs, drawSidebar, drawGroups, drawDeleteGroupButton } from 
 
 let jwtToken = localStorage.getItem('token');
 
-const socket = io({ HOST, query: { jwtToken } });
+const socket = io(HOST, { query: { jwtToken } });
 
 socket.on('connect', async () => {
   drawSidebar();
