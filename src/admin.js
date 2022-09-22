@@ -1,4 +1,4 @@
-import { setMsg, addClass, getJwtToken } from './helper.js';
+import { HOST, setMsg, addClass, getJwtToken } from './helper.js';
 
 function drawCreateUserForm() {
   const pane = document.querySelector('#pane');
