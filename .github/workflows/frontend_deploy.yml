@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - feature/cd_to_s3
 
 jobs:
   deploy:
