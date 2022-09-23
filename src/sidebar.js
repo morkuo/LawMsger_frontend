@@ -47,6 +47,8 @@ async function drawSidebar() {
 }
 
 async function drawAddStarButton(contacts, starContacts) {
+  if (!contacts) return;
+
   const contactIds = contacts.map(contact => contact.id);
   const starIds = starContacts.reduce((acc, star) => {
     acc[star.id] = 1;
