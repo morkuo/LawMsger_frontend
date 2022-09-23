@@ -162,6 +162,8 @@ async function getGroups() {
 function drawContactDivs(contacts, category) {
   const contactsDiv = document.querySelector(`#${category} .contacts`);
 
+  if (!contactsDiv) return;
+
   for (let contact of contacts) {
     const contactDiv = document.createElement('div');
     const pictureDiv = document.createElement('div');
