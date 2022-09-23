@@ -101,16 +101,14 @@ span.contact-delete-star-button {
 .group-delete-button:hover,
 .contact-add-star-button:hover,
 .contact-delete-star-button:hover {
-  /* color: rgb(226, 162, 43); */
-  /* font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 26;
-  transition: all 0.8s; */
+  font-variation-settings: 'opsz' 26;
   animation: pulse 0.8s forwards;
 }
 
 @keyframes pulse {
   100% {
     color: rgb(226, 162, 43);
-    font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 26;
+    font-variation-settings: 'FILL' 1, 'wght' 700;
   }
 }
 
