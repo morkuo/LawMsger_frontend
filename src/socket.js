@@ -339,12 +339,13 @@ socket.on('deleteStarContact', response => {
 
   //append new star to star block
   const contactDiv = document.querySelector(`#all div.contact[data-id="${targetContactUserId}"]`);
-  const addStarButton = document.createElement('div');
+  const addStarButton = document.createElement('span');
 
   addStarButton.setAttribute('class', 'contact-add-star-button');
+  addStarButton.classList.add('material-symbols-outlined');
   contactDiv.appendChild(addStarButton);
 
-  addStarButton.innerText = '+';
+  addStarButton.innerText = 'star';
 
   addStarButton.addEventListener('click', e => {
     socket.emit('createStarContact', targetContactUserId);
