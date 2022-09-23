@@ -551,12 +551,12 @@ function listenToChatWindow() {
     const allContactDivs = document.querySelectorAll('.contact');
 
     allContactDivs.forEach(contactDiv => {
-      contactDiv.style.backgroundColor = '';
+      contactDiv.classList.remove('on');
     });
 
     const allGroupDivs = document.querySelectorAll('.group');
     allGroupDivs.forEach(groupDiv => {
-      groupDiv.style.backgroundColor = '';
+      groupDiv.classList.remove('on');
     });
 
     const messages = document.getElementById('messages');
