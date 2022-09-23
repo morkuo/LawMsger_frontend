@@ -281,7 +281,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   const suggestions = document.createElement('ul');
   const form = document.createElement('form');
   const inputWrapper = document.createElement('div');
-  const input = document.createElement('input');
+  const input = document.createElement('textarea');
   const sendButtonWrapper = document.createElement('span');
   const sendButton = document.createElement('button');
   const uploadButtonWrapper = document.createElement('label');
