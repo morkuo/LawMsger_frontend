@@ -64,7 +64,6 @@ async function drawAddStarButton(contacts, starContacts) {
 
     addStarButton.setAttribute('class', 'contact-add-star-button');
     addStarButton.classList.add('material-symbols-outlined');
-    addStarButton.setAttribute('class', 'contact-add-star-button');
     contactDiv.appendChild(addStarButton);
 
     addStarButton.innerText = 'star';
