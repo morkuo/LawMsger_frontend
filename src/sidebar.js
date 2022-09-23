@@ -60,12 +60,14 @@ async function drawAddStarButton(contacts, starContacts) {
     if (starIds[contactId]) return;
 
     const contactDiv = document.querySelector(`.contact[data-id="${contactId}"]`);
-    const addStarButton = document.createElement('div');
+    const addStarButton = document.createElement('span');
 
+    addStarButton.setAttribute('class', 'contact-add-star-button');
+    addStarButton.classList.add('material-symbols-outlined');
     addStarButton.setAttribute('class', 'contact-add-star-button');
     contactDiv.appendChild(addStarButton);
 
-    addStarButton.innerText = '+';
+    addStarButton.innerText = 'star';
 
     addStarButton.addEventListener('click', e => {
       socket.emit('createStarContact', contactId);
