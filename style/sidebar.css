@@ -50,20 +50,19 @@
   height: 2rem;
   border-radius: var(--border-radius);
   cursor: pointer;
+  color: white;
   background-color: var(--options-background-color);
   direction: ltr;
 }
 
 .contact:hover,
 .group:hover {
-  color: white;
   background-color: #1f4560;
   transition: all 0.8s;
 }
 
 .contact.on,
 .group.on {
-  color: white;
   background-color: #1f4560;
 }
 
