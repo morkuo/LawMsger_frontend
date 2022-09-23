@@ -46,7 +46,7 @@
 .contact,
 .group {
   display: flex;
-  margin: 0.7rem 1.6rem 0.7rem 1rem;
+  margin: 0.7rem 1rem;
   height: 2rem;
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -108,9 +108,6 @@ span.contact-delete-star-button {
 }
 
 @keyframes pulse {
-  50% {
-    font-variation-settings: 'FILL' 0.7, 'wght' 500, 'GRAD' 0, 'opsz' 25;
-  }
   100% {
     color: rgb(226, 162, 43);
     font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 26;
