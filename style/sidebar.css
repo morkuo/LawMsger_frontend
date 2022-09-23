@@ -60,7 +60,13 @@
 
 .contact:hover,
 .group:hover {
-  background-color: rgb(231, 225, 225);
+  background-color: #1f4560;
+  transition: all 0.8s;
+}
+
+.contact.on,
+.group.on {
+  background-color: #1f4560;
 }
 
 .contact-picture {
@@ -109,7 +115,8 @@ span.contact-delete-star-button {
 }
 
 .contact-status.on {
-  background-color: rgb(145, 189, 157);
+  background-color: rgb(68, 164, 114);
+  transition: all 1s;
 }
 
 .collapse-symbol {

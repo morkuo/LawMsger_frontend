@@ -565,7 +565,7 @@ function listenToChatWindow() {
     //group
     if (messages.dataset.id === 'undefined') {
       const groupDiv = sideBar.querySelector(`[data-socket-id="${messages.dataset.socketId}"]`);
-      groupDiv.style.backgroundColor = 'skyblue';
+      groupDiv.classList.add('on');
 
       return;
     }
@@ -575,7 +575,7 @@ function listenToChatWindow() {
     const currentContactDivs = sideBar.querySelectorAll(`[data-id="${contactUserId}"]`);
 
     currentContactDivs.forEach(div => {
-      div.style.backgroundColor = 'skyblue';
+      div.classList.add('on');
     });
   });
 
