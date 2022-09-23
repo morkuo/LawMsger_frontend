@@ -56,6 +56,7 @@
 
 .contact:hover,
 .group:hover {
+  color: white;
   background-color: #1f4560;
   transition: all 0.8s;
 }
