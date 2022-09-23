@@ -90,6 +90,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   min-width: 10%;
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);

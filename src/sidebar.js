@@ -80,12 +80,13 @@ async function drawDeleteStarButton(starContacts) {
 
   starIds.forEach(starId => {
     const contactDiv = document.querySelector(`#star .contact[data-id="${starId}"]`);
-    const deleteStarButton = document.createElement('div');
+    const deleteStarButton = document.createElement('span');
 
     deleteStarButton.setAttribute('class', 'contact-delete-star-button');
+    deleteStarButton.classList.add('material-symbols-outlined');
     contactDiv.appendChild(deleteStarButton);
 
-    deleteStarButton.innerText = '-';
+    deleteStarButton.innerText = 'person_remove';
 
     deleteStarButton.addEventListener('click', e => {
       socket.emit('deleteStarContact', starId);
@@ -100,12 +101,13 @@ async function drawDeleteGroupButton(groups) {
   groupIds.forEach(groupId => {
     const groupDiv = document.querySelector(`.group[data-socket-id="${groupId}"]`);
     const groupNameDiv = groupDiv.querySelector('.group-name');
-    const deleteStarButton = document.createElement('div');
+    const deleteStarButton = document.createElement('span');
 
     deleteStarButton.setAttribute('class', 'group-delete-button');
+    deleteStarButton.classList.add('material-symbols-outlined');
     groupDiv.appendChild(deleteStarButton);
 
-    deleteStarButton.innerText = '-';
+    deleteStarButton.innerText = 'group_remove';
 
     deleteStarButton.addEventListener('click', async e => {
       let authorization = getJwtToken();
