@@ -315,11 +315,13 @@ socket.on('createStarContact', response => {
 
   //add delete star button
   const contactDiv = document.querySelector(`#star div.contact[data-id="${targetContactUserId}"]`);
-  const deleteStarButton = document.createElement('div');
+  const deleteStarButton = document.createElement('span');
+
   deleteStarButton.setAttribute('class', 'contact-delete-star-button');
+  deleteStarButton.classList.add('material-symbols-outlined');
   contactDiv.appendChild(deleteStarButton);
 
-  deleteStarButton.innerText = '-';
+  deleteStarButton.innerText = 'person_remove';
 
   deleteStarButton.addEventListener('click', e => {
     socket.emit('deleteStarContact', targetContactUserId);
