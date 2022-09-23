@@ -84,13 +84,12 @@
   font-size: 1.1rem;
 }
 
-.group-delete-button,
-.contact-add-star-button,
-.contact-delete-star-button {
-  display: flex;
+span.group-delete-button,
+span.contact-add-star-button,
+span.contact-delete-star-button {
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   min-width: 10%;
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
