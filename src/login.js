@@ -14,13 +14,16 @@ function setSignInField() {
   const signInDiv = container.querySelector('div');
   const header = document.createElement('h3');
   const form = document.createElement('form');
+  const organizationNamePTag = document.createElement('p');
   const emailPTag = document.createElement('p');
   const passwordPtag = document.createElement('p');
+  const organizationNameInput = document.createElement('input');
   const emailInput = document.createElement('input');
   const passwordInput = document.createElement('input');
   const button = document.createElement('button');
 
   header.innerText = 'Sign In';
+  organizationNamePTag.innerText = 'Organization Name';
   emailPTag.innerText = 'Email';
   passwordPtag.innerText = 'Password';
   button.innerText = 'Submit';
@@ -47,6 +50,7 @@ function setSignInField() {
     e.preventDefault();
 
     const payload = {
+      organizationName: organizationNameInput.value,
       email: emailInput.value,
       password: passwordInput.value,
     };
@@ -74,6 +78,8 @@ function setSignInField() {
   container.appendChild(signInDiv);
   signInDiv.appendChild(form);
   form.appendChild(header);
+  form.appendChild(organizationNamePTag);
+  form.appendChild(organizationNameInput);
   form.appendChild(emailPTag);
   form.appendChild(emailInput);
   form.appendChild(passwordPtag);
