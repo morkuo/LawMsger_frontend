@@ -72,7 +72,7 @@ async function chatListener(e) {
   const messages = document.getElementById('messages');
 
   messages.addEventListener('scroll', async e => {
-    // console.log(e.target.scrollTop);
+    console.log('scroll:' + e.target.scrollTop + 'height:' + e.target.height);
 
     if (e.target.scrollTop === 0) {
       // console.log('Pull New data');
