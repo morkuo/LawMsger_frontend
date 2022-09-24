@@ -73,7 +73,7 @@ input:focus {
 }
 
 textarea {
-  /* height: 1.5rem; */
+  height: 1.5rem;
   margin: 1rem 0;
   resize: none;
   font-family: ChiKareGo2;
@@ -197,10 +197,11 @@ p {
 #inputWrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 95%;
   min-height: 2.35rem;
-  position: relative;
+  position: absolute;
+  bottom: 22%;
   color: white;
   border-radius: var(--border-radius);
   background-color: var(--background-color);
@@ -214,6 +215,7 @@ p {
 #inputWrapper button {
   display: flex;
   align-items: center;
+  margin: 0 0 0.35rem 0;
   border: none;
   color: white;
   border-radius: var(--border-radius);
@@ -225,7 +227,7 @@ p {
   padding: 0 1rem;
   width: 93%;
   height: 100%;
-  margin: 0.25rem;
+  margin: 0.6rem;
   color: white;
   border-radius: var(--border-radius);
   background-color: var(--background-color);
