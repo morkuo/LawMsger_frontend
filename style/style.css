@@ -164,6 +164,7 @@ p {
   flex-direction: column;
   justify-content: space-between;
   height: 90vh;
+  min-width: 1060px;
   flex-grow: 1;
 }
 
