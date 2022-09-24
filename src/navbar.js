@@ -78,7 +78,6 @@ async function drawProfile(e) {
   const header = document.createElement('h3');
   const profile = document.createElement('div');
   const pictureDiv = document.createElement('div');
-  const picture = document.createElement('img');
   const infoDiv = document.createElement('div');
   const editDiv = document.createElement('div');
   const namePTag = document.createElement('p');
@@ -92,14 +91,18 @@ async function drawProfile(e) {
   header.innerText = 'Profile';
   namePTag.innerText = e.target.name;
   emailPTag.innerText = e.target.email;
-  picture.src = e.target.picture;
   onboardDatePTag.innerText = e.target.created_at;
   changePasswordButton.innerText = 'Change Password';
   changeProfileImageButton.innerText = 'Edit Profile Picture';
 
   profileDiv.setAttribute('id', 'profileDiv');
   profile.setAttribute('id', 'profileContainer');
+  pictureDiv.setAttribute('id', 'profilePictureDiv');
   editDiv.setAttribute('class', 'editDiv');
+
+  const userId = localStorage.getItem('id');
+
+  pictureDiv.style.backgroundImage = `url(${HOST}/profile_picture/${userId}.jpg)`;
 
   addClass('profile', profileDiv, header, profile, namePTag, emailPTag);
 
@@ -110,8 +113,6 @@ async function drawProfile(e) {
   profile.appendChild(pictureDiv);
   profile.appendChild(infoDiv);
   profile.appendChild(editDiv);
-
-  pictureDiv.appendChild(picture);
 
   infoDiv.appendChild(namePTag);
   infoDiv.appendChild(emailPTag);
