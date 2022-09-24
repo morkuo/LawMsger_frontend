@@ -347,7 +347,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 
     suggestionsList.classList.remove('on');
     suggestionsList.innerHTML = '';
-    suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+    suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
   });
 
   addUploadFileListener();
@@ -370,7 +370,7 @@ function resize() {
 
   if (!suggestionsList) return;
 
-  suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+  suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
 }
 
 function submitFormOnEnter() {
@@ -390,7 +390,7 @@ function submitFormOnEnter() {
       const suggestionsList = document.querySelector('#suggestions');
       const inputWrapper = document.querySelector('#inputWrapper');
 
-      suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+      suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
     }
   });
 }
@@ -464,7 +464,7 @@ async function detectInput(e) {
           input.style.height = input.scrollHeight + 'px';
 
           //reset suggestionsList position
-          suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+          suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
         }
       },
       //once the eventlistener has been fired once, remove itself
@@ -485,7 +485,7 @@ async function detectInput(e) {
         input.style.height = input.scrollHeight + 'px';
 
         //reset suggestionsList position
-        suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+        suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
       },
       { once: true }
     );
@@ -516,7 +516,7 @@ async function detectInput(e) {
           input.style.height = input.scrollHeight + 'px';
 
           //reset suggestionsList position
-          suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+          suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
         }
       },
       { once: true }
@@ -541,7 +541,7 @@ async function detectInput(e) {
         input.style.height = input.scrollHeight + 'px';
 
         //reset suggestionsList position
-        suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+        suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
       },
       { once: true }
     );
@@ -580,7 +580,7 @@ async function detectInput(e) {
         input.style.height = input.scrollHeight + 'px';
 
         //reset suggestionsList position
-        suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+        suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
       },
       { once: true }
     );
@@ -613,7 +613,7 @@ async function detectInput(e) {
           input.style.height = input.scrollHeight + 'px';
 
           //reset suggestionsList position
-          suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 4}px`;
+          suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 5}px`;
         }
       },
       { once: true }
