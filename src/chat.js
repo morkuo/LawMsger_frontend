@@ -369,7 +369,7 @@ function submitFormOnEnter() {
       e.preventDefault();
 
       //resize textarea
-      resize();
+      resize.call(e);
     }
   });
 }
