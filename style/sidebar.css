@@ -205,3 +205,20 @@ span.contact-delete-star-button {
 #signOut {
   color: white;
 }
+
+#optionDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 4rem 2rem;
+  padding: 2rem 4rem;
+  border: 1px solid #6d665b;
+  height: 70vh;
+
+  justify-content: space-evenly;
+}
+
+#optionDiv button {
+  padding: 0.5rem 1rem;
+}

@@ -84,7 +84,7 @@ async function drawProfile(e) {
   const namePTag = document.createElement('p');
   const emailPTag = document.createElement('p');
   const onboardDatePTag = document.createElement('p');
-  const changePasswordButton = document.createElement('button');
+  const changeProfileImageButton = document.createElement('button');
 
   pane.innerHTML = '';
 
@@ -93,12 +93,13 @@ async function drawProfile(e) {
   emailPTag.innerText = e.target.email;
   picture.src = e.target.picture;
   onboardDatePTag.innerText = e.target.created_at;
+  changeProfileImageButton.innerText = 'Edit Profile Picture';
 
-  changePasswordButton.innerText = 'Change Password';
+  profileDiv.setAttribute('id', 'profileDiv');
+  profile.setAttribute('id', 'profileContainer');
+  editDiv.setAttribute('class', 'editDiv');
 
-  addClass('profile', profileDiv, header, profile, namePTag, emailPTag, changePasswordButton);
-
-  changePasswordButton.addEventListener('click', drawChangPasswordForm);
+  addClass('profile', profileDiv, header, profile, namePTag, emailPTag);
 
   pane.appendChild(profileDiv);
 
@@ -114,11 +115,44 @@ async function drawProfile(e) {
   infoDiv.appendChild(emailPTag);
   infoDiv.appendChild(onboardDatePTag);
 
-  editDiv.appendChild(changePasswordButton);
+  editDiv.appendChild(changeProfileImageButton);
+
+  // changeProfileImageButton.addEventListener('click', drawProfilePreview);
+
+  drawChangPasswordForm();
+}
+
+async function uploadProfileImage(e) {
+  const pictureInput = document.querySelector('#pictureInput');
+
+  e.preventDefault();
+
+  const authorization = getJwtToken();
+
+  const api = `${HOST}/1.0/user/picture`;
+  const formData = new FormData();
+
+  formData.append('images', pictureInput.file);
+
+  console.log('Going to upload this: ', pictureInput);
+
+  const res = await fetch(api, {
+    method: 'POST',
+    headers: {
+      'Authorization': authorization,
+    },
+    body: formData,
+  });
+
+  const response = await res.json();
+
+  if (response.error) return setMsg(response.error, 'error');
+
+  setMsg(response.data);
 }
 
 function drawChangPasswordForm(e) {
-  const pane = document.querySelector('#pane');
+  const profileDiv = document.querySelector('#profileDiv');
   const changePasswordDiv = document.createElement('form');
   const oldPasswordPtag = document.createElement('p');
   const newPasswordPTag = document.createElement('p');
@@ -126,33 +160,24 @@ function drawChangPasswordForm(e) {
   const oldPasswordInput = document.createElement('input');
   const newPasswordInput = document.createElement('input');
   const confirmInput = document.createElement('input');
-  const optionDiv = document.createElement('div');
+  const editDiv = document.createElement('div');
 
   const confirmButton = document.createElement('button');
-  const cancelButton = document.createElement('button');
 
   changePasswordDiv.setAttribute('id', 'changePasswordDiv');
-  optionDiv.setAttribute('id', 'optionDiv');
+  editDiv.setAttribute('class', 'editDiv');
 
   oldPasswordPtag.innerText = 'Current Password';
   newPasswordPTag.innerText = 'New Password';
   confirmPTag.innerText = 'Confirm';
 
-  confirmButton.innerText = 'O';
-  cancelButton.innerText = 'X';
+  confirmButton.innerText = 'Change Password';
 
   oldPasswordInput.setAttribute('type', 'password');
   newPasswordInput.setAttribute('type', 'password');
   confirmInput.setAttribute('type', 'password');
 
-  addClass(
-    'profile',
-    confirmButton,
-    cancelButton,
-    oldPasswordInput,
-    newPasswordInput,
-    confirmInput
-  );
+  addClass('profile', confirmButton, oldPasswordInput, newPasswordInput, confirmInput);
 
   changePasswordDiv.appendChild(oldPasswordPtag);
   changePasswordDiv.appendChild(oldPasswordInput);
@@ -160,9 +185,8 @@ function drawChangPasswordForm(e) {
   changePasswordDiv.appendChild(newPasswordInput);
   changePasswordDiv.appendChild(confirmPTag);
   changePasswordDiv.appendChild(confirmInput);
-  changePasswordDiv.appendChild(optionDiv);
-  optionDiv.appendChild(confirmButton);
-  optionDiv.appendChild(cancelButton);
+  changePasswordDiv.appendChild(editDiv);
+  editDiv.appendChild(confirmButton);
 
   confirmButton.addEventListener('click', async e => {
     e.preventDefault();
@@ -193,10 +217,5 @@ function drawChangPasswordForm(e) {
     setMsg(response.data);
   });
 
-  cancelButton.addEventListener('click', e => {
-    e.preventDefault();
-    changePasswordDiv.remove();
-  });
-
-  pane.appendChild(changePasswordDiv);
+  profileDiv.appendChild(changePasswordDiv);
 }

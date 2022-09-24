@@ -700,15 +700,11 @@ function previewFile(filesInput) {
 async function uploadFile(authorization) {
   const formData = new FormData();
 
-  console.log('before:' + uploadfilesQueue.length);
-
   const uploadfilesQueueLength = uploadfilesQueue.length;
 
   for (let i = 0; i < uploadfilesQueueLength; i++) {
     formData.append('images', uploadfilesQueue.shift());
   }
-
-  console.log('after:' + uploadfilesQueue.length);
 
   // console.log('Going to upload this: ', filesInput);
 
