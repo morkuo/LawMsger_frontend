@@ -441,6 +441,7 @@ async function detectInput(e) {
 
           //resize textarea
           input.style.height = 0;
+          input.style.height = input.scrollHeight + 'px';
         }
       },
       //once the eventlistener has been fired once, remove itself
@@ -458,6 +459,7 @@ async function detectInput(e) {
 
         //resize textarea
         input.style.height = 0;
+        input.style.height = input.scrollHeight + 'px';
       },
       { once: true }
     );
@@ -485,6 +487,7 @@ async function detectInput(e) {
 
           //resize textarea
           input.style.height = 0;
+          input.style.height = input.scrollHeight + 'px';
         }
       },
       { once: true }
@@ -506,6 +509,7 @@ async function detectInput(e) {
 
         //resize textarea
         input.style.height = 0;
+        input.style.height = input.scrollHeight + 'px';
       },
       { once: true }
     );
@@ -541,6 +545,7 @@ async function detectInput(e) {
 
         //resize textarea
         input.style.height = 0;
+        input.style.height = input.scrollHeight + 'px';
       },
       { once: true }
     );
@@ -570,6 +575,7 @@ async function detectInput(e) {
 
           //resize textarea
           input.style.height = 0;
+          input.style.height = input.scrollHeight + 'px';
         }
       },
       { once: true }
