@@ -84,6 +84,7 @@ async function drawProfile(e) {
   const namePTag = document.createElement('p');
   const emailPTag = document.createElement('p');
   const onboardDatePTag = document.createElement('p');
+  const changePasswordButton = document.createElement('button');
   const changeProfileImageButton = document.createElement('button');
 
   pane.innerHTML = '';
@@ -93,6 +94,7 @@ async function drawProfile(e) {
   emailPTag.innerText = e.target.email;
   picture.src = e.target.picture;
   onboardDatePTag.innerText = e.target.created_at;
+  changePasswordButton.innerText = 'Change Password';
   changeProfileImageButton.innerText = 'Edit Profile Picture';
 
   profileDiv.setAttribute('id', 'profileDiv');
@@ -116,13 +118,15 @@ async function drawProfile(e) {
   infoDiv.appendChild(onboardDatePTag);
 
   editDiv.appendChild(changeProfileImageButton);
+  editDiv.appendChild(changePasswordButton);
 
-  // changeProfileImageButton.addEventListener('click', drawProfilePreview);
+  changeProfileImageButton.addEventListener('click', drawChangeProfilePictureForm);
+  changePasswordButton.addEventListener('click', drawChangPasswordForm);
 
   drawChangPasswordForm();
 }
 
-async function uploadProfileImage(e) {
+async function uploadProfilePicture(e) {
   const pictureInput = document.querySelector('#pictureInput');
 
   e.preventDefault();
@@ -152,8 +156,12 @@ async function uploadProfileImage(e) {
 }
 
 function drawChangPasswordForm(e) {
+  let changePasswordDiv = document.querySelector('#changePasswordDiv');
+  if (changePasswordDiv) return;
+
+  changePasswordDiv = document.createElement('form');
+
   const profileDiv = document.querySelector('#profileDiv');
-  const changePasswordDiv = document.createElement('form');
   const oldPasswordPtag = document.createElement('p');
   const newPasswordPTag = document.createElement('p');
   const confirmPTag = document.createElement('p');
@@ -161,7 +169,6 @@ function drawChangPasswordForm(e) {
   const newPasswordInput = document.createElement('input');
   const confirmInput = document.createElement('input');
   const editDiv = document.createElement('div');
-
   const confirmButton = document.createElement('button');
 
   changePasswordDiv.setAttribute('id', 'changePasswordDiv');
@@ -171,7 +178,7 @@ function drawChangPasswordForm(e) {
   newPasswordPTag.innerText = 'New Password';
   confirmPTag.innerText = 'Confirm';
 
-  confirmButton.innerText = 'Change Password';
+  confirmButton.innerText = 'Change';
 
   oldPasswordInput.setAttribute('type', 'password');
   newPasswordInput.setAttribute('type', 'password');
@@ -217,5 +224,51 @@ function drawChangPasswordForm(e) {
     setMsg(response.data);
   });
 
-  profileDiv.appendChild(changePasswordDiv);
+  const changeProfilePictureDiv = document.querySelector('#changeProfilePictureDiv');
+  if (!changeProfilePictureDiv) return profileDiv.appendChild(changePasswordDiv);
+
+  changeProfilePictureDiv.replaceWith(changePasswordDiv);
+}
+
+function drawChangeProfilePictureForm(e) {
+  let changeProfilePictureDiv = document.querySelector('#changeProfilePictureDiv');
+  if (changeProfilePictureDiv) return;
+
+  changeProfilePictureDiv = document.createElement('form');
+
+  const changePasswordDiv = document.querySelector('#changePasswordDiv');
+  changePasswordDiv.replaceWith(changeProfilePictureDiv);
+
+  const previewPtag = document.createElement('p');
+  const previewDiv = document.createElement('div');
+  const previewImg = document.createElement('img');
+
+  const editDiv = document.createElement('div');
+
+  const pictureInput = document.createElement('input');
+
+  const confirmButton = document.createElement('button');
+
+  changeProfilePictureDiv.setAttribute('id', 'changeProfilePictureDiv');
+  editDiv.setAttribute('class', 'editDiv');
+
+  addClass('profile', confirmButton, previewPtag, previewDiv, previewImg, pictureInput);
+
+  previewPtag.innerText = 'Preview';
+
+  confirmButton.innerText = 'Change';
+
+  addClass('profile', confirmButton);
+
+  changeProfilePictureDiv.appendChild(previewPtag);
+  changeProfilePictureDiv.appendChild(previewDiv);
+  changeProfilePictureDiv.appendChild(pictureInput);
+  changeProfilePictureDiv.appendChild(editDiv);
+
+  previewDiv.appendChild(previewImg);
+
+  editDiv.appendChild(pictureInput);
+  editDiv.appendChild(confirmButton);
+
+  confirmButton.addEventListener('click', uploadProfilePicture);
 }

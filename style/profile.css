@@ -34,7 +34,8 @@ input.profile {
   max-width: 15vw;
 }
 
-#changePasswordDiv {
+#changePasswordDiv,
+#changeProfilePictureDiv {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
