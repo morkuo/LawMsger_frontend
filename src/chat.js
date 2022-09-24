@@ -416,9 +416,9 @@ async function detectInput(e) {
 
   if (!currentInput) return (suggestionsList.innerHTML = '');
 
-  const wordSuggestion = currentInput.indexOf('`');
-  const clauseSuggestion = currentInput.indexOf('``');
-  const matchclausesContent = currentInput.indexOf('|');
+  const wordSuggestion = currentInput.indexOf('＃');
+  const clauseSuggestion = currentInput.indexOf('＠');
+  const matchclausesContent = currentInput.indexOf('＾');
 
   if (wordSuggestion > -1 && clauseSuggestion === -1) {
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
