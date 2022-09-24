@@ -349,19 +349,17 @@ function resizeTextarea() {
 }
 
 function resize() {
-  this.style.height = 0;
+  const textarea = document.getElementById('input');
+  textarea.style.height = 0;
 
-  if (this.style.height < 28) this.style.height = '28px';
-  else this.style.height = this.scrollHeight + 'px';
+  if (textarea.style.height < 28) textarea.style.height = '28px';
+  else textarea.style.height = textarea.scrollHeight + 'px';
 }
 
 function submitFormOnEnter() {
   const textarea = document.getElementById('input');
   textarea.addEventListener('keypress', e => {
-    console.log(e.key);
     if (e.key === 'Enter' && !e.shiftKey) {
-      console.log(e.target.form);
-
       //send message
       e.target.form.dispatchEvent(new Event('submit', { cancelable: true }));
 
@@ -369,7 +367,7 @@ function submitFormOnEnter() {
       e.preventDefault();
 
       //resize textarea
-      resize.call(e);
+      resize();
     }
   });
 }
