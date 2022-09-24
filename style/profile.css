@@ -20,6 +20,16 @@
   border-radius: var(--border-radius);
 }
 
+#profilePicturePreviewDiv {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 h3.profile {
   margin-bottom: 2rem;
 }
@@ -39,6 +49,7 @@ input.profile {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 
   margin: 0 2rem;
   padding: 2rem 4rem;

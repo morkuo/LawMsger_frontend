@@ -127,9 +127,9 @@ async function drawProfile(e) {
 }
 
 async function uploadProfilePicture(e) {
-  const pictureInput = document.querySelector('#pictureInput');
-
   e.preventDefault();
+
+  const pictureInput = document.getElementById('pictureInput');
 
   const authorization = getJwtToken();
 
@@ -153,6 +153,26 @@ async function uploadProfilePicture(e) {
   if (response.error) return setMsg(response.error, 'error');
 
   setMsg(response.data);
+}
+
+function previewProfilePicture() {
+  const pictureInput = document.getElementById('pictureInput');
+
+  const picture = pictureInput.files[0];
+  const reader = new FileReader();
+
+  if (picture) {
+    reader.readAsDataURL(picture);
+  }
+
+  reader.addEventListener(
+    'load',
+    () => {
+      const previewDiv = document.getElementById('profilePicturePreviewDiv');
+      previewDiv.style.backgroundImage = `url(${reader.result})`;
+    },
+    false
+  );
 }
 
 function drawChangPasswordForm(e) {
@@ -241,18 +261,17 @@ function drawChangeProfilePictureForm(e) {
 
   const previewPtag = document.createElement('p');
   const previewDiv = document.createElement('div');
-  const previewImg = document.createElement('img');
-
-  const editDiv = document.createElement('div');
-
   const pictureInput = document.createElement('input');
-
+  const editDiv = document.createElement('div');
   const confirmButton = document.createElement('button');
 
   changeProfilePictureDiv.setAttribute('id', 'changeProfilePictureDiv');
+  previewDiv.setAttribute('id', 'profilePicturePreviewDiv');
+  pictureInput.setAttribute('id', 'pictureInput');
+  pictureInput.setAttribute('type', 'file');
   editDiv.setAttribute('class', 'editDiv');
 
-  addClass('profile', confirmButton, previewPtag, previewDiv, previewImg, pictureInput);
+  addClass('profile', confirmButton, previewPtag, previewDiv, pictureInput);
 
   previewPtag.innerText = 'Preview';
 
@@ -265,10 +284,10 @@ function drawChangeProfilePictureForm(e) {
   changeProfilePictureDiv.appendChild(pictureInput);
   changeProfilePictureDiv.appendChild(editDiv);
 
-  previewDiv.appendChild(previewImg);
-
   editDiv.appendChild(pictureInput);
   editDiv.appendChild(confirmButton);
+
+  pictureInput.addEventListener('change', previewProfilePicture);
 
   confirmButton.addEventListener('click', uploadProfilePicture);
 }
