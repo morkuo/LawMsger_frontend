@@ -72,6 +72,13 @@ input:focus {
   outline: none;
 }
 
+textarea {
+  /* height: 1.5rem; */
+  margin: 1rem 0;
+  resize: none;
+  font-family: ChiKareGo2;
+}
+
 button {
   font-family: ChiKareGo2;
 }
