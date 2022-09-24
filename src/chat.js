@@ -377,6 +377,13 @@ function submitFormOnEnter() {
 
       //resize textarea
       textarea.style.height = 0;
+
+      //reset suggestionsList position
+      const suggestionsList = document.querySelector('#suggestions.on');
+
+      if (!suggestionsList) return;
+
+      suggestionsList.style.bottom = `${+this.style.height.replace('px', '') + 12}px`;
     }
   });
 }
@@ -448,7 +455,7 @@ async function detectInput(e) {
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
 
-          //reset suggionsList position
+          //reset suggestionsList position
           suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
         }
       },
@@ -469,7 +476,7 @@ async function detectInput(e) {
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
 
-        //reset suggionsList position
+        //reset suggestionsList position
         suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
       },
       { once: true }
@@ -500,7 +507,7 @@ async function detectInput(e) {
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
 
-          //reset suggionsList position
+          //reset suggestionsList position
           suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
         }
       },
@@ -525,7 +532,7 @@ async function detectInput(e) {
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
 
-        //reset suggionsList position
+        //reset suggestionsList position
         suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
       },
       { once: true }
@@ -564,7 +571,7 @@ async function detectInput(e) {
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
 
-        //reset suggionsList position
+        //reset suggestionsList position
         suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
       },
       { once: true }
@@ -597,7 +604,7 @@ async function detectInput(e) {
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
 
-          //reset suggionsList position
+          //reset suggestionsList position
           suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
         }
       },
