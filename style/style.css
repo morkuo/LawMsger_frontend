@@ -217,17 +217,37 @@ p {
 
 #input {
   border: none;
+  margin: 0.6rem;
   padding: 0 1rem;
   width: 93%;
   height: 28px;
   min-height: 28px;
-  margin: 0.6rem;
+  max-height: 30vh;
+  overflow-y: auto;
+
+  scrollbar-color: var(--options-background-color) var(--options-hover-color);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+
   color: white;
   border-radius: var(--border-radius);
   background-color: var(--background-color);
   resize: none;
   font-family: ChiKareGo2;
 }
+
+#input::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+#input::-webkit-scrollbar-track {
+  background: var(--scrollbar-background-color);
+}
+
+#input::-webkit-scrollbar-thumb {
+  background-color: var(--background-color);
+}
+
 #input:focus {
   outline: none;
 }
