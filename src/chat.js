@@ -366,7 +366,7 @@ function resize() {
   else this.style.height = this.scrollHeight + 'px';
 
   const suggestionsList = document.querySelector('#suggestions.on');
-  const inputWrapper = document.querySelector('inputWrapper');
+  const inputWrapper = document.querySelector('#inputWrapper');
 
   if (!suggestionsList) return;
 
