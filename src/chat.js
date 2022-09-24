@@ -84,7 +84,7 @@ async function chatListener(e) {
 
       console.log('current proportion: ' + proportion);
 
-      if (proportion > 75) {
+      if (proportion > 85) {
         console.log('Pull New data');
 
         let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
@@ -219,39 +219,57 @@ async function groupChatListener(e) {
   //get more messages when scroll to top
   const messages = document.getElementById('messages');
 
-  messages.addEventListener('scroll', async e => {
-    // console.log(e.target.scrollTop);
+  messages.addEventListener(
+    'scroll',
+    debounce(async e => {
+      const currentHeight = e.target.scrollTop;
+      const totalHeight = e.target.scrollHeight;
+      const difference = totalHeight - currentHeight;
 
-    if (e.target.scrollTop === 0) {
-      // console.log('Pull New data');
+      const proportion = (difference / totalHeight) * 100;
 
-      let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
-      let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
+      console.log('current proportion: ' + proportion);
 
-      const { data: moreMessages } = await getGroupMessages(
-        targetContact.dataset.socketId,
-        baselineTime
-      );
+      if (proportion > 85) {
+        console.log('Pull New data');
 
-      if (moreMessages.length === 0) return setMsg('No More Messages');
+        let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
+        let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
 
-      for (let msg of moreMessages) {
-        if (msg.sender_id === userId) {
-          setMessage(msg.message, msg.created_at, null, 'more', msg.files, 'read', msg.sender_name);
-        } else {
-          setMessage(
-            msg.message,
-            msg.created_at,
-            msg.sender_id,
-            'more',
-            msg.files,
-            msg.isRead,
-            msg.sender_name
-          );
+        const { data: moreMessages } = await getGroupMessages(
+          targetContact.dataset.socketId,
+          baselineTime
+        );
+
+        if (moreMessages.length === 0) return setMsg('No More Messages');
+
+        for (let msg of moreMessages) {
+          if (msg.sender_id === userId) {
+            setMessage(
+              msg.message,
+              msg.created_at,
+              null,
+              'more',
+              msg.files,
+              'read',
+              msg.sender_name
+            );
+          } else {
+            setMessage(
+              msg.message,
+              msg.created_at,
+              msg.sender_id,
+              'more',
+              msg.files,
+              msg.isRead,
+              msg.sender_name
+            );
+          }
         }
       }
-    }
-  });
+    }),
+    600
+  );
 
   //suggestions
   const input = document.getElementById('input');
