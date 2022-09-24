@@ -76,12 +76,12 @@ async function chatListener(e) {
     const totalHeight = e.target.scrollHeight;
     const difference = totalHeight - currentHeight;
 
-    const proportion = difference / totalHeight;
+    const proportion = (difference / totalHeight) * 100;
 
     console.log('current proportion: ' + proportion);
 
     if (proportion > 75) {
-      // console.log('Pull New data');
+      console.log('Pull New data');
 
       let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
       let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
