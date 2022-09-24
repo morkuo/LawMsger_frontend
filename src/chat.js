@@ -377,6 +377,7 @@ function submitFormOnEnter() {
 
       //resize textarea
       textarea.style.height = 0;
+      textarea.style.height = textarea.scrollHeight + 'px';
 
       //reset suggestionsList position
       const suggestionsList = document.querySelector('#suggestions');
