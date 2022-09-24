@@ -338,6 +338,11 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   resizeTextarea();
   submitFormOnEnter();
 
+  //resize textarea
+  sendButton.addEventListener('click', () => {
+    input.style.height = 0;
+  });
+
   addUploadFileListener();
   addUnloadFileListener();
 }
