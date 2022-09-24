@@ -380,7 +380,7 @@ function submitFormOnEnter() {
 
       //reset suggestionsList position
       const suggestionsList = document.querySelector('#suggestions');
-      suggestionsList.style.bottom = `${+this.style.height.replace('px', '') + 12}px`;
+      suggestionsList.style.bottom = `${+textarea.style.height.replace('px', '') + 12}px`;
     }
   });
 }
