@@ -347,7 +347,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 
     suggestionsList.classList.remove('on');
     suggestionsList.innerHTML = '';
-    suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
+    suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 7}px`;
   });
 
   addUploadFileListener();
@@ -370,7 +370,7 @@ function resize() {
 
   if (!suggestionsList) return;
 
-  suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
+  suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 7}px`;
 }
 
 function submitFormOnEnter() {
@@ -390,7 +390,7 @@ function submitFormOnEnter() {
       const suggestionsList = document.querySelector('#suggestions');
       const inputWrapper = document.querySelector('#inputWrapper');
 
-      suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
+      suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 7}px`;
     }
   });
 }
@@ -435,7 +435,7 @@ async function detectInput(e) {
   suggestionsList.classList.remove('on');
 
   //reset suggestionsList position
-  suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
+  suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 7}px`;
 
   if (!currentInput) return (suggestionsList.innerHTML = '');
 
@@ -465,9 +465,6 @@ async function detectInput(e) {
           //resize textarea
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
-
-          // //reset suggestionsList position
-          // suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
         }
       },
       //once the eventlistener has been fired once, remove itself
@@ -486,9 +483,6 @@ async function detectInput(e) {
         //resize textarea
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
-
-        // //reset suggestionsList position
-        // suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
       },
       { once: true }
     );
@@ -517,9 +511,6 @@ async function detectInput(e) {
           //resize textarea
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
-
-          // //reset suggestionsList position
-          // suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
         }
       },
       { once: true }
@@ -542,9 +533,6 @@ async function detectInput(e) {
         //resize textarea
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
-
-        // //reset suggestionsList position
-        // suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
       },
       { once: true }
     );
@@ -581,9 +569,6 @@ async function detectInput(e) {
         //resize textarea
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
-
-        // //reset suggestionsList position
-        // suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 6}px`;
       },
       { once: true }
     );
