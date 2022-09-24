@@ -366,7 +366,7 @@ function submitFormOnEnter() {
       e.preventDefault();
 
       //resize textarea
-      this.style.height = 0;
+      textarea.style.height = 0;
     }
   });
 }
