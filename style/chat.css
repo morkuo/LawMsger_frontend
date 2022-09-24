@@ -65,6 +65,10 @@
   border: 1px solid black;
 }
 
+.chat-message-files {
+  display: flex;
+}
+
 .chat-message-image-preview,
 .chat-message-file-preview,
 .chat-upload-image-preview,

@@ -86,6 +86,7 @@ async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, se
   messageName.innerText = senderName;
   senderDiv.setAttribute('class', 'chat-sender-picture');
   messageDiv.setAttribute('class', 'chat-message-text');
+  filesDiv.setAttribute('class', 'chat-message-files');
   timeDiv.setAttribute('class', 'chat-message-time');
   timeDiv.setAttribute('data-raw-time', time);
 
