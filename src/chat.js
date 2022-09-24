@@ -349,11 +349,10 @@ function resizeTextarea() {
 }
 
 function resize() {
-  const textarea = document.getElementById('input');
-  textarea.style.height = 0;
+  this.style.height = 0;
 
-  if (textarea.style.height < 28) textarea.style.height = '28px';
-  else textarea.style.height = textarea.scrollHeight + 'px';
+  if (this.style.height < 28) this.style.height = '28px';
+  else this.style.height = this.scrollHeight + 'px';
 }
 
 function submitFormOnEnter() {
@@ -367,7 +366,7 @@ function submitFormOnEnter() {
       e.preventDefault();
 
       //resize textarea
-      resize();
+      this.style.height = 0;
     }
   });
 }
