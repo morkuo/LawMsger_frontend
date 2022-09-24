@@ -364,7 +364,9 @@ function resize() {
 
   if (!suggestionsList) return;
 
-  suggestionsList.style.bottom = this.style.height + 12 + 'px';
+  console.log(`${this.style.height + 12}px`);
+
+  suggestionsList.style.bottom = `${this.style.height + 12}px`;
 }
 
 function submitFormOnEnter() {
