@@ -348,7 +348,8 @@ function resizeTextarea() {
 
   function OnInput() {
     this.style.height = 0;
-    this.style.height = this.scrollHeight + 'px';
+    if (this.style.height < 28) this.style.height = '28px';
+    else this.style.height = this.scrollHeight + 'px';
   }
 }
 
