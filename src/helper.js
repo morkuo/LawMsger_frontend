@@ -83,7 +83,6 @@ async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, se
   const relativeTime = changeTimeFormat(time);
   timeDiv.innerText = relativeTime;
 
-  senderDiv.innerText = senderName[0].toUpperCase();
   messageName.innerText = senderName;
   senderDiv.setAttribute('class', 'chat-sender-picture');
   messageDiv.setAttribute('class', 'chat-message-text');
@@ -143,6 +142,10 @@ async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, se
   } else messages.insertAdjacentElement('afterbegin', item);
 
   if (!senderSocketId) {
+    //get signed in user's picture
+    const userId = localStorage.getItem('id');
+    senderDiv.style.backgroundImage = `url(${HOST}/profile_picture/${userId}.jpg)`;
+
     if (!more) messages.scrollTo(0, messages.scrollHeight);
     return;
   }

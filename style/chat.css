@@ -63,6 +63,10 @@
   min-width: 3rem;
   min-height: 3rem;
   border: 1px solid black;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .chat-message-files {
