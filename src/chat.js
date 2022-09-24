@@ -359,10 +359,10 @@ function submitFormOnEnter() {
   const textarea = document.getElementById('input');
   textarea.addEventListener('keypress', e => {
     console.log(e.key);
-    if (e.key === 'Enter' && e.key !== 'Shift') {
+    if (e.key === 'Enter' && !e.shiftKey) {
       console.log(e.target.form);
 
-      e.target.form.dispatchEvent(new Event('submit'));
+      e.target.form.dispatchEvent(new Event('submit', { cancelable: true }));
       e.preventDefault();
     }
   });
