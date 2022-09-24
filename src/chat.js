@@ -366,10 +366,11 @@ function resize() {
   else this.style.height = this.scrollHeight + 'px';
 
   const suggestionsList = document.querySelector('#suggestions.on');
+  const inputWrapper = document.querySelector('inputWrapper');
 
   if (!suggestionsList) return;
 
-  suggestionsList.style.bottom = `${+this.style.height.replace('px', '') + 12}px`;
+  suggestionsList.style.bottom = `${+inputWrapper.style.height.replace('px', '') + 12}px`;
 }
 
 function submitFormOnEnter() {
