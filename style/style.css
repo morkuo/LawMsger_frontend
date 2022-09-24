@@ -72,13 +72,6 @@ input:focus {
   outline: none;
 }
 
-textarea {
-  height: 1.5rem;
-  margin: 1rem 0;
-  resize: none;
-  font-family: ChiKareGo2;
-}
-
 button {
   font-family: ChiKareGo2;
 }
@@ -197,7 +190,7 @@ p {
 #inputWrapper {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   width: 95%;
   min-height: 2.35rem;
   position: absolute;
@@ -226,11 +219,13 @@ p {
   border: none;
   padding: 0 1rem;
   width: 93%;
-  height: 100%;
+  height: 1.5rem;
   margin: 0.6rem;
   color: white;
   border-radius: var(--border-radius);
   background-color: var(--background-color);
+  resize: none;
+  font-family: ChiKareGo2;
 }
 #input:focus {
   outline: none;
