@@ -136,9 +136,7 @@ async function uploadProfilePicture(e) {
   const api = `${HOST}/1.0/user/picture`;
   const formData = new FormData();
 
-  formData.append('images', pictureInput.file);
-
-  console.log('Going to upload this: ', pictureInput);
+  formData.append('images', pictureInput.files[0]);
 
   const res = await fetch(api, {
     method: 'POST',
