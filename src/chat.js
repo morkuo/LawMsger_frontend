@@ -360,11 +360,7 @@ function resize() {
 
   const suggestionsList = document.querySelector('#suggestions.on');
 
-  console.log(suggestionsList);
-
   if (!suggestionsList) return;
-
-  console.log(`${+this.style.height.replace('px', '') + 12}px`);
 
   suggestionsList.style.bottom = `${+this.style.height.replace('px', '') + 12}px`;
 }
@@ -451,6 +447,9 @@ async function detectInput(e) {
           //resize textarea
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
+
+          //reset suggionsList position
+          suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
         }
       },
       //once the eventlistener has been fired once, remove itself
@@ -469,6 +468,9 @@ async function detectInput(e) {
         //resize textarea
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
+
+        //reset suggionsList position
+        suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
       },
       { once: true }
     );
@@ -497,6 +499,9 @@ async function detectInput(e) {
           //resize textarea
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
+
+          //reset suggionsList position
+          suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
         }
       },
       { once: true }
@@ -519,6 +524,9 @@ async function detectInput(e) {
         //resize textarea
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
+
+        //reset suggionsList position
+        suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
       },
       { once: true }
     );
@@ -555,6 +563,9 @@ async function detectInput(e) {
         //resize textarea
         input.style.height = 0;
         input.style.height = input.scrollHeight + 'px';
+
+        //reset suggionsList position
+        suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
       },
       { once: true }
     );
@@ -585,6 +596,9 @@ async function detectInput(e) {
           //resize textarea
           input.style.height = 0;
           input.style.height = input.scrollHeight + 'px';
+
+          //reset suggionsList position
+          suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
         }
       },
       { once: true }

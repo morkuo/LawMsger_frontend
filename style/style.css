@@ -124,7 +124,7 @@ p {
   cursor: pointer;
   visibility: hidden;
   z-index: 1;
-  transition: bottom 0.3s ease;
+  transition: bottom 0.2s ease;
 }
 
 #suggestions.on {
