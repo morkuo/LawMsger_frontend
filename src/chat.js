@@ -347,12 +347,12 @@ function resizeTextarea() {
   tx.addEventListener('input', OnInput, false);
 
   function OnInput() {
-    this.style.height = 0;
-
     console.log(this.style.height);
 
     if (this.style.height < 28) this.style.height = '28px';
     else this.style.height = this.scrollHeight + 'px';
+
+    console.log(this.style.height);
   }
 }
 
