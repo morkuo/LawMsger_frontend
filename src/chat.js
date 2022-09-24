@@ -438,6 +438,9 @@ async function detectInput(e) {
             suggestionsList.innerHTML = '';
             suggestionsList.classList.remove('on');
           }
+
+          //resize textarea
+          input.style.height = 0;
         }
       },
       //once the eventlistener has been fired once, remove itself
@@ -452,6 +455,9 @@ async function detectInput(e) {
         suggestionsList.innerHTML = '';
 
         suggestionsList.classList.remove('on');
+
+        //resize textarea
+        input.style.height = 0;
       },
       { once: true }
     );
@@ -476,6 +482,9 @@ async function detectInput(e) {
             suggestionsList.innerHTML = '';
           }
           suggestionsList.classList.remove('on');
+
+          //resize textarea
+          input.style.height = 0;
         }
       },
       { once: true }
@@ -494,6 +503,9 @@ async function detectInput(e) {
         suggestionsList.innerHTML = '';
 
         suggestionsList.classList.remove('on');
+
+        //resize textarea
+        input.style.height = 0;
       },
       { once: true }
     );
@@ -526,6 +538,9 @@ async function detectInput(e) {
 
         socket.emit('updateMatchedClauses', origin, title, number);
         suggestionsList.classList.remove('on');
+
+        //resize textarea
+        input.style.height = 0;
       },
       { once: true }
     );
@@ -552,6 +567,9 @@ async function detectInput(e) {
 
           socket.emit('updateMatchedClauses', origin, title, number);
           suggestionsList.classList.remove('on');
+
+          //resize textarea
+          input.style.height = 0;
         }
       },
       { once: true }
