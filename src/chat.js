@@ -468,7 +468,7 @@ async function detectInput(e) {
   }
 
   if (clauseSuggestion > -1) {
-    socket.emit('suggestion', currentInput.slice(clauseSuggestion + 2), 'clauses');
+    socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
     //tab listener
     input.addEventListener(
