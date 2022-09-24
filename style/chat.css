@@ -35,7 +35,7 @@
   align-items: center;
   position: absolute;
   padding: 1rem;
-  right: 0rem;
+  left: 1rem;
   top: 5rem;
   color: white;
   background-color: var(--background-color);
