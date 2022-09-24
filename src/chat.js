@@ -336,26 +336,36 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   previewImageDiv.appendChild(unloadButton);
 
   resizeTextarea();
+  submitFormOnEnter();
 
   addUploadFileListener();
   addUnloadFileListener();
 }
 
 function resizeTextarea() {
-  const tx = document.getElementById('input');
-  tx.setAttribute('style', 'overflow-y:hidden;');
-  tx.addEventListener('input', OnInput, false);
+  const textarea = document.getElementById('input');
+  textarea.setAttribute('style', 'overflow-y:hidden;');
+  textarea.addEventListener('input', onInput, false);
 
-  function OnInput() {
+  function onInput() {
     this.style.height = 0;
-
-    console.log(this.style.height);
 
     if (this.style.height < 28) this.style.height = '28px';
     else this.style.height = this.scrollHeight + 'px';
-
-    console.log(this.style.height);
   }
+}
+
+function submitFormOnEnter() {
+  const textarea = document.getElementById('input');
+  textarea.addEventListener('keypress', e => {
+    console.log(e.key);
+    if (e.key === 'Enter' && e.key !== 'Shift') {
+      console.log(e.target.form);
+
+      e.target.form.dispatchEvent(new Event('submit'));
+      e.preventDefault();
+    }
+  });
 }
 
 async function getMessages(targetContactUserId, baselineTime) {
