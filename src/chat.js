@@ -76,7 +76,9 @@ async function chatListener(e) {
     debounce(async e => {
       const messageSize = e.target.querySelectorAll('li').length;
 
-      if (messageSize <= 15) return;
+      console.log(messageSize);
+
+      if (messageSize < 15) return;
 
       const currentHeight = e.target.scrollTop;
       const totalHeight = e.target.scrollHeight;
