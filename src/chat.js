@@ -370,6 +370,8 @@ function resize() {
 
   if (!suggestionsList) return;
 
+  console.log(`${+inputWrapper.style.height.replace('px', '') + 12}px`);
+
   suggestionsList.style.bottom = `${+inputWrapper.style.height.replace('px', '') + 12}px`;
 }
 
