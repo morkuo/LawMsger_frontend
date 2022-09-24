@@ -68,45 +68,58 @@ async function chatListener(e) {
     }
   }
 
+  debounce();
+
   //get more messages when scroll to top
   const messages = document.getElementById('messages');
 
-  messages.addEventListener('scroll', async e => {
-    const currentHeight = e.target.scrollTop;
-    const totalHeight = e.target.scrollHeight;
-    const difference = totalHeight - currentHeight;
+  messages.addEventListener(
+    'scroll',
+    debounce(async e => {
+      const currentHeight = e.target.scrollTop;
+      const totalHeight = e.target.scrollHeight;
+      const difference = totalHeight - currentHeight;
 
-    const proportion = (difference / totalHeight) * 100;
+      const proportion = (difference / totalHeight) * 100;
 
-    console.log('current proportion: ' + proportion);
+      console.log('current proportion: ' + proportion);
 
-    if (proportion > 75) {
-      console.log('Pull New data');
+      if (proportion > 75) {
+        console.log('Pull New data');
 
-      let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
-      let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
+        let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
+        let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
 
-      const { data: moreMessages } = await getMessages(targetContact.dataset.id, baselineTime);
+        const { data: moreMessages } = await getMessages(targetContact.dataset.id, baselineTime);
 
-      if (moreMessages.length === 0) return setMsg('No More Messages');
+        if (moreMessages.length === 0) return setMsg('No More Messages');
 
-      for (let msg of moreMessages) {
-        if (msg.sender_id !== targetContact.dataset.id) {
-          setMessage(msg.message, msg.created_at, null, 'more', msg.files, 'read', msg.sender_name);
-        } else {
-          setMessage(
-            msg.message,
-            msg.created_at,
-            targetContact.dataset.id,
-            'more',
-            msg.files,
-            msg.isRead,
-            msg.sender_name
-          );
+        for (let msg of moreMessages) {
+          if (msg.sender_id !== targetContact.dataset.id) {
+            setMessage(
+              msg.message,
+              msg.created_at,
+              null,
+              'more',
+              msg.files,
+              'read',
+              msg.sender_name
+            );
+          } else {
+            setMessage(
+              msg.message,
+              msg.created_at,
+              targetContact.dataset.id,
+              'more',
+              msg.files,
+              msg.isRead,
+              msg.sender_name
+            );
+          }
         }
       }
-    }
-  });
+    }, 600)
+  );
 
   //suggestions
   const input = document.getElementById('input');
