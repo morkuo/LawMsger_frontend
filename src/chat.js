@@ -341,6 +341,12 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   //resize textarea
   sendButton.addEventListener('click', () => {
     input.style.height = 0;
+
+    //reset suggestionsList position
+    const suggestionsList = document.querySelector('#suggestions');
+
+    suggestionsList.innerHTML = '';
+    suggestionsList.style.bottom = `40px`;
   });
 
   addUploadFileListener();
