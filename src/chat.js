@@ -332,7 +332,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   inputWrapper.appendChild(sendButton);
   sendButton.appendChild(sendButtonWrapper);
 
-  inputWrapper.appendChild(previewImageDiv);
+  pane.appendChild(previewImageDiv);
   previewImageDiv.appendChild(unloadButton);
 
   resizeTextarea();
