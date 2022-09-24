@@ -347,7 +347,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 
     suggestionsList.classList.remove('on');
     suggestionsList.innerHTML = '';
-    suggestionsList.style.bottom = `40px`;
+    suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
   });
 
   addUploadFileListener();
@@ -388,7 +388,9 @@ function submitFormOnEnter() {
 
       //reset suggestionsList position
       const suggestionsList = document.querySelector('#suggestions');
-      suggestionsList.style.bottom = `40px`;
+      const inputWrapper = document.querySelector('#inputWrapper');
+
+      suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
     }
   });
 }
@@ -428,6 +430,7 @@ async function detectInput(e) {
   const currentInput = e.target.value;
   const suggestionsList = document.getElementById('suggestions');
   const input = document.getElementById('input');
+  const inputWrapper = document.querySelector('#inputWrapper');
 
   suggestionsList.classList.remove('on');
 
@@ -461,7 +464,7 @@ async function detectInput(e) {
           input.style.height = input.scrollHeight + 'px';
 
           //reset suggestionsList position
-          suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
+          suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
         }
       },
       //once the eventlistener has been fired once, remove itself
@@ -482,7 +485,7 @@ async function detectInput(e) {
         input.style.height = input.scrollHeight + 'px';
 
         //reset suggestionsList position
-        suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
+        suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
       },
       { once: true }
     );
@@ -513,7 +516,7 @@ async function detectInput(e) {
           input.style.height = input.scrollHeight + 'px';
 
           //reset suggestionsList position
-          suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
+          suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
         }
       },
       { once: true }
@@ -538,7 +541,7 @@ async function detectInput(e) {
         input.style.height = input.scrollHeight + 'px';
 
         //reset suggestionsList position
-        suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
+        suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
       },
       { once: true }
     );
@@ -577,7 +580,7 @@ async function detectInput(e) {
         input.style.height = input.scrollHeight + 'px';
 
         //reset suggestionsList position
-        suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
+        suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
       },
       { once: true }
     );
@@ -610,7 +613,7 @@ async function detectInput(e) {
           input.style.height = input.scrollHeight + 'px';
 
           //reset suggestionsList position
-          suggestionsList.style.bottom = `${+input.style.height.replace('px', '') + 12}px`;
+          suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
         }
       },
       { once: true }
