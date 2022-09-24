@@ -343,7 +343,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 
 function resizeTextarea() {
   const tx = document.getElementById('input');
-  tx.setAttribute('style', 'height:' + tx.scrollHeight + 'px;overflow-y:hidden;');
+  tx.setAttribute('style', 'overflow-y:hidden;');
   tx.addEventListener('input', OnInput, false);
 
   function OnInput() {

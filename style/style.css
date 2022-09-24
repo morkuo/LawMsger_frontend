@@ -208,7 +208,7 @@ p {
 #inputWrapper button {
   display: flex;
   align-items: center;
-  margin: 0.45rem 0 0 0;
+  margin: 0.35rem 0 0 0;
   border: none;
   color: white;
   border-radius: var(--border-radius);
