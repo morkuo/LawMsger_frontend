@@ -357,6 +357,14 @@ function resize() {
 
   if (this.style.height < 28) this.style.height = '28px';
   else this.style.height = this.scrollHeight + 'px';
+
+  const suggestionsList = document.querySelector('#suggestions.on');
+
+  console.log(suggestionsList);
+
+  if (!suggestionsList) return;
+
+  suggestionsList.style.bottom = this.style.height;
 }
 
 function submitFormOnEnter() {
