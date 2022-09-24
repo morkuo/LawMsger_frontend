@@ -273,8 +273,7 @@ async function groupChatListener(e) {
           }
         }
       }
-    }),
-    600
+    }, 600)
   );
 
   //suggestions
