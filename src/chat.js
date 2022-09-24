@@ -68,14 +68,16 @@ async function chatListener(e) {
     }
   }
 
-  debounce();
-
   //get more messages when scroll to top
   const messages = document.getElementById('messages');
 
   messages.addEventListener(
     'scroll',
     debounce(async e => {
+      const messageSize = e.target.querySelectorAll('li').length;
+
+      if (messageSize <= 15) return;
+
       const currentHeight = e.target.scrollTop;
       const totalHeight = e.target.scrollHeight;
       const difference = totalHeight - currentHeight;
