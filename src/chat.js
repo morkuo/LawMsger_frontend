@@ -74,10 +74,8 @@ async function chatListener(e) {
   messages.addEventListener(
     'scroll',
     debounce(async e => {
+      // if number of messages showing on the window is less than 15, don't get more messages
       const messageSize = e.target.querySelectorAll('li').length;
-
-      console.log(messageSize);
-
       if (messageSize < 15) return;
 
       const currentHeight = e.target.scrollTop;
@@ -226,6 +224,10 @@ async function groupChatListener(e) {
   messages.addEventListener(
     'scroll',
     debounce(async e => {
+      // if number of messages showing on the window is less than 15, don't get more messages
+      const messageSize = e.target.querySelectorAll('li').length;
+      if (messageSize < 15) return;
+
       const currentHeight = e.target.scrollTop;
       const totalHeight = e.target.scrollHeight;
       const difference = totalHeight - currentHeight;
