@@ -345,6 +345,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
     //reset suggestionsList position
     const suggestionsList = document.querySelector('#suggestions');
 
+    suggestionsList.classList.remove('on');
     suggestionsList.innerHTML = '';
     suggestionsList.style.bottom = `40px`;
   });
