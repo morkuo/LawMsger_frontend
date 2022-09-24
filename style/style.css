@@ -219,7 +219,7 @@ p {
   border: none;
   padding: 0 1rem;
   width: 93%;
-  height: 1.5rem;
+  min-height: 28px;
   margin: 0.6rem;
   color: white;
   border-radius: var(--border-radius);
