@@ -370,7 +370,7 @@ function resize() {
 
   if (!suggestionsList) return;
 
-  suggestionsList.style.bottom = `${+inputWrapper.offsetHeight + 12}px`;
+  suggestionsList.style.bottom = inputWrapper.offsetHeigh + 'px';
 }
 
 function submitFormOnEnter() {
