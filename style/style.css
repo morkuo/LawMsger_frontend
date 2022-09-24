@@ -113,7 +113,7 @@ p {
 
 #suggestions {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   padding: 1rem;
   max-width: 100%;
   min-width: 1060px;
@@ -124,6 +124,7 @@ p {
   cursor: pointer;
   visibility: hidden;
   z-index: 1;
+  transition: bottom 0.3s ease;
 }
 
 #suggestions.on {
