@@ -379,10 +379,7 @@ function submitFormOnEnter() {
       textarea.style.height = 0;
 
       //reset suggestionsList position
-      const suggestionsList = document.querySelector('#suggestions.on');
-
-      if (!suggestionsList) return;
-
+      const suggestionsList = document.querySelector('#suggestions');
       suggestionsList.style.bottom = `${+this.style.height.replace('px', '') + 12}px`;
     }
   });
