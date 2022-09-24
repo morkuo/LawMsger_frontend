@@ -345,14 +345,14 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 function resizeTextarea() {
   const textarea = document.getElementById('input');
   textarea.setAttribute('style', 'overflow-y:hidden;');
-  textarea.addEventListener('input', onInput, false);
+  textarea.addEventListener('input', resize, false);
+}
 
-  function onInput() {
-    this.style.height = 0;
+function resize() {
+  this.style.height = 0;
 
-    if (this.style.height < 28) this.style.height = '28px';
-    else this.style.height = this.scrollHeight + 'px';
-  }
+  if (this.style.height < 28) this.style.height = '28px';
+  else this.style.height = this.scrollHeight + 'px';
 }
 
 function submitFormOnEnter() {
@@ -362,8 +362,14 @@ function submitFormOnEnter() {
     if (e.key === 'Enter' && !e.shiftKey) {
       console.log(e.target.form);
 
+      //send message
       e.target.form.dispatchEvent(new Event('submit', { cancelable: true }));
+
+      //add new line to textarea
       e.preventDefault();
+
+      //resize textarea
+      resize();
     }
   });
 }
