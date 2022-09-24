@@ -349,7 +349,6 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 
 function resizeTextarea() {
   const textarea = document.getElementById('input');
-  textarea.setAttribute('style', 'overflow-y:hidden;');
   textarea.addEventListener('input', resize, false);
 }
 
