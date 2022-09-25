@@ -44,9 +44,11 @@ async function chatListener(e) {
   //append history message to chat window
   const { data: history } = await getMessages(targetContact.dataset.id);
 
-  const { status: userPictureStatusCode } = await fetch(`${HOST}/profile_picture/${userId}.jpg`);
+  const { status: userPictureStatusCode } = await fetch(
+    `${window.location.origin}/profile_picture/${userId}.jpg`
+  );
   const { status: targetUserPictureStatusCode } = await fetch(
-    `${HOST}/profile_picture/${targetContact.dataset.id}.jpg`
+    `${window.location.origin}/profile_picture/${targetContact.dataset.id}.jpg`
   );
 
   for (let i = history.length - 1; i >= 0; i--) {
