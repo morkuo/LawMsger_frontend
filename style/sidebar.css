@@ -67,7 +67,8 @@
   background-color: #1f4560;
 }
 
-.contact-picture .group-picture {
+.contact-picture,
+.group-picture {
   margin: 0.3rem 1.35rem 0.3rem 0.6rem;
   display: flex;
   justify-content: center;
