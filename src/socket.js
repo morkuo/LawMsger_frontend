@@ -1,4 +1,4 @@
-import { HOST, addClass, setMessage } from './helper.js';
+import { HOST, addClass, setMessage, setMsg } from './helper.js';
 import { drawContactDivs, drawSidebar, drawGroups, drawDeleteGroupButton } from './sidebar.js';
 
 let jwtToken = localStorage.getItem('token');
@@ -278,6 +278,9 @@ socket.on('drawGroupDiv', (groupId, groupName, participants) => {
 
 socket.on('deleteGroupDiv', groupId => {
   const groupDiv = document.querySelector(`[data-socket-id="${groupId}"]`);
+  const groupNameDiv = groupDiv.querySelector('.group-name');
+  const groupName = groupNameDiv.innerText;
+
   groupDiv.remove();
 
   const messages = document.getElementById('messages');
@@ -290,6 +293,8 @@ socket.on('deleteGroupDiv', groupId => {
 
   pane.innerHTML = '';
   pane.appendChild(welcome);
+
+  setMsg(`Group '${groupName}' was deleted by the host`);
 });
 
 socket.on('createStarContact', response => {
