@@ -80,6 +80,10 @@
   background-size: cover;
 }
 
+.group-picture {
+  background: url(/images/group_pfp.jpg);
+}
+
 .contact-info,
 .contact-add-star-button {
   display: flex;
@@ -100,11 +104,6 @@
   width: 23px;
   border-radius: 50%;
   font-size: 0.9rem;
-}
-
-.group-unread-count {
-  bottom: 0.8rem;
-  right: 2.9rem;
 }
 
 .contact-unread-count.on,

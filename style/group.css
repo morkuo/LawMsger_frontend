@@ -91,7 +91,6 @@ button.group-function:hover {
 
 .group-status {
   width: 1rem;
-  margin-right: 1rem;
   background-color: rgb(247, 199, 139);
   border-top-left-radius: var(--sidebar-border-radius);
   border-bottom-left-radius: var(--sidebar-border-radius);

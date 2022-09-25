@@ -227,8 +227,6 @@ function drawGroups(groups) {
     addClass('group-name', nameDiv);
     addClass('group-unread-count', unreadCountDiv);
 
-    pictureDiv.style.backgroundColor = 'black';
-
     nameDiv.innerText = group.name;
     if (group.unread) {
       unreadCountDiv.innerText = group.unread;
