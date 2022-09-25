@@ -36,9 +36,9 @@
 }
 
 #firmLogo {
-  height: 50px;
-  width: 50px;
-  margin-left: 1rem;
+  height: 60px;
+  width: 60px;
+  margin-left: 0.8rem;
   border-radius: var(--border-radius);
   background-color: var(--light-yellow);
 }

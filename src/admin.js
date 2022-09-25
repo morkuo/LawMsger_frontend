@@ -150,4 +150,100 @@ function drawDeleteUserForm() {
   form.appendChild(button);
 }
 
-export { drawCreateUserForm, drawDeleteUserForm, checkAdmin };
+function drawChangeFirmPictureForm() {
+  const pane = document.querySelector('#pane');
+  const manageDiv = pane.querySelector('div');
+
+  const changePictureDiv = document.createElement('form');
+  const firmPictureHeader = document.createElement('h3');
+  const previewDiv = document.createElement('div');
+  const pictureInputWrapper = document.createElement('label');
+  const pictureInputIcon = document.createElement('span');
+  const pictureInput = document.createElement('input');
+  const editDiv = document.createElement('div');
+  const confirmButton = document.createElement('span');
+
+  changePictureDiv.setAttribute('id', 'firmPictureDiv');
+  previewDiv.setAttribute('id', 'firmPicturePreviewDiv');
+
+  pictureInput.setAttribute('id', 'pictureInput');
+  pictureInput.setAttribute('type', 'file');
+  confirmButton.setAttribute('id', 'firmPictureInputComfirm');
+  editDiv.setAttribute('class', 'editDiv');
+
+  pictureInputWrapper.setAttribute('id', 'pictureInputWrapper');
+  pictureInputIcon.setAttribute('id', 'firmPictureInputIcon');
+  pictureInputIcon.setAttribute('class', 'material-symbols-outlined');
+  confirmButton.setAttribute('class', 'material-symbols-outlined');
+
+  addClass('admin', changePictureDiv, confirmButton, firmPictureHeader, pictureInput);
+
+  firmPictureHeader.innerText = 'Edit Logo';
+  pictureInputIcon.innerText = 'add_photo_alternate';
+  confirmButton.innerText = 'check_box';
+
+  manageDiv.appendChild(changePictureDiv);
+
+  changePictureDiv.appendChild(firmPictureHeader);
+  changePictureDiv.appendChild(previewDiv);
+  changePictureDiv.appendChild(editDiv);
+
+  editDiv.appendChild(pictureInputWrapper);
+  editDiv.appendChild(confirmButton);
+
+  pictureInputWrapper.appendChild(pictureInput);
+  pictureInputWrapper.appendChild(pictureInputIcon);
+
+  pictureInput.addEventListener('change', previewFirmPicture);
+
+  confirmButton.addEventListener('click', uploadFirmPicture);
+}
+
+function previewFirmPicture() {
+  const pictureInput = document.getElementById('pictureInput');
+
+  const picture = pictureInput.files[0];
+  const reader = new FileReader();
+
+  if (picture) {
+    reader.readAsDataURL(picture);
+  }
+
+  reader.addEventListener(
+    'load',
+    () => {
+      const previewDiv = document.getElementById('firmPicturePreviewDiv');
+      previewDiv.style.backgroundImage = `url(${reader.result})`;
+    },
+    false
+  );
+}
+
+async function uploadFirmPicture(e) {
+  e.preventDefault();
+
+  const pictureInput = document.getElementById('pictureInput');
+
+  const authorization = getJwtToken();
+
+  const api = `${HOST}/1.0/firm/picture`;
+  const formData = new FormData();
+
+  formData.append('images', pictureInput.files[0]);
+
+  const res = await fetch(api, {
+    method: 'POST',
+    headers: {
+      'Authorization': authorization,
+    },
+    body: formData,
+  });
+
+  const response = await res.json();
+
+  if (response.error) return setMsg(response.error, 'error');
+
+  setMsg(response.data);
+}
+
+export { drawCreateUserForm, drawDeleteUserForm, drawChangeFirmPictureForm, checkAdmin };

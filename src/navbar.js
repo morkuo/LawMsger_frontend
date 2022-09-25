@@ -1,5 +1,10 @@
 import { setMsg, addClass, getJwtToken, HOST } from './helper.js';
-import { drawCreateUserForm, drawDeleteUserForm, checkAdmin } from './admin.js';
+import {
+  drawCreateUserForm,
+  drawDeleteUserForm,
+  drawChangeFirmPictureForm,
+  checkAdmin,
+} from './admin.js';
 
 main();
 
@@ -51,6 +56,7 @@ async function setNavbar() {
 
       drawCreateUserForm();
       drawDeleteUserForm();
+      drawChangeFirmPictureForm();
     });
 
     footerOptions.insertAdjacentElement('afterbegin', adminButton);

@@ -5,11 +5,12 @@
 
 div.admin {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin: auto 4rem;
   height: 70vh;
-  border: 1px solid #6d665b;
+  color: white;
+  background-color: var(--background-color);
   border-radius: var(--border-radius);
 }
 
@@ -18,7 +19,6 @@ form.admin {
   flex-direction: column;
   align-items: center;
   padding: 2rem 4rem;
-  min-width: 27vw;
   height: 50vh;
 }
 
@@ -42,7 +42,7 @@ input.admin,
 button.admin {
   background-color: #2b2a33;
   color: white;
-  border: 1px solid grey;
+  border: none;
   border-radius: 3px;
   padding: 0.1rem 0.2rem;
   max-width: 15vw;
@@ -52,5 +52,44 @@ button.admin {
   margin-top: auto;
   padding: 0.22rem 0.7rem;
   border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+#firmPictureDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#firmPictureDiv .editDiv {
+  flex-direction: row;
+  justify-content: center;
+  margin-top: auto;
+}
+
+#firmPicturePreviewDiv {
+  height: 250px;
+  width: 250px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 2px solid var(--dark-yellow);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#firmPictureInputIcon:hover,
+#firmPictureInputComfirm:hover {
+  background-color: var(--options-hover-color-blue);
+  transition: all 0.1s;
+}
+
+#firmPictureInputIcon,
+#firmPictureInputComfirm {
+  color: white;
+  font-size: 40px;
+  margin: 0 1.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
