@@ -44,13 +44,6 @@ async function chatListener(e) {
   //append history message to chat window
   const { data: history } = await getMessages(targetContact.dataset.id);
 
-  const { status: userPictureStatusCode } = await fetch(
-    `${window.location.origin}/profile_picture/${userId}.jpg`
-  );
-  const { status: targetUserPictureStatusCode } = await fetch(
-    `${window.location.origin}/profile_picture/${targetContact.dataset.id}.jpg`
-  );
-
   for (let i = history.length - 1; i >= 0; i--) {
     if (history[i].sender_id !== targetContact.dataset.id) {
       setMessage(
@@ -60,7 +53,8 @@ async function chatListener(e) {
         null,
         history[i].files,
         'read',
-        history[i].sender_name
+        history[i].sender_name,
+        history[i].sender_id
       );
     } else {
       setMessage(
@@ -70,7 +64,8 @@ async function chatListener(e) {
         null,
         history[i].files,
         history[i].isRead,
-        history[i].sender_name
+        history[i].sender_name,
+        history[i].sender_id
       );
     }
   }

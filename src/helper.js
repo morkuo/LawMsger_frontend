@@ -64,7 +64,16 @@ function getJwtToken() {
   return authorization;
 }
 
-async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, senderName) {
+async function setMessage(
+  msg,
+  time,
+  senderSocketId,
+  more,
+  filesInfo,
+  isRead,
+  senderName,
+  senderUserId
+) {
   const messages = document.getElementById('messages');
 
   if (!messages) return;
@@ -150,7 +159,7 @@ async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, se
     return;
   }
 
-  senderDiv.innerText = senderName[0].toUpperCase();
+  senderDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${senderUserId}.jpg)`;
   if (!more) messages.scrollTo(0, messages.scrollHeight);
   return;
 }
