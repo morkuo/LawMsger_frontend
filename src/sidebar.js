@@ -135,7 +135,7 @@ async function drawDeleteGroupButton(groups) {
       groupDiv.remove();
 
       //remove group member's group div
-      socket.emit('deleteGroupDiv', null, response.group.id);
+      socket.emit('deleteGroupDiv', null, groupId);
 
       //if current user is at group chat window, redirect to welcome page
       const messages = document.getElementById('messages');
