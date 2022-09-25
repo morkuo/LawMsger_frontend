@@ -294,7 +294,7 @@ socket.on('deleteGroupDiv', groupId => {
   pane.innerHTML = '';
   pane.appendChild(welcome);
 
-  setMsg(`Group '${groupName}' was deleted by the host`);
+  setMsg(`Group "${groupName}" was deleted by the host`);
 });
 
 socket.on('createStarContact', response => {
