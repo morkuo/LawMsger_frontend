@@ -107,7 +107,8 @@ async function chatListener(e) {
               'more',
               msg.files,
               'read',
-              msg.sender_name
+              msg.sender_name,
+              msg.sender_id
             );
           } else {
             setMessage(
@@ -117,7 +118,8 @@ async function chatListener(e) {
               'more',
               msg.files,
               msg.isRead,
-              msg.sender_name
+              msg.sender_name,
+              msg.sender_id
             );
           }
         }
@@ -160,7 +162,16 @@ async function chatListener(e) {
 
       console.log(userId);
 
-      setMessage(input.value, Date.now(), userId, null, filesInfo, 'read', userName.innerText);
+      setMessage(
+        input.value,
+        Date.now(),
+        userId,
+        null,
+        filesInfo,
+        'read',
+        userName.innerText,
+        userId
+      );
 
       input.value = '';
     }
@@ -205,7 +216,8 @@ async function groupChatListener(e) {
         null,
         history[i].files,
         isRead,
-        history[i].sender_name
+        history[i].sender_name,
+        history[i].sender_id
       );
     } else {
       setMessage(
@@ -215,7 +227,8 @@ async function groupChatListener(e) {
         null,
         history[i].files,
         'read',
-        history[i].sender_name
+        history[i].sender_name,
+        userId
       );
     }
   }
@@ -260,7 +273,8 @@ async function groupChatListener(e) {
               'more',
               msg.files,
               'read',
-              msg.sender_name
+              msg.sender_name,
+              userId
             );
           } else {
             setMessage(
@@ -270,7 +284,8 @@ async function groupChatListener(e) {
               'more',
               msg.files,
               msg.isRead,
-              msg.sender_name
+              msg.sender_name,
+              msg.sender_id
             );
           }
         }
@@ -314,7 +329,16 @@ async function groupChatListener(e) {
 
       console.log(userId);
 
-      setMessage(input.value, Date.now(), userId, null, filesInfo, 'read', userName.innerText);
+      setMessage(
+        input.value,
+        Date.now(),
+        userId,
+        null,
+        filesInfo,
+        'read',
+        userName.innerText,
+        userId
+      );
 
       input.value = '';
     }
