@@ -188,7 +188,10 @@ function drawContactDivs(contacts, category) {
     pictureDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${contact.id}.jpg)`;
     nameDiv.innerText = contact.name;
     // emailDiv.innerText = contact.email;
-    if (contact.unread) unreadCountDiv.innerText = contact.unread;
+    if (contact.unread) {
+      unreadCountDiv.innerText = contact.unread;
+      unreadCountDiv.classList.add('on');
+    }
 
     contactDiv.setAttribute('data-id', contact.id);
     if (contact.socket_id === undefined || null) contact.socket_id = '';
@@ -223,7 +226,10 @@ function drawGroups(groups) {
     addClass('group-unread-count', unreadCountDiv);
 
     nameDiv.innerText = group.name;
-    if (group.unread) unreadCountDiv.innerText = group.unread;
+    if (group.unread) {
+      unreadCountDiv.innerText = group.unread;
+      unreadCountDiv.classList.add('on');
+    }
 
     groupDiv.setAttribute('data-socket-id', group.id);
 

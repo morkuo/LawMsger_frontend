@@ -37,6 +37,7 @@ async function chatListener(e) {
   );
   unreadCountDivs.forEach(div => {
     div.innerText = '';
+    div.classList.remove('on');
   });
 
   drawChatWindow(targetContact.dataset.id, targetContact.dataset.socketId);
@@ -192,6 +193,7 @@ async function groupChatListener(e) {
   const unreadCountDiv = targetContact.querySelector('.group-unread-count');
 
   unreadCountDiv.innerText = '';
+  unreadCountDiv.classList.remove('on');
 
   drawChatWindow(targetContact.dataset.id, targetContact.dataset.socketId);
 

@@ -193,6 +193,7 @@ socket.on(
         console.log('Incrementing!');
         const unreadCountDiv = div.querySelector('.contact-unread-count');
         unreadCountDiv.innerText++;
+        unreadCountDiv.classList.add('on');
       });
 
       return;
@@ -235,6 +236,7 @@ socket.on(
       console.log('Incrementing!');
       const unreadCountDiv = groupDiv.querySelector('.group-unread-count');
       unreadCountDiv.innerText++;
+      unreadCountDiv.classList.add('on');
 
       return;
     }
