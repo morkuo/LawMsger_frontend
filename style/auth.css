@@ -92,18 +92,15 @@ h3.auth {
   margin-bottom: 2rem;
 }
 
-input.auth,
-button.auth {
+input.auth {
   background-color: #2b2a33;
   color: white;
   border: none;
 }
 
 button.auth {
-  margin-top: 2rem;
-  padding: 0.22rem 0.7rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 div.signout {
