@@ -64,7 +64,16 @@ function getJwtToken() {
   return authorization;
 }
 
-async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, senderName) {
+async function setMessage(
+  msg,
+  time,
+  senderSocketId,
+  more,
+  filesInfo,
+  isRead,
+  senderName,
+  senderPictureStatusCode
+) {
   const messages = document.getElementById('messages');
 
   if (!messages) return;
@@ -142,9 +151,13 @@ async function setMessage(msg, time, senderSocketId, more, filesInfo, isRead, se
   } else messages.insertAdjacentElement('afterbegin', item);
 
   if (!senderSocketId) {
-    //get signed in user's picture
-    const userId = localStorage.getItem('id');
-    senderDiv.style.backgroundImage = `url(${HOST}/profile_picture/${userId}.jpg)`;
+    //no user picture
+    if (senderPictureStatusCode !== 200) senderDiv.innerText = senderName[0].toUpperCase();
+    else {
+      //get signed in user's picture
+      const userId = localStorage.getItem('id');
+      senderDiv.style.backgroundImage = `url(${HOST}/profile_picture/${userId}.jpg)`;
+    }
 
     if (!more) messages.scrollTo(0, messages.scrollHeight);
     return;
