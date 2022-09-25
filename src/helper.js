@@ -156,7 +156,7 @@ async function setMessage(
     else {
       //get signed in user's picture
       const userId = localStorage.getItem('id');
-      senderDiv.style.backgroundImage = `url(${HOST}/profile_picture/${userId}.jpg)`;
+      senderDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${userId}.jpg)`;
     }
 
     if (!more) messages.scrollTo(0, messages.scrollHeight);
