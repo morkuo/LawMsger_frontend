@@ -51,7 +51,7 @@ input.profile {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
+  flex-grow: 1;
   margin: 0 2rem;
   padding: 2rem 4rem;
   border: 1px solid #6d665b;
@@ -62,6 +62,11 @@ input.profile {
 .editDiv {
   display: flex;
   flex-direction: column;
+}
+
+#changeProfilePictureDiv .editDiv {
+  flex-direction: row;
+  justify-content: center;
 }
 
 .editDiv button {
@@ -75,4 +80,23 @@ input.profile {
   border-radius: var(--border-radius);
 
   max-width: 15vw;
+}
+
+#pictureInputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pictureInputIcon,
+#pictureInputComfirm {
+  font-size: 50px;
+  margin: 0 2rem;
+  cursor: pointer;
+  /* font-variation-settings: 'FILL' 1, 'wght' 700, 'opsz' 48; */
+}
+
+#pictureInput {
+  position: absolute;
+  visibility: hidden;
 }

@@ -211,7 +211,7 @@ socket.on(
       true
     );
 
-    console.log(fromUserId);
+    // console.log(fromUserId);
 
     //append message from the sender to chat window
     setMessage(msg, Date.now(), fromUserId, null, filesInfo, 'read', fromUserName, fromUserId);

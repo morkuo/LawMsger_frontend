@@ -259,31 +259,41 @@ function drawChangeProfilePictureForm(e) {
 
   const previewPtag = document.createElement('p');
   const previewDiv = document.createElement('div');
+  const pictureInputWrapper = document.createElement('label');
+  const pictureInputIcon = document.createElement('span');
   const pictureInput = document.createElement('input');
   const editDiv = document.createElement('div');
-  const confirmButton = document.createElement('button');
+  const confirmButton = document.createElement('span');
 
   changeProfilePictureDiv.setAttribute('id', 'changeProfilePictureDiv');
   previewDiv.setAttribute('id', 'profilePicturePreviewDiv');
+
   pictureInput.setAttribute('id', 'pictureInput');
   pictureInput.setAttribute('type', 'file');
+  confirmButton.setAttribute('id', 'pictureInputComfirm');
   editDiv.setAttribute('class', 'editDiv');
 
+  pictureInputWrapper.setAttribute('id', 'pictureInputWrapper');
+  pictureInputIcon.setAttribute('id', 'pictureInputIcon');
+  pictureInputIcon.setAttribute('class', 'material-symbols-outlined');
+  confirmButton.setAttribute('class', 'material-symbols-outlined');
+
   addClass('profile', confirmButton, previewPtag, previewDiv, pictureInput);
+  addClass('profile', confirmButton);
 
   previewPtag.innerText = 'Preview';
-
-  confirmButton.innerText = 'Change';
-
-  addClass('profile', confirmButton);
+  pictureInputIcon.innerText = 'add_photo_alternate';
+  confirmButton.innerText = 'check_box';
 
   changeProfilePictureDiv.appendChild(previewPtag);
   changeProfilePictureDiv.appendChild(previewDiv);
-  changeProfilePictureDiv.appendChild(pictureInput);
   changeProfilePictureDiv.appendChild(editDiv);
 
-  editDiv.appendChild(pictureInput);
+  editDiv.appendChild(pictureInputWrapper);
   editDiv.appendChild(confirmButton);
+
+  pictureInputWrapper.appendChild(pictureInput);
+  pictureInputWrapper.appendChild(pictureInputIcon);
 
   pictureInput.addEventListener('change', previewProfilePicture);
 
