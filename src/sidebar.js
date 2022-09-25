@@ -185,7 +185,7 @@ function drawContactDivs(contacts, category) {
     addClass('contact-unread-count', unreadCountDiv);
 
     //if picture not url, then show initial
-    if (contact.picture.length <= 1) pictureDiv.innerText = contact.name[0].toUpperCase();
+    pictureDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${contact.id}.jpg)`;
     nameDiv.innerText = contact.name;
     // emailDiv.innerText = contact.email;
     if (contact.unread) unreadCountDiv.innerText = contact.unread;
