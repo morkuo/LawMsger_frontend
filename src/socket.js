@@ -3,6 +3,7 @@ import { drawContactDivs, drawSidebar, drawGroups, drawDeleteGroupButton } from 
 
 let jwtToken = localStorage.getItem('token');
 
+// eslint-disable-next-line no-undef
 const socket = io(HOST, { query: { jwtToken } });
 
 socket.on('connect', async () => {

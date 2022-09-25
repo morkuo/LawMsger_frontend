@@ -86,7 +86,8 @@
   justify-content: center;
 }
 
-.contact-unread-count {
+.contact-unread-count,
+.group-unread-count {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,7 +101,8 @@
   font-size: 0.9rem;
 }
 
-.contact-unread-count.on {
+.contact-unread-count.on,
+.group-unread-count.on {
   background-color: #b63f3f;
 }
 
