@@ -4,6 +4,7 @@ import {
   storeUserId,
   storeUsername,
   storeUserEmail,
+  storeUserOrgization,
   HOST,
 } from './helper.js';
 
@@ -75,6 +76,7 @@ function setSignInField() {
     storeUserId(response.data.user.id);
     storeUsername(response.data.user.name);
     storeUserEmail(response.data.user.email);
+    storeUserOrgization(response.data.user.organizationId);
 
     window.location.href = `${window.location.origin}/main.html`;
   });

@@ -54,6 +54,10 @@ function storeUserEmail(userEmail) {
   localStorage.setItem('email', userEmail);
 }
 
+function storeUserOrgization(userOrganizationId) {
+  localStorage.setItem('oid', userOrganizationId);
+}
+
 function getJwtToken() {
   let authorization = 'Bearer ';
   let tokenJson = localStorage.getItem('token');
@@ -231,6 +235,7 @@ export {
   storeUserId,
   storeUsername,
   storeUserEmail,
+  storeUserOrgization,
   getJwtToken,
   setMessage,
   fetchGet,

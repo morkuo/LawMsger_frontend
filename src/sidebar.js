@@ -3,6 +3,8 @@ import { socket } from './socket.js';
 import { addChatListenerToContactDivs, addGroupChatListenerToGroupDivs } from './chat.js';
 
 async function drawSidebar() {
+  drawFirmPicture();
+
   const contacts = await getContacts();
 
   const allContactsDiv = document.querySelector(`#all .contacts`);
@@ -647,6 +649,12 @@ function signOutButton() {
     localStorage.removeItem('token');
     window.location.href = `${window.location.origin}/index.html`;
   });
+}
+
+function drawFirmPicture() {
+  const logoDiv = document.getElementById('firmLogo');
+  const organizationId = localStorage.getItem('oid');
+  logoDiv.style.backgroundImage = `url(${window.location.origin}/firm_picture/${organizationId}.jpg)`;
 }
 
 export { drawContactDivs, drawSidebar, drawGroups, drawDeleteGroupButton };
