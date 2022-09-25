@@ -58,7 +58,7 @@
 .contact:hover,
 .group:hover {
   background-color: #1f4560;
-  transition: all 0.8s;
+  transition: all 0.1s;
 }
 
 .contact.on,
@@ -131,7 +131,7 @@ span.contact-delete-star-button {
 
 .content {
   overflow-y: auto;
-  transition: height 0.3s ease;
+  transition: height 0.1s ease;
 
   scrollbar-color: var(--options-background-color) var(--options-hover-color);
   scrollbar-width: thin;
@@ -186,7 +186,7 @@ span.contact-delete-star-button {
   width: 12px;
   height: 2px;
   background-color: #000;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .collapse-symbol span:last-child {

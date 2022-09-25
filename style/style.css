@@ -12,6 +12,8 @@
   --background-color: rgb(22, 24, 28);
   --options-background-color: rgb(80, 80, 93);
   --options-hover-color: rgb(126, 126, 138);
+  --options-hover-color-blue: #1f4560;
+  --dark-yellow: #917b58;
   --scrollbar-background-color: rgb(46, 46, 55);
   --success-background-color: rgb(68, 164, 114);
   --error-background-color: pink;

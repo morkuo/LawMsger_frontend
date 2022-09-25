@@ -18,6 +18,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  width: 25vw;
   min-height: 100%;
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
@@ -27,11 +28,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   flex-grow: 1;
   min-height: 100%;
   background-color: var(--background-color);
-  border-top-right-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
+  border-radius: var(--border-radius);
+
   color: white;
 }
 
@@ -53,15 +55,23 @@ form.group-function {
 
 #formDiv h3,
 #infoDiv h3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin: 2rem 0 1rem 0;
+}
+
+#infoDiv h3 {
+  margin: 1.5rem 0;
+}
+
+#infoDiv h3:first-child {
+  margin: 5rem 0 1.5rem 0;
 }
 
 input.group-function,
 button.group-function {
   background-color: #2b2a33;
   color: white;
-  border: 1px solid grey;
+  border: none;
   border-radius: 3px;
   padding: 0.1rem 0.2rem;
   max-width: 15vw;
@@ -72,6 +82,11 @@ button.group-function {
   padding: 0.22rem 0.7rem;
   border-radius: 0.5rem;
   cursor: pointer;
+}
+
+button.group-function:hover {
+  background-color: var(--options-hover-color-blue);
+  transition: all 0.1s;
 }
 
 .group-status {
@@ -89,7 +104,6 @@ button.group-function {
 
 #groupParticipantsSearchResultDiv,
 #groupSelectedUserDiv {
-  margin-bottom: 2rem;
   padding: 1rem;
   height: 35vh;
   max-height: 40vh;
@@ -132,8 +146,13 @@ button.group-function {
   margin: 0 auto 1rem auto;
   width: 80%;
   border: 1px solid black;
-  background-color: orange;
+  background-color: var(--options-background-color);
   border-radius: var(--border-radius);
+}
+
+.group-participants-option:hover,
+.group-participants-selected:hover {
+  background-color: var(--options-hover-color-blue);
 }
 
 .group-participants-option {
