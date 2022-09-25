@@ -134,6 +134,10 @@ p {
   visibility: visible;
 }
 
+#suggestions table {
+  border-collapse: collapse;
+}
+
 #suggestions td,
 #suggestions li {
   padding: 0 0.4rem;
