@@ -20,19 +20,20 @@ function setSignInField() {
   const organizationNameInput = document.createElement('input');
   const emailInput = document.createElement('input');
   const passwordInput = document.createElement('input');
-  const button = document.createElement('span');
+  const button = document.createElement('button');
+  const buttonIcon = document.createElement('span');
 
   header.innerText = 'Sign In';
   organizationNamePTag.innerText = 'Firm';
   emailPTag.innerText = 'Email';
   passwordPtag.innerText = 'Password';
-  button.innerText = 'arrow_forward';
+  buttonIcon.innerText = 'arrow_forward';
 
   form.setAttribute('id', 'signIn');
 
   passwordInput.setAttribute('type', 'password');
-  button.setAttribute('id', 'signInIcon');
-  button.setAttribute('class', 'material-symbols-outlined');
+  buttonIcon.setAttribute('id', 'signInIcon');
+  buttonIcon.setAttribute('class', 'material-symbols-outlined');
   organizationNameInput.setAttribute('id', 'organizationNameInput');
 
   addClass(
@@ -88,6 +89,7 @@ function setSignInField() {
   form.appendChild(passwordPtag);
   form.appendChild(passwordInput);
   form.appendChild(button);
+  button.appendChild(buttonIcon);
 }
 
 function setSystemMessage(messages, type, autoRemove = true) {
