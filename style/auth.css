@@ -20,7 +20,13 @@ h3 {
 
 input {
   margin: 1rem 0;
+  border: none;
+  border-radius: 5px;
   font-family: ChiKareGo2;
+}
+
+input:focus {
+  outline: none;
 }
 
 button {
@@ -38,6 +44,10 @@ button {
   border-radius: 12px;
   min-width: 1350px;
   min-height: 700px;
+}
+
+#organizationNameInput {
+  background-color: var(--light-yellow);
 }
 
 div.auth {

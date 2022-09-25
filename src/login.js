@@ -23,7 +23,7 @@ function setSignInField() {
   const button = document.createElement('button');
 
   header.innerText = 'Sign In';
-  organizationNamePTag.innerText = 'Organization Name';
+  organizationNamePTag.innerText = 'Firm';
   emailPTag.innerText = 'Email';
   passwordPtag.innerText = 'Password';
   button.innerText = 'Submit';
@@ -31,6 +31,7 @@ function setSignInField() {
   form.setAttribute('id', 'signIn');
 
   passwordInput.setAttribute('type', 'password');
+  organizationNameInput.setAttribute('id', 'organizationNameInput');
 
   addClass(
     'auth',
