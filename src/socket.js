@@ -210,6 +210,9 @@ socket.on(
       filesInfo,
       true
     );
+
+    console.log(fromUserId);
+
     //append message from the sender to chat window
     setMessage(msg, Date.now(), fromUserId, null, filesInfo, 'read', fromUserName, fromUserId);
   }
