@@ -41,6 +41,9 @@
   margin-left: 0.8rem;
   border-radius: var(--border-radius);
   background-color: var(--light-yellow);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #all {
