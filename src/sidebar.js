@@ -184,10 +184,10 @@ function drawContactDivs(contacts, category) {
     addClass('contact-info', infoDiv);
     addClass('contact-unread-count', unreadCountDiv);
 
-    //if picture not url, then show initial
+    //get picture from s3
     pictureDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${contact.id}.jpg)`;
     nameDiv.innerText = contact.name;
-    // emailDiv.innerText = contact.email;
+
     if (contact.unread) {
       unreadCountDiv.innerText = contact.unread;
       unreadCountDiv.classList.add('on');
@@ -216,14 +216,18 @@ function drawGroups(groups) {
 
   for (let group of groups) {
     const groupDiv = document.createElement('div');
+    const pictureDiv = document.createElement('div');
     const statusDiv = document.createElement('div');
     const nameDiv = document.createElement('div');
     const unreadCountDiv = document.createElement('div');
 
     addClass('group', groupDiv);
+    addClass('group-picture', pictureDiv);
     addClass('group-status', statusDiv);
     addClass('group-name', nameDiv);
     addClass('group-unread-count', unreadCountDiv);
+
+    pictureDiv.style.backgroundColor = 'black';
 
     nameDiv.innerText = group.name;
     if (group.unread) {
@@ -235,6 +239,7 @@ function drawGroups(groups) {
 
     groupsDiv.appendChild(groupDiv);
     groupDiv.appendChild(statusDiv);
+    groupDiv.appendChild(pictureDiv);
     groupDiv.appendChild(nameDiv);
     groupDiv.appendChild(unreadCountDiv);
   }
