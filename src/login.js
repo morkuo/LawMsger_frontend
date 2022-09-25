@@ -26,12 +26,12 @@ function setSignInField() {
   organizationNamePTag.innerText = 'Firm';
   emailPTag.innerText = 'Email';
   passwordPtag.innerText = 'Password';
-
-  button.innerText = 'login';
+  button.innerText = 'arrow_forward';
 
   form.setAttribute('id', 'signIn');
 
   passwordInput.setAttribute('type', 'password');
+  button.setAttribute('id', 'signInIcon');
   button.setAttribute('class', 'material-symbols-outlined');
   organizationNameInput.setAttribute('id', 'organizationNameInput');
 

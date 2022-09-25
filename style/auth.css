@@ -30,10 +30,6 @@ input:focus {
   outline: none;
 }
 
-button {
-  font-family: ChiKareGo2;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -57,6 +53,17 @@ div.auth {
   margin: auto 4rem;
   border: 1px solid #6d665b;
   max-height: 68vh;
+}
+
+#signInIcon {
+  font-size: 45px;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#signInIcon:hover {
+  transform: rotate(360deg);
 }
 
 form.auth {
