@@ -101,7 +101,7 @@ async function drawProfile(e) {
   editDiv.setAttribute('class', 'editDiv');
 
   const userId = localStorage.getItem('id');
-  pictureDiv.style.backgroundImage = `url(${HOST}/profile_picture/${userId}.jpg)`;
+  pictureDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${userId}.jpg)`;
 
   addClass('profile', profileDiv, header, profile, namePTag, emailPTag);
 

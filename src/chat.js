@@ -60,8 +60,7 @@ async function chatListener(e) {
         null,
         history[i].files,
         'read',
-        history[i].sender_name,
-        userPictureStatusCode
+        history[i].sender_name
       );
     } else {
       setMessage(
@@ -71,8 +70,7 @@ async function chatListener(e) {
         null,
         history[i].files,
         history[i].isRead,
-        history[i].sender_name,
-        targetUserPictureStatusCode
+        history[i].sender_name
       );
     }
   }
