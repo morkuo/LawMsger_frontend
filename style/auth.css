@@ -20,6 +20,7 @@ h3 {
 
 input {
   margin: 1rem 0;
+  padding: 0.1rem 0.2rem;
   border: none;
   border-radius: 5px;
   font-family: ChiKareGo2;
@@ -87,10 +88,7 @@ input.auth,
 button.auth {
   background-color: #2b2a33;
   color: white;
-  border: 1px solid grey;
-  border-radius: 3px;
-  padding: 0.1rem 0.2rem;
-  max-width: 15vw;
+  border: none;
 }
 
 button.auth {

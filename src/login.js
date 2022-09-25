@@ -20,17 +20,19 @@ function setSignInField() {
   const organizationNameInput = document.createElement('input');
   const emailInput = document.createElement('input');
   const passwordInput = document.createElement('input');
-  const button = document.createElement('button');
+  const button = document.createElement('span');
 
   header.innerText = 'Sign In';
   organizationNamePTag.innerText = 'Firm';
   emailPTag.innerText = 'Email';
   passwordPtag.innerText = 'Password';
-  button.innerText = 'Submit';
+
+  button.innerText = 'login';
 
   form.setAttribute('id', 'signIn');
 
   passwordInput.setAttribute('type', 'password');
+  button.setAttribute('class', 'material-symbols-outlined');
   organizationNameInput.setAttribute('id', 'organizationNameInput');
 
   addClass(
