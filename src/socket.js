@@ -93,12 +93,16 @@ socket.on('clauses', suggestions => {
       body.innerText = `${clauseBody.slice(0, 40)}...`;
 
       row.setAttribute('data-body', clauseBody);
+      row.setAttribute('data-title', clauseTitle);
+      row.setAttribute('data-number', clauseNumber);
     } else {
       title.innerText = clauseTitle;
       number.innerText = clauseNumber;
       body.innerText = clauseBody;
 
       row.setAttribute('data-body', clauseBody);
+      row.setAttribute('data-title', clauseTitle);
+      row.setAttribute('data-number', clauseNumber);
     }
 
     table.appendChild(row);

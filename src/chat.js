@@ -575,7 +575,9 @@ async function detectInput(e) {
           const sugesstion = suggestionsList.querySelector('tr');
 
           if (sugesstion.innerText !== 'undefined') {
-            e.target.value = currentInput.slice(0, clauseSuggestion) + sugesstion.dataset.body;
+            e.target.value = `${currentInput.slice(0, clauseSuggestion)}${
+              sugesstion.dataset.title
+            }第${sugesstion.dataset.number}條：「${sugesstion.dataset.body}」`;
             suggestionsList.innerHTML = '';
           }
           suggestionsList.classList.remove('on');
@@ -596,7 +598,9 @@ async function detectInput(e) {
           targetClause = targetClause.parentElement;
         }
 
-        input.value = currentInput.slice(0, clauseSuggestion) + targetClause.dataset.body;
+        input.value = `${currentInput.slice(0, clauseSuggestion)}${targetClause.dataset.title}第${
+          targetClause.dataset.number
+        }條：「${targetClause.dataset.body}」`;
 
         suggestionsList.innerHTML = '';
 
