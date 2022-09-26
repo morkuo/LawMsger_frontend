@@ -107,8 +107,14 @@
 
 .chat-message-image-preview,
 .chat-message-file-preview {
-  text-align: center;
   cursor: pointer;
+}
+
+.chat-message-file-preview {
+  text-align: center;
+  background-color: var(--options-background-color);
+  color: white;
+  border: none;
 }
 
 .chat-message-time {
