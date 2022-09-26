@@ -3,6 +3,10 @@
   src: url('../fonts/ChiKareGo2.ttf') format('truetype');
 }
 
+#pane > div {
+  width: 70vw;
+}
+
 div.admin {
   display: flex;
   justify-content: space-around;
