@@ -23,7 +23,7 @@ form.admin {
   flex-direction: column;
   align-items: center;
   padding: 2rem 4rem;
-  height: 50vh;
+  height: 65vh;
 }
 
 form.admin input {
@@ -52,12 +52,16 @@ h3.admin {
 
 input.admin,
 button.admin {
-  background-color: #2b2a33;
+  background-color: var(--options-background-color);
   color: white;
   border: none;
   border-radius: 3px;
   padding: 0.1rem 0.2rem;
   max-width: 15vw;
+}
+
+button.admin:hover {
+  background-color: var(--options-hover-color-blue);
 }
 
 button.admin {
