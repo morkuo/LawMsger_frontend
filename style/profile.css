@@ -13,6 +13,10 @@
   margin: 0.7rem;
 }
 
+#profileContainer button {
+  background-color: var(--background-color);
+}
+
 #profileDiv {
   display: flex;
   justify-content: center;
@@ -48,7 +52,7 @@ input.profile {
   background-color: var(--options-background-color);
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
   padding: 0.1rem 0.2rem;
 
   max-width: 15vw;

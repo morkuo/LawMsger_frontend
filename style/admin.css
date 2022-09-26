@@ -12,7 +12,7 @@ div.admin {
   justify-content: space-around;
   align-items: center;
   margin: auto 2rem;
-  height: 70vh;
+  height: 85vh;
   color: white;
   background-color: var(--background-color);
   border-radius: var(--border-radius);
@@ -24,6 +24,14 @@ form.admin {
   align-items: center;
   padding: 2rem 4rem;
   height: 50vh;
+}
+
+form.admin input {
+  background-color: var(--options-background-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.1rem 0.2rem;
 }
 
 form.admin:first-child {
