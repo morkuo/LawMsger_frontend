@@ -74,8 +74,9 @@ button.admin {
 #firmPicturePreviewDiv {
   height: 250px;
   width: 250px;
-  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
   overflow: hidden;
+  border-radius: var(--border-radius);
   border: 2px solid var(--dark-yellow);
   background-position: center;
   background-repeat: no-repeat;
