@@ -87,10 +87,10 @@ socket.on('clauses', suggestions => {
     row.appendChild(number);
     row.appendChild(body);
 
-    if (clauseBody.length > 50) {
+    if (clauseBody.length > 40) {
       title.innerText = clauseTitle;
       number.innerText = clauseNumber;
-      body.innerText = `${clauseBody.slice(0, 50)}...`;
+      body.innerText = `${clauseBody.slice(0, 40)}...`;
 
       row.setAttribute('data-body', clauseBody);
     } else {
@@ -131,10 +131,10 @@ socket.on('matchedClauses', suggestions => {
     row.appendChild(number);
     row.appendChild(body);
 
-    if (clauseBody.length > 50) {
+    if (clauseBody.length > 40) {
       title.innerText = clauseTitle;
       number.innerText = clauseNumber;
-      body.innerText = `${clauseBody.slice(0, 50)}...`;
+      body.innerText = `${clauseBody.slice(0, 40)}...`;
 
       row.setAttribute('data-body', clauseBody);
       row.setAttribute('data-title', clauseTitle);
