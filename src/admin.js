@@ -163,6 +163,7 @@ function drawChangeFirmPictureForm() {
   const editDiv = document.createElement('div');
   const confirmButton = document.createElement('span');
 
+  manageDiv.setAttribute('id', 'adminManageDiv');
   changePictureDiv.setAttribute('id', 'firmPictureDiv');
   previewDiv.setAttribute('id', 'firmPicturePreviewDiv');
 

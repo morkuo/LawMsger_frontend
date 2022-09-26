@@ -3,7 +3,7 @@
   src: url('../fonts/ChiKareGo2.ttf') format('truetype');
 }
 
-#pane > div {
+#adminManageDiv {
   width: 70vw;
 }
 
