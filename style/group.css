@@ -9,6 +9,7 @@
   align-items: center;
   margin: auto 4rem;
   height: 85vh;
+  min-width: 65vw;
   border: 1px solid #6d665b;
   border-radius: var(--border-radius);
 }
