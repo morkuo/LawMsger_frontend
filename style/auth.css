@@ -32,6 +32,7 @@ input:focus {
 
 .container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   height: 100%;
 }
@@ -50,7 +51,7 @@ input:focus {
 div.auth {
   display: flex;
   justify-content: center;
-  margin: auto 4rem;
+  margin: auto 2rem;
   border: 1px solid #6d665b;
   max-height: 68vh;
 }
