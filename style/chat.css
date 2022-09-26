@@ -107,6 +107,7 @@
 
 .chat-message-image-preview,
 .chat-message-file-preview {
+  text-align: center;
   cursor: pointer;
 }
 
