@@ -235,8 +235,8 @@ function drawGroups(groups) {
     addClass('group-name', nameDiv);
     addClass('group-unread-count', unreadCountDiv);
 
-    if (group.name > 20) group.name = group.name.slice(0, 20) + '...';
-    nameDiv.innerText = group.name;
+    if (group.name > 20) nameDiv.innerText = group.name.slice(0, 20) + '...';
+    else nameDiv.innerText = group.name;
 
     groupDiv.setAttribute('title', 'Name: ' + group.name);
 
