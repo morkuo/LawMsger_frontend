@@ -286,6 +286,7 @@ async function setParticipantsInfoToGroup(groups) {
 
     const currentTitleAttributeValue = groupDiv.getAttribute('title');
 
+    console.log('currentTitle: ' + currentTitleAttributeValue);
     groupDiv.setAttribute('title', `${currentTitleAttributeValue}\n${titleAttribute}`);
   }
 }
