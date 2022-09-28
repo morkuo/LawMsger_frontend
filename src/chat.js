@@ -511,11 +511,15 @@ async function detectInput(e) {
 
   if (!currentInput) return (suggestionsList.innerHTML = '');
 
-  const wordSuggestion = currentInput.indexOf('＃');
-  const clauseSuggestion = currentInput.indexOf('＠');
-  const matchclausesContent = currentInput.indexOf('＾');
+  const wordSuggestion = currentInput.lastIndexOf('#');
+  const clauseSuggestion = currentInput.lastIndexOf('@');
+  const matchclausesContent = currentInput.lastIndexOf('\\');
 
-  if (wordSuggestion > -1 && clauseSuggestion === -1) {
+  if (
+    wordSuggestion > -1 &&
+    wordSuggestion > clauseSuggestion &&
+    wordSuggestion > matchclausesContent
+  ) {
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
     //tab listener
@@ -562,7 +566,11 @@ async function detectInput(e) {
     return;
   }
 
-  if (clauseSuggestion > -1) {
+  if (
+    clauseSuggestion > -1 &&
+    clauseSuggestion > wordSuggestion &&
+    clauseSuggestion > matchclausesContent
+  ) {
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
     //tab listener
@@ -616,7 +624,11 @@ async function detectInput(e) {
     return;
   }
 
-  if (matchclausesContent > -1) {
+  if (
+    matchclausesContent > -1 &&
+    matchclausesContent > wordSuggestion &&
+    matchclausesContent > clauseSuggestion
+  ) {
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
     suggestionsList.addEventListener(
