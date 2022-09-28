@@ -536,21 +536,7 @@ async function detectInput(e) {
       { once: true }
     );
 
-    suggestionsList.addEventListener(
-      'click',
-      async e => {
-        input.value = currentInput.slice(0, wordSuggestion) + e.target.innerText;
-
-        suggestionsList.innerHTML = '';
-
-        suggestionsList.classList.remove('on');
-
-        //resize textarea
-        input.style.height = 0;
-        input.style.height = input.scrollHeight + 'px';
-      },
-      { once: true }
-    );
+    suggestionsList.addEventListener('click', wordClickListener, { once: true });
 
     return;
   }
@@ -564,52 +550,9 @@ async function detectInput(e) {
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
     //tab listener
-    input.addEventListener(
-      'keydown',
-      e => {
-        if (e.key === 'Tab') {
-          e.preventDefault();
+    input.addEventListener('keydown', clauseKeyPressListener, { once: true });
 
-          const sugesstion = suggestionsList.querySelector('tr');
-
-          if (sugesstion.innerText !== 'undefined') {
-            e.target.value = `${currentInput.slice(0, clauseSuggestion)}${
-              sugesstion.dataset.title
-            }第${sugesstion.dataset.number}條：「${sugesstion.dataset.body}」`;
-            suggestionsList.innerHTML = '';
-          }
-          suggestionsList.classList.remove('on');
-
-          //resize textarea
-          input.style.height = 0;
-          input.style.height = input.scrollHeight + 'px';
-        }
-      },
-      { once: true }
-    );
-
-    suggestionsList.addEventListener(
-      'click',
-      async e => {
-        let targetClause = e.target;
-        while (!targetClause.hasAttribute('data-body')) {
-          targetClause = targetClause.parentElement;
-        }
-
-        input.value = `${currentInput.slice(0, clauseSuggestion)}${targetClause.dataset.title}第${
-          targetClause.dataset.number
-        }條：「${targetClause.dataset.body}」`;
-
-        suggestionsList.innerHTML = '';
-
-        suggestionsList.classList.remove('on');
-
-        //resize textarea
-        input.style.height = 0;
-        input.style.height = input.scrollHeight + 'px';
-      },
-      { once: true }
-    );
+    suggestionsList.addEventListener('click', clauseClickListener, { once: true });
 
     return;
   }
@@ -623,66 +566,10 @@ async function detectInput(e) {
 
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
-    suggestionsList.addEventListener(
-      'click',
-      async e => {
-        let targetClause = e.target;
-        while (!targetClause.hasAttribute('data-body')) {
-          targetClause = targetClause.parentElement;
-        }
-
-        input.value = `${currentInput.slice(0, matchclausesContent)}${
-          targetClause.dataset.title
-        }第${targetClause.dataset.number}條：「${targetClause.dataset.body}」`;
-
-        suggestionsList.innerHTML = '';
-
-        const title = targetClause.dataset.title;
-        const number = targetClause.dataset.number;
-
-        const now = new Date();
-        const origin = now.toISOString();
-
-        socket.emit('updateMatchedClauses', origin, title, number);
-        suggestionsList.classList.remove('on');
-
-        //resize textarea
-        input.style.height = 0;
-        input.style.height = input.scrollHeight + 'px';
-      },
-      { once: true }
-    );
+    suggestionsList.addEventListener('click', matchClickListener, { once: true });
 
     //tab listener
-    input.addEventListener(
-      'keydown',
-      async e => {
-        if (e.key === 'Tab') {
-          e.preventDefault();
-
-          const suggestion = suggestionsList.querySelector('tr');
-
-          e.target.value = `${currentInput.slice(0, matchclausesContent)}${
-            suggestion.dataset.title
-          }第${suggestion.dataset.number}條：「${suggestion.dataset.body}」`;
-          suggestionsList.innerHTML = '';
-
-          const title = suggestion.dataset.title;
-          const number = suggestion.dataset.number;
-
-          const now = new Date();
-          const origin = now.toISOString();
-
-          socket.emit('updateMatchedClauses', origin, title, number);
-          suggestionsList.classList.remove('on');
-
-          //resize textarea
-          input.style.height = 0;
-          input.style.height = input.scrollHeight + 'px';
-        }
-      },
-      { once: true }
-    );
+    input.addEventListener('keydown', matchKeyPressListener, { once: true });
 
     return;
   }
@@ -710,6 +597,134 @@ function wordKeyPressListener(e) {
     input.style.height = 0;
     input.style.height = input.scrollHeight + 'px';
   }
+}
+
+function wordClickListener(e) {
+  const input = document.getElementById('input');
+  const currentInput = input.value;
+  const suggestionsList = document.getElementById('suggestions');
+  const wordSuggestion = currentInput.lastIndexOf('#');
+
+  input.value = currentInput.slice(0, wordSuggestion) + e.target.innerText;
+
+  suggestionsList.innerHTML = '';
+
+  suggestionsList.classList.remove('on');
+
+  //resize textarea
+  input.style.height = 0;
+  input.style.height = input.scrollHeight + 'px';
+}
+
+function clauseKeyPressListener(e) {
+  const input = document.getElementById('input');
+  const currentInput = input.value;
+  const suggestionsList = document.getElementById('suggestions');
+  const clauseSuggestion = currentInput.lastIndexOf('@');
+
+  if (e.key === 'Tab') {
+    e.preventDefault();
+
+    const sugesstion = suggestionsList.querySelector('tr');
+
+    if (sugesstion.innerText !== 'undefined') {
+      e.target.value = `${currentInput.slice(0, clauseSuggestion)}${sugesstion.dataset.title}第${
+        sugesstion.dataset.number
+      }條：「${sugesstion.dataset.body}」`;
+      suggestionsList.innerHTML = '';
+    }
+    suggestionsList.classList.remove('on');
+
+    //resize textarea
+    input.style.height = 0;
+    input.style.height = input.scrollHeight + 'px';
+  }
+}
+
+function clauseClickListener(e) {
+  const input = document.getElementById('input');
+  const currentInput = input.value;
+  const suggestionsList = document.getElementById('suggestions');
+  const clauseSuggestion = currentInput.lastIndexOf('@');
+
+  let targetClause = e.target;
+  while (!targetClause.hasAttribute('data-body')) {
+    targetClause = targetClause.parentElement;
+  }
+
+  input.value = `${currentInput.slice(0, clauseSuggestion)}${targetClause.dataset.title}第${
+    targetClause.dataset.number
+  }條：「${targetClause.dataset.body}」`;
+
+  suggestionsList.innerHTML = '';
+
+  suggestionsList.classList.remove('on');
+
+  //resize textarea
+  input.style.height = 0;
+  input.style.height = input.scrollHeight + 'px';
+}
+
+function matchKeyPressListener(e) {
+  const input = document.getElementById('input');
+  const currentInput = input.value;
+  const suggestionsList = document.getElementById('suggestions');
+  const matchclausesContent = currentInput.lastIndexOf('\\');
+
+  if (e.key === 'Tab') {
+    e.preventDefault();
+
+    const suggestion = suggestionsList.querySelector('tr');
+
+    e.target.value = `${currentInput.slice(0, matchclausesContent)}${suggestion.dataset.title}第${
+      suggestion.dataset.number
+    }條：「${suggestion.dataset.body}」`;
+    suggestionsList.innerHTML = '';
+
+    const title = suggestion.dataset.title;
+    const number = suggestion.dataset.number;
+
+    const now = new Date();
+    const origin = now.toISOString();
+
+    socket.emit('updateMatchedClauses', origin, title, number);
+    suggestionsList.classList.remove('on');
+
+    //resize textarea
+    input.style.height = 0;
+    input.style.height = input.scrollHeight + 'px';
+  }
+}
+
+function matchClickListener(e) {
+  const input = document.getElementById('input');
+  const currentInput = input.value;
+  const suggestionsList = document.getElementById('suggestions');
+  const matchclausesContent = currentInput.lastIndexOf('\\');
+
+  let targetClause = e.target;
+  while (!targetClause.hasAttribute('data-body')) {
+    targetClause = targetClause.parentElement;
+  }
+
+  input.value = `${currentInput.slice(0, matchclausesContent)}${targetClause.dataset.title}第${
+    targetClause.dataset.number
+  }條：「${targetClause.dataset.body}」`;
+
+  suggestionsList.innerHTML = '';
+
+  const title = targetClause.dataset.title;
+  const number = targetClause.dataset.number;
+
+  const now = new Date();
+  const origin = now.toISOString();
+
+  socket.emit('updateMatchedClauses', origin, title, number);
+  suggestionsList.classList.remove('on');
+
+  //resize textarea
+  input.style.height = 0;
+  input.style.height = input.scrollHeight + 'px';
 }
 
 function addUploadFileListener() {
