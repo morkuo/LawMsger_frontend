@@ -276,6 +276,7 @@ function drawChangeProfilePictureForm(e) {
 
   pictureInput.setAttribute('id', 'pictureInput');
   pictureInput.setAttribute('type', 'file');
+  pictureInput.setAttribute('accept', 'image/*');
   confirmButton.setAttribute('id', 'pictureInputComfirm');
   editDiv.setAttribute('class', 'editDiv');
 

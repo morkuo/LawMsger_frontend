@@ -169,6 +169,7 @@ function drawChangeFirmPictureForm() {
 
   pictureInput.setAttribute('id', 'pictureInput');
   pictureInput.setAttribute('type', 'file');
+  pictureInput.setAttribute('accept', 'image/*');
   confirmButton.setAttribute('id', 'firmPictureInputComfirm');
   editDiv.setAttribute('class', 'editDiv');
 
