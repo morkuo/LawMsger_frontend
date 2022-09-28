@@ -525,9 +525,9 @@ async function detectInput(e) {
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
     input.removeEventListener('keypress', clauseKeyPressListener);
-    input.removeEventListener('click', clauseClickListener);
+    suggestionsList.removeEventListener('click', clauseClickListener);
     input.removeEventListener('keypress', matchKeyPressListener);
-    input.removeEventListener('click', matchClickListener);
+    suggestionsList.removeEventListener('click', matchClickListener);
 
     //tab listener
     input.addEventListener(
@@ -551,9 +551,9 @@ async function detectInput(e) {
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
     input.removeEventListener('keypress', wordKeyPressListener);
-    input.removeEventListener('click', wordClickListener);
+    suggestionsList.removeEventListener('click', wordClickListener);
     input.removeEventListener('keypress', matchKeyPressListener);
-    input.removeEventListener('click', matchClickListener);
+    suggestionsList.removeEventListener('click', matchClickListener);
 
     //tab listener
     input.addEventListener('keydown', clauseKeyPressListener, { once: true });
@@ -573,9 +573,9 @@ async function detectInput(e) {
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
     input.removeEventListener('keypress', wordKeyPressListener);
-    input.removeEventListener('click', wordClickListener);
+    suggestionsList.removeEventListener('click', wordClickListener);
     input.removeEventListener('keypress', clauseKeyPressListener);
-    input.removeEventListener('click', clauseClickListener);
+    suggestionsList.removeEventListener('click', clauseClickListener);
 
     suggestionsList.addEventListener('click', matchClickListener, { once: true });
 
