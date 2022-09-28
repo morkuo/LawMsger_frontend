@@ -515,10 +515,6 @@ async function detectInput(e) {
   const clauseSuggestion = currentInput.lastIndexOf('@');
   const matchclausesContent = currentInput.lastIndexOf('\\');
 
-  console.log('word: ', wordSuggestion);
-  console.log('clause: ', clauseSuggestion);
-  console.log('match: ', matchclausesContent);
-
   if (
     wordSuggestion > -1 &&
     wordSuggestion > clauseSuggestion &&
@@ -604,6 +600,9 @@ function wordClickListener(e) {
   const currentInput = input.value;
   const suggestionsList = document.getElementById('suggestions');
   const wordSuggestion = currentInput.lastIndexOf('#');
+
+  console.log('cur:' + currentInput.slice(0, wordSuggestion));
+  console.log('Etarget' + e.target.innerText);
 
   input.value = currentInput.slice(0, wordSuggestion) + e.target.innerText;
 
