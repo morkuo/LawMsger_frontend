@@ -102,7 +102,6 @@ async function drawDeleteGroupButton(groups) {
 
   groupIds.forEach(groupId => {
     const groupDiv = document.querySelector(`.group[data-socket-id="${groupId}"]`);
-    const groupNameDiv = groupDiv.querySelector('.group-name');
     const deleteStarButton = document.createElement('span');
 
     deleteStarButton.setAttribute('class', 'group-delete-button');
@@ -117,7 +116,7 @@ async function drawDeleteGroupButton(groups) {
       const api = `${HOST}/1.0/group/leave`;
 
       const payload = {
-        groupName: groupNameDiv.dataset.name,
+        groupName: groupDiv.dataset.name,
       };
 
       const res = await fetch(api, {
