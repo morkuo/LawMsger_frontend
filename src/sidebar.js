@@ -241,6 +241,7 @@ function drawGroups(groups) {
     }
 
     groupDiv.setAttribute('data-socket-id', group.id);
+    groupDiv.setAttribute('data-host-id', group.host);
 
     groupsDiv.appendChild(groupDiv);
     groupDiv.appendChild(statusDiv);
