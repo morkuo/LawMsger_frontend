@@ -742,7 +742,7 @@ function addUploadFileListener() {
   chatUploadButton.addEventListener('change', e => {
     let totalSize = 0;
     for (let file of e.target.files) {
-      if (totalSize > 5 * 1024 * 1024) return setMsg('file size maximum: 5m ', 'error');
+      if (file.size > 5 * 1024 * 1024) return setMsg('file size maximum: 5m ', 'error');
       totalSize += file.size;
     }
 
