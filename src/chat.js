@@ -153,8 +153,6 @@ async function chatListener(e) {
 
     const uploadButton = document.querySelector('#chatUploadButton');
 
-    console.log('filesQueue: ' + uploadfilesQueue.length);
-
     if (input.value || uploadfilesQueue.length !== 0) {
       const authorization = getJwtToken();
       const response = await uploadFile(authorization);
@@ -319,7 +317,7 @@ async function groupChatListener(e) {
 
     const uploadButton = document.querySelector('#chatUploadButton');
 
-    if (input.value || uploadButton.value) {
+    if (input.value || uploadfilesQueue.length !== 0) {
       const authorization = getJwtToken();
       const response = await uploadFile(authorization);
 
