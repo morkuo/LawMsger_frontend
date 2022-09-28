@@ -531,24 +531,7 @@ async function detectInput(e) {
     //tab listener
     input.addEventListener(
       'keydown',
-      e => {
-        if (e.key === 'Tab') {
-          //to stay in the input field
-          e.preventDefault();
-
-          const sugesstion = suggestionsList.querySelector('li');
-
-          if (sugesstion.innerText !== 'undefined') {
-            e.target.value = currentInput.slice(0, wordSuggestion) + sugesstion.innerText;
-            suggestionsList.innerHTML = '';
-            suggestionsList.classList.remove('on');
-          }
-
-          //resize textarea
-          input.style.height = 0;
-          input.style.height = input.scrollHeight + 'px';
-        }
-      },
+      wordKeyPressListener,
       //once the eventlistener has been fired once, remove itself
       { once: true }
     );
@@ -702,6 +685,30 @@ async function detectInput(e) {
     );
 
     return;
+  }
+}
+
+function wordKeyPressListener(e) {
+  if (e.key === 'Tab') {
+    //to stay in the input field
+    e.preventDefault();
+
+    const input = document.getElementById('input');
+    const currentInput = input.value;
+    const suggestionsList = document.getElementById('suggestions');
+    const wordSuggestion = currentInput.lastIndexOf('#');
+
+    const sugesstion = suggestionsList.querySelector('li');
+
+    if (sugesstion.innerText !== 'undefined') {
+      e.target.value = currentInput.slice(0, wordSuggestion) + sugesstion.innerText;
+      suggestionsList.innerHTML = '';
+      suggestionsList.classList.remove('on');
+    }
+
+    //resize textarea
+    input.style.height = 0;
+    input.style.height = input.scrollHeight + 'px';
   }
 }
 
