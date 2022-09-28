@@ -22,6 +22,8 @@ async function chatListener(e) {
   if (e.target.classList.contains('contact-add-star-button') && e.target.innerText !== '') return;
   if (e.target.classList.contains('contact-delete-star-button')) return;
 
+  uploadfilesQueue = [];
+
   //look for the clicked element's user id
   let targetContact = e.target;
   while (!targetContact.hasAttribute('data-socket-id')) {
