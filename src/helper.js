@@ -225,7 +225,7 @@ function changeTimeFormat(target) {
 }
 
 function isImage(url) {
-  return /\.(jpg|jpeg|png|gif|svg)$/.test(url);
+  return /\.(jpg|jpeg|png|gif)$/.test(url);
 }
 
 function checkSpecialCharacter(str) {

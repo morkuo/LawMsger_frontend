@@ -157,7 +157,7 @@ async function chatListener(e) {
       const authorization = getJwtToken();
       const response = await uploadFile(authorization);
 
-      if (response.error) return alert(response.error);
+      if (response.error) return setMsg(response.error);
 
       const filesInfo = JSON.stringify(response);
 
@@ -321,7 +321,7 @@ async function groupChatListener(e) {
       const authorization = getJwtToken();
       const response = await uploadFile(authorization);
 
-      if (response.error) return alert(response.error);
+      if (response.error) return setMsg(response.error);
 
       const filesInfo = JSON.stringify(response);
 
@@ -740,6 +740,14 @@ function addUploadFileListener() {
   const chatUploadButton = document.querySelector('#chatUploadButton');
 
   chatUploadButton.addEventListener('change', e => {
+    let totalSize = 0;
+    for (let file of e.target.files) {
+      if (totalSize > 5 * 1024 * 1024) return setMsg('file size maximum: 5m ', 'error');
+      totalSize += file.size;
+    }
+
+    if (totalSize > 8 * 1024 * 1024) return setMsg('total size maximum: 8m ', 'error');
+
     previewFile(e.target);
   });
 }
