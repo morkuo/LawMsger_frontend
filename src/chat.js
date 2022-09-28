@@ -153,7 +153,7 @@ async function chatListener(e) {
 
     const uploadButton = document.querySelector('#chatUploadButton');
 
-    if (input.value || uploadButton.value) {
+    if (input.value || uploadfilesQueue.length !== 0) {
       const authorization = getJwtToken();
       const response = await uploadFile(authorization);
 
