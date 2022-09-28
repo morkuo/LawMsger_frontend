@@ -256,11 +256,12 @@ socket.on(
   }
 );
 
-socket.on('drawGroupDiv', (groupId, groupName, participants) => {
+socket.on('drawGroupDiv', (groupId, groupName,hostId participants) => {
   const newGroup = [
     {
       id: groupId,
       name: groupName,
+      host: hostId,
       unread: 0,
     },
   ];
