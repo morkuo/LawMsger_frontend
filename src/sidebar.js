@@ -117,7 +117,7 @@ async function drawDeleteGroupButton(groups) {
       const api = `${HOST}/1.0/group/leave`;
 
       const payload = {
-        groupName: groupNameDiv.innerText,
+        groupName: groupNameDiv.dataset.name,
       };
 
       const res = await fetch(api, {
@@ -246,6 +246,7 @@ function drawGroups(groups) {
     }
 
     groupDiv.setAttribute('data-socket-id', group.id);
+    groupDiv.setAttribute('data-name', group.name);
     groupDiv.setAttribute('data-host-id', group.host);
 
     groupsDiv.appendChild(groupDiv);
