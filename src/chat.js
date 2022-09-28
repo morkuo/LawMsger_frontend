@@ -524,10 +524,10 @@ async function detectInput(e) {
 
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
-    input.removeEventListener(clauseKeyPressListener);
-    input.removeEventListener(clauseClickListener);
-    input.removeEventListener(matchKeyPressListener);
-    input.removeEventListener(matchClickListener);
+    input.removeEventListener('keypress', clauseKeyPressListener);
+    input.removeEventListener('click', clauseClickListener);
+    input.removeEventListener('keypress', matchKeyPressListener);
+    input.removeEventListener('click', matchClickListener);
 
     //tab listener
     input.addEventListener(
@@ -550,10 +550,10 @@ async function detectInput(e) {
     console.log('clause emit');
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
-    input.removeEventListener(wordKeyPressListener);
-    input.removeEventListener(wordClickListener);
-    input.removeEventListener(matchKeyPressListener);
-    input.removeEventListener(matchClickListener);
+    input.removeEventListener('keypress', wordKeyPressListener);
+    input.removeEventListener('click', wordClickListener);
+    input.removeEventListener('keypress', matchKeyPressListener);
+    input.removeEventListener('click', matchClickListener);
 
     //tab listener
     input.addEventListener('keydown', clauseKeyPressListener, { once: true });
@@ -572,10 +572,10 @@ async function detectInput(e) {
 
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
-    input.removeEventListener(wordKeyPressListener);
-    input.removeEventListener(wordClickListener);
-    input.removeEventListener(clauseKeyPressListener);
-    input.removeEventListener(clauseClickListener);
+    input.removeEventListener('keypress', wordKeyPressListener);
+    input.removeEventListener('click', wordClickListener);
+    input.removeEventListener('keypress', clauseKeyPressListener);
+    input.removeEventListener('click', clauseClickListener);
 
     suggestionsList.addEventListener('click', matchClickListener, { once: true });
 
