@@ -228,6 +228,15 @@ function isImage(url) {
   return /\.(jpg|jpeg|png|gif|svg)$/.test(url);
 }
 
+function checkSpecialCharacter(str) {
+  const targets = ['<', '>', '&', "'", '"', '/'];
+  for (let target of targets) {
+    if (str.indexOf(target) > -1) return false;
+  }
+
+  return true;
+}
+
 export {
   setMsg,
   addClass,
@@ -240,5 +249,6 @@ export {
   setMessage,
   fetchGet,
   isImage,
+  checkSpecialCharacter,
   HOST,
 };

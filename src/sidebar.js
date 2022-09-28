@@ -1,4 +1,12 @@
-import { setMsg, addClass, getJwtToken, setMessage, fetchGet, HOST } from './helper.js';
+import {
+  setMsg,
+  addClass,
+  getJwtToken,
+  setMessage,
+  fetchGet,
+  checkSpecialCharacter,
+  HOST,
+} from './helper.js';
 import { socket } from './socket.js';
 import { addChatListenerToContactDivs, addGroupChatListenerToGroupDivs } from './chat.js';
 
@@ -333,6 +341,10 @@ function drawCreateGroupForm() {
 
   button.addEventListener('click', async e => {
     e.preventDefault();
+
+    const isNormalCharacter = checkSpecialCharacter(nameInput.value);
+
+    if (!isNormalCharacter) return setMsg(`no <, >, &, ', ", / in group name`, 'error');
 
     const payload = {
       name: nameInput.value,
