@@ -116,7 +116,7 @@ async function drawDeleteGroupButton(groups) {
     deleteStarButton.classList.add('material-symbols-outlined');
     groupDiv.appendChild(deleteStarButton);
 
-    deleteStarButton.innerText = 'group_remove';
+    deleteStarButton.innerText = 'delete';
 
     deleteStarButton.addEventListener('click', async e => {
       let authorization = getJwtToken();
