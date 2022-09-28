@@ -304,10 +304,6 @@ async function groupChatListener(e) {
 
   input.addEventListener('keydown', debouncedDetectInput);
 
-  sugesstionsList.addEventListener('click', async e => {
-    if (e.target.tagName === 'LI') input.value = e.target.innerText;
-  });
-
   // Send message
   form.addEventListener('submit', async e => {
     e.preventDefault();
