@@ -256,7 +256,7 @@ socket.on(
   }
 );
 
-socket.on('drawGroupDiv', (groupId, groupName,hostId participants) => {
+socket.on('drawGroupDiv', (groupId, groupName, hostId, participants) => {
   const newGroup = [
     {
       id: groupId,
