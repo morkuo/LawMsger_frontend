@@ -515,11 +515,17 @@ async function detectInput(e) {
   const clauseSuggestion = currentInput.lastIndexOf('@');
   const matchclausesContent = currentInput.lastIndexOf('\\');
 
+  console.log('word: ', wordSuggestion);
+  console.log('clause: ', clauseSuggestion);
+  console.log('match: ', matchclausesContent);
+
   if (
     wordSuggestion > -1 &&
     wordSuggestion > clauseSuggestion &&
     wordSuggestion > matchclausesContent
   ) {
+    console.log('word emit');
+
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
     //tab listener
@@ -571,6 +577,7 @@ async function detectInput(e) {
     clauseSuggestion > wordSuggestion &&
     clauseSuggestion > matchclausesContent
   ) {
+    console.log('clause emit');
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
     //tab listener
@@ -629,6 +636,8 @@ async function detectInput(e) {
     matchclausesContent > wordSuggestion &&
     matchclausesContent > clauseSuggestion
   ) {
+    console.log('match emit');
+
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
     suggestionsList.addEventListener(
