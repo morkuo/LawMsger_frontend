@@ -524,6 +524,11 @@ async function detectInput(e) {
 
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
+    input.removeEventListener(clauseKeyPressListener);
+    input.removeEventListener(clauseClickListener);
+    input.removeEventListener(matchKeyPressListener);
+    input.removeEventListener(matchClickListener);
+
     //tab listener
     input.addEventListener(
       'keydown',
@@ -545,6 +550,11 @@ async function detectInput(e) {
     console.log('clause emit');
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
+    input.removeEventListener(wordKeyPressListener);
+    input.removeEventListener(wordClickListener);
+    input.removeEventListener(matchKeyPressListener);
+    input.removeEventListener(matchClickListener);
+
     //tab listener
     input.addEventListener('keydown', clauseKeyPressListener, { once: true });
 
@@ -561,6 +571,11 @@ async function detectInput(e) {
     console.log('match emit');
 
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
+
+    input.removeEventListener(wordKeyPressListener);
+    input.removeEventListener(wordClickListener);
+    input.removeEventListener(clauseKeyPressListener);
+    input.removeEventListener(clauseClickListener);
 
     suggestionsList.addEventListener('click', matchClickListener, { once: true });
 
@@ -600,9 +615,6 @@ function wordClickListener(e) {
   const currentInput = input.value;
   const suggestionsList = document.getElementById('suggestions');
   const wordSuggestion = currentInput.lastIndexOf('#');
-
-  console.log('cur:' + currentInput.slice(0, wordSuggestion));
-  console.log('Etarget' + e.target.innerText);
 
   input.value = currentInput.slice(0, wordSuggestion) + e.target.innerText;
 
