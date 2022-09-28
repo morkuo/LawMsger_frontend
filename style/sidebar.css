@@ -2,8 +2,8 @@
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
-  width: 23%;
-  min-width: 23%;
+  width: 25%;
+  min-width: 25%;
   max-height: 100%;
 }
 
@@ -76,7 +76,7 @@
 
 .contact-picture,
 .group-picture {
-  margin: 0.3rem 1.35rem 0.3rem 0.6rem;
+  margin: 0.3rem 1rem 0.3rem 0.6rem;
   display: flex;
   justify-content: center;
   align-items: center;
