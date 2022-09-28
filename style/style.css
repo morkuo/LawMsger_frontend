@@ -216,8 +216,8 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 92%;
-  min-width: 1040px;
+  width: 95%;
+  min-width: 1060px;
   min-height: 2.35rem;
   position: absolute;
   bottom: 22%;

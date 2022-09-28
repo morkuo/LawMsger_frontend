@@ -2,8 +2,8 @@
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
-  width: 25%;
-  min-width: 25%;
+  width: 23%;
+  min-width: 23%;
   max-height: 100%;
 }
 
