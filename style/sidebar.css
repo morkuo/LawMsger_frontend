@@ -81,6 +81,7 @@
   justify-content: center;
   align-items: center;
   width: 2.4rem;
+  min-width: 2.4rem;
   border-radius: var(--border-radius);
   background-position: center;
   background-repeat: no-repeat;
@@ -122,6 +123,7 @@
 .contact-info {
   flex-grow: 1;
   font-size: 1.1rem;
+  max-width: 60%;
 }
 
 span.group-delete-button,
@@ -146,6 +148,7 @@ span.contact-delete-star-button {
 
 .contact-status {
   width: 1rem;
+  min-width: 1rem;
   background-color: grey;
 }
 
