@@ -741,12 +741,24 @@ function addUploadFileListener() {
 
   chatUploadButton.addEventListener('change', e => {
     let totalSize = 0;
-    for (let file of e.target.files) {
-      if (file.size > 5 * 1024 * 1024) return setMsg('file size maximum: 5m ', 'error');
-      totalSize += file.size;
+
+    //check previous total files size
+    if (uploadfilesQueue.length !== 0) {
+      for (let file of uploadfilesQueue) {
+        totalSize += file.size;
+      }
     }
 
-    if (totalSize > 8 * 1024 * 1024) return setMsg('total size maximum: 8m ', 'error');
+    console.log('pre file size: ' + totalSize);
+
+    //check current files size
+    for (let file of e.target.files) {
+      if (file.size > 5 * 1024 * 1024) return setMsg('file size maximum: 5m ', 'error');
+
+      totalSize += file.size;
+
+      if (totalSize > 8 * 1024 * 1024) return setMsg('total size maximum: 8m ', 'error');
+    }
 
     previewFile(e.target);
   });
