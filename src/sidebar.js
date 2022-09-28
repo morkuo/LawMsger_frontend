@@ -235,8 +235,10 @@ function drawGroups(groups) {
     addClass('group-name', nameDiv);
     addClass('group-unread-count', unreadCountDiv);
 
-    if (group.name > 20) group.name = group.name.slice(0, 20);
+    if (group.name > 20) group.name = group.name.slice(0, 20) + '...';
     nameDiv.innerText = group.name;
+
+    groupDiv.setAttribute('title', 'Name: ' + group.name);
 
     if (group.unread) {
       unreadCountDiv.innerText = group.unread;
@@ -282,7 +284,9 @@ async function setParticipantsInfoToGroup(groups) {
     const lastLineBreak = titleAttribute.lastIndexOf('\n');
     titleAttribute = titleAttribute.slice(0, lastLineBreak);
 
-    groupDiv.setAttribute('title', titleAttribute);
+    const currentTitleAttributeValue = groupDiv.getAttribute('title');
+
+    groupDiv.setAttribute('title', `${currentTitleAttributeValue}\n${titleAttribute}`);
   }
 }
 
