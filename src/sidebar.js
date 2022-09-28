@@ -344,7 +344,7 @@ function drawCreateGroupForm() {
 
     const isNormalCharacter = checkSpecialCharacter(nameInput.value);
 
-    if (!isNormalCharacter) return setMsg(`no <, >, &, ', ", / in group name`, 'error');
+    if (!isNormalCharacter) return setMsg(`no < > & ' " / in group name`, 'error');
 
     const payload = {
       name: nameInput.value,
