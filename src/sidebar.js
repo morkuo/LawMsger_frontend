@@ -344,10 +344,13 @@ function drawCreateGroupForm() {
 
     if (response.error) return setMsg(response.error, 'error');
 
+    const userId = localStorage.getItem('id');
+
     const newGroup = [
       {
         id: response.group.id,
         name: nameInput.value,
+        host: userId,
         unread: 0,
       },
     ];
