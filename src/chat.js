@@ -508,7 +508,10 @@ async function detectInput(e) {
   suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 7}px`;
 
   if (!currentInput) return (suggestionsList.innerHTML = '');
-  if (e.key === 'Tab') return;
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    return;
+  }
 
   let wordSuggestion = -1;
   let clauseSuggestion = -1;
