@@ -447,6 +447,15 @@ socket.on('changeProfilePicture', userId => {
   });
 });
 
+socket.on('changeFirmPicture', firmId => {
+  const logoDiv = document.getElementById('firmLogo');
+
+  //force the picture div to refresh the picture
+  logoDiv.style.backgroundImage = `url(${
+    window.location.origin
+  }/firm_picture/${firmId}.jpg?v=${Date.now()})`;
+});
+
 //Change online status to 'off' when disonnected
 socket.on('disconnect', () => {
   console.log('Server down');
