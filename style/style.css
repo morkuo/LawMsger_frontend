@@ -158,6 +158,10 @@ p {
   background-color: var(--options-hover-color-blue);
 }
 
+#suggestions li.on {
+  background-color: var(--options-hover-color-blue);
+}
+
 #main {
   display: flex;
   position: relative;

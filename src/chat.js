@@ -516,11 +516,13 @@ async function detectInput(e) {
   const symbols = ['#', '＃', '@', '＠', '\\', '＼'];
   let maxIndex = -1;
 
+  //find last symbol index
   symbols.forEach(symbol => {
     const index = currentInput.lastIndexOf(symbol);
     if (index > maxIndex) maxIndex = index;
   });
 
+  //check last symbol
   if (currentInput[maxIndex] === '#' || currentInput[maxIndex] === '＃') {
     wordSuggestion = maxIndex;
   } else if (currentInput[maxIndex] === '@' || currentInput[maxIndex] === '＠') {
@@ -534,6 +536,7 @@ async function detectInput(e) {
 
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
+    input.index = maxIndex;
     input.removeEventListener('keypress', clauseKeyPressListener);
     suggestionsList.removeEventListener('click', clauseClickListener);
     input.removeEventListener('keypress', matchKeyPressListener);
@@ -556,6 +559,7 @@ async function detectInput(e) {
     console.log('clause emit');
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
+    input.index = maxIndex;
     input.removeEventListener('keypress', wordKeyPressListener);
     suggestionsList.removeEventListener('click', wordClickListener);
     input.removeEventListener('keypress', matchKeyPressListener);
@@ -574,6 +578,7 @@ async function detectInput(e) {
 
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
+    input.index = maxIndex;
     input.removeEventListener('keypress', wordKeyPressListener);
     suggestionsList.removeEventListener('click', wordClickListener);
     input.removeEventListener('keypress', clauseKeyPressListener);
@@ -589,22 +594,45 @@ async function detectInput(e) {
 }
 
 function wordKeyPressListener(e) {
+  const input = e.target;
+  const currentInput = input.value;
+  const suggestionsList = document.getElementById('suggestions');
+  const wordSuggestion = input.index;
+
+  if (suggestionsList.children.length === 0) return;
+
+  const selected = suggestionsList.querySelector('li.on');
+
+  if (!selected) {
+    const firstLi = suggestionsList.querySelector('li');
+    firstLi.classList.add('on');
+    return;
+  }
+
   if (e.key === 'Tab') {
     //to stay in the input field
     e.preventDefault();
 
-    const input = document.getElementById('input');
-    const currentInput = input.value;
-    const suggestionsList = document.getElementById('suggestions');
-    const wordSuggestion = currentInput.lastIndexOf('#');
+    let nextLi = selected.nextElementSibling;
+    if (!nextLi) {
+      selected.classList.remove('on');
 
-    const sugesstion = suggestionsList.querySelector('li');
+      const firstLi = suggestionsList.querySelector('li');
+      firstLi.classList.add('on');
 
-    if (sugesstion.innerText !== 'undefined') {
-      e.target.value = currentInput.slice(0, wordSuggestion) + sugesstion.innerText;
-      suggestionsList.innerHTML = '';
-      suggestionsList.classList.remove('on');
+      return;
     }
+
+    selected.classList.remove('on');
+    nextLi.classList.add('on');
+  }
+
+  if (e.key === 'Enter') {
+    const sugesstion = suggestionsList.querySelector('.on');
+
+    input.value = currentInput.slice(0, wordSuggestion) + sugesstion.innerText;
+    suggestionsList.innerHTML = '';
+    suggestionsList.classList.remove('on');
 
     //resize textarea
     input.style.height = 0;
