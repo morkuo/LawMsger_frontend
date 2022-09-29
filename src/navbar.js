@@ -165,6 +165,12 @@ async function uploadProfilePicture(e) {
 
   formData.append('images', pictureInput.files[0]);
 
+  //let user know the request is sent
+  const pane = document.getElementById('pane');
+  const loading = document.createElement('div');
+  loading.setAttribute('id', 'loadingEffect');
+  pane.appendChild(loading);
+
   const res = await fetch(api, {
     method: 'POST',
     headers: {
@@ -174,6 +180,9 @@ async function uploadProfilePicture(e) {
   });
 
   const response = await res.json();
+
+  //let user we got the response
+  loading.remove();
 
   if (response.error) return setMsg(response.error, 'error');
 
