@@ -304,14 +304,22 @@ async function setParticipantsInfoToGroup(groups) {
 function groupAddParticipantsButton() {
   const groupAddParticipants = document.getElementById('groupAddParticipants');
 
-  groupAddParticipants.addEventListener('click', () => {
-    drawCreateGroupForm();
+  groupAddParticipants.addEventListener('click', e => {
+    drawCreateGroupForm(e);
     drawAddAndDeleteParticipantsForm();
     addEmailInputLitener();
   });
 }
 
-function drawCreateGroupForm() {
+function drawCreateGroupForm(e) {
+  //highlight profile button
+  const footerOptions = document.querySelector('.footer-options');
+  for (let option of footerOptions.children) {
+    option.classList.remove('on');
+  }
+
+  e.target.setAttribute('class', 'on');
+
   const pane = document.querySelector('#pane');
   const manageDiv = document.createElement('div');
   const formDiv = document.createElement('div');

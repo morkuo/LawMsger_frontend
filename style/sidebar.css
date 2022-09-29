@@ -211,6 +211,10 @@ span.contact-delete-star-button {
   background-color: rgb(126, 126, 138);
 }
 
+.footer-options span.on {
+  background-color: rgb(126, 126, 138);
+}
+
 /* toggle symbol animation */
 
 .collapse-symbol {

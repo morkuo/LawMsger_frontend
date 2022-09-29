@@ -54,6 +54,8 @@ async function setNavbar() {
       const isAdmin = await checkAdmin();
       if (!isAdmin) return setMsg(response.error, 'error');
 
+      adminButton.setAttribute('class', 'on');
+
       drawCreateUserForm();
       drawDeleteUserForm();
       drawChangeFirmPictureForm();
@@ -79,6 +81,15 @@ function profileButton() {
 }
 
 async function drawProfile(e) {
+  //highlight profile button
+  const footerOptions = document.querySelector('.footer-options');
+  for (let option of footerOptions.children) {
+    option.classList.remove('on');
+  }
+
+  e.target.setAttribute('class', 'on');
+
+  //draw profile pane
   const pane = document.querySelector('#pane');
   const profileDiv = document.createElement('div');
   const header = document.createElement('h3');
@@ -105,6 +116,9 @@ async function drawProfile(e) {
   profile.setAttribute('id', 'profileContainer');
   pictureDiv.setAttribute('id', 'profilePictureDiv');
   editDiv.setAttribute('class', 'editDiv');
+  changePasswordButton.setAttribute('id', 'changePasswordButton');
+  changePasswordButton.setAttribute('class', 'on');
+  changeProfileImageButton.setAttribute('id', 'changeProfileImageButton');
 
   const userId = localStorage.getItem('id');
   pictureDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${userId}.jpg)`;
@@ -183,6 +197,12 @@ function drawChangPasswordForm(e) {
   let changePasswordDiv = document.querySelector('#changePasswordDiv');
   if (changePasswordDiv) return;
 
+  const changeProfileImageButton = document.getElementById('changePasswordButton');
+  changeProfileImageButton.classList.remove('on');
+
+  const changePasswordButton = document.getElementById('changeProfileImageButton');
+  changePasswordButton.setAttribute('class', 'on');
+
   changePasswordDiv = document.createElement('form');
 
   const profileDiv = document.querySelector('#profileDiv');
@@ -201,7 +221,6 @@ function drawChangPasswordForm(e) {
   oldPasswordPtag.innerText = 'Current Password';
   newPasswordPTag.innerText = 'New Password';
   confirmPTag.innerText = 'Confirm';
-
   confirmButton.innerText = 'Change';
 
   oldPasswordInput.setAttribute('type', 'password');
@@ -260,6 +279,12 @@ function drawChangeProfilePictureForm(e) {
 
   changeProfilePictureDiv = document.createElement('form');
 
+  const changePasswordButton = document.getElementById('changePasswordButton');
+  changePasswordButton.classList.remove('on');
+
+  const changeProfileImageButton = document.getElementById('changeProfileImageButton');
+  changeProfileImageButton.setAttribute('class', 'on');
+
   const changePasswordDiv = document.querySelector('#changePasswordDiv');
   changePasswordDiv.replaceWith(changeProfilePictureDiv);
 
@@ -278,6 +303,7 @@ function drawChangeProfilePictureForm(e) {
   pictureInput.setAttribute('type', 'file');
   pictureInput.setAttribute('accept', 'image/*');
   confirmButton.setAttribute('id', 'pictureInputComfirm');
+
   editDiv.setAttribute('class', 'editDiv');
 
   pictureInputWrapper.setAttribute('id', 'pictureInputWrapper');

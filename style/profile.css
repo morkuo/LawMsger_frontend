@@ -21,6 +21,10 @@
   background-color: var(--options-hover-color-blue);
 }
 
+#profileContainer button.on {
+  background-color: var(--options-hover-color-blue);
+}
+
 #profileDiv {
   display: flex;
   justify-content: center;
