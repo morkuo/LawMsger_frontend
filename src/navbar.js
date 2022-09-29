@@ -186,7 +186,7 @@ async function uploadProfilePicture(e) {
     const pictureDiv = document.getElementById('profilePictureDiv');
 
     console.log('picture Div', pictureDiv);
-    pictureDiv.style.backgroundImage = `url(${reader.result});`;
+    pictureDiv.style.backgroundImage = `url(${reader.result})`;
   });
 
   setMsg(response.data);
