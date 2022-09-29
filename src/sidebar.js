@@ -41,7 +41,12 @@ async function drawSidebar() {
 
   collapseSidebar();
 
+  //join groups channel that current user belongs to
   socket.emit('join', groups);
+
+  //join firm public channel
+  const firmId = localStorage.getItem('oid');
+  socket.emit('joinFirm', firmId);
 
   listenToChatWindow();
 
