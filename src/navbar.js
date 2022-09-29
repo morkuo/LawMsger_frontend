@@ -197,10 +197,10 @@ function drawChangPasswordForm(e) {
   let changePasswordDiv = document.querySelector('#changePasswordDiv');
   if (changePasswordDiv) return;
 
-  const changeProfileImageButton = document.getElementById('changePasswordButton');
+  const changeProfileImageButton = document.getElementById('changeProfileImageButton');
   changeProfileImageButton.classList.remove('on');
 
-  const changePasswordButton = document.getElementById('changeProfileImageButton');
+  const changePasswordButton = document.getElementById('changePasswordButton');
   changePasswordButton.setAttribute('class', 'on');
 
   changePasswordDiv = document.createElement('form');
