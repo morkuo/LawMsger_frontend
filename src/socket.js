@@ -437,7 +437,11 @@ socket.on('searchEamil', users => {
 socket.on('changeProfilePicture', userId => {
   const contactDivs = document.querySelectorAll(`.contact[data-id="${userId}"]`);
 
+  console.log('PFP changed' + userId);
+
   contactDivs.forEach(div => {
+    console.log('Refresh PFP!');
+
     const pictureDiv = div.querySelector('.contact-picture');
 
     //force the picture div to refresh the picture
