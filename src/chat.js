@@ -509,15 +509,27 @@ async function detectInput(e) {
 
   if (!currentInput) return (suggestionsList.innerHTML = '');
 
-  const wordSuggestion = currentInput.lastIndexOf('#');
-  const clauseSuggestion = currentInput.lastIndexOf('@');
-  const matchclausesContent = currentInput.lastIndexOf('\\');
+  let wordSuggestion = -1;
+  let clauseSuggestion = -1;
+  let matchclausesContent = -1;
 
-  if (
-    wordSuggestion > -1 &&
-    wordSuggestion > clauseSuggestion &&
-    wordSuggestion > matchclausesContent
-  ) {
+  const symbols = ['#', '＃', '@', '＠', '\\', '＼'];
+  let maxIndex = -1;
+
+  symbols.forEach(symbol => {
+    const index = currentInput.lastIndexOf(symbol);
+    if (index > maxIndex) maxIndex = index;
+  });
+
+  if (currentInput[maxIndex] === '#' || currentInput[maxIndex] === '＃') {
+    wordSuggestion = maxIndex;
+  } else if (currentInput[maxIndex] === '@' || currentInput[maxIndex] === '＠') {
+    clauseSuggestion = maxIndex;
+  } else {
+    matchclausesContent = maxIndex;
+  }
+
+  if (wordSuggestion > -1) {
     console.log('word emit');
 
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
@@ -540,11 +552,7 @@ async function detectInput(e) {
     return;
   }
 
-  if (
-    clauseSuggestion > -1 &&
-    clauseSuggestion > wordSuggestion &&
-    clauseSuggestion > matchclausesContent
-  ) {
+  if (clauseSuggestion > -1) {
     console.log('clause emit');
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
@@ -561,11 +569,7 @@ async function detectInput(e) {
     return;
   }
 
-  if (
-    matchclausesContent > -1 &&
-    matchclausesContent > wordSuggestion &&
-    matchclausesContent > clauseSuggestion
-  ) {
+  if (matchclausesContent > -1) {
     console.log('match emit');
 
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
