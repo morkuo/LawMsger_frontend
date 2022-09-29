@@ -434,6 +434,19 @@ socket.on('searchEamil', users => {
   });
 });
 
+socket.on('changeProfilePicture', userId => {
+  const contactDivs = document.querySelectorAll(`.contact[data-id="${userId}"]`);
+
+  contactDivs.forEach(div => {
+    const pictureDiv = div.querySelector('.contact-picture');
+
+    //force the picture div to refresh the picture
+    pictureDiv.style.backgroundImage = `url(${
+      window.location.origin
+    }/profile_picture/${userId}.jpg?v=${Date.now()})`;
+  });
+});
+
 //Change online status to 'off' when disonnected
 socket.on('disconnect', () => {
   console.log('Server down');

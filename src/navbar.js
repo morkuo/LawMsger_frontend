@@ -5,6 +5,7 @@ import {
   drawChangeFirmPictureForm,
   checkAdmin,
 } from './admin.js';
+import { socket } from './socket.js';
 
 main();
 
@@ -176,18 +177,18 @@ async function uploadProfilePicture(e) {
 
   if (response.error) return setMsg(response.error, 'error');
 
-  var reader = new FileReader();
+  //show updated user pfp for current user
+  const reader = new FileReader();
   reader.readAsDataURL(pictureInput.files[0]);
 
-  console.log('reader created, file: ', pictureInput.files[0]);
-
   reader.addEventListener('load', () => {
-    console.log('Changing PFP!!!!');
     const pictureDiv = document.getElementById('profilePictureDiv');
-
-    console.log('picture Div', pictureDiv);
     pictureDiv.style.backgroundImage = `url(${reader.result})`;
   });
+
+  //show updated user pfp for other user
+  const userId = document.getElementById('id');
+  socket.emit('changeProfilePicture', userId);
 
   setMsg(response.data);
 }
