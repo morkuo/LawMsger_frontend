@@ -54,7 +54,13 @@ async function setNavbar() {
       const isAdmin = await checkAdmin();
       if (!isAdmin) return setMsg(response.error, 'error');
 
-      adminButton.setAttribute('class', 'on');
+      //highlight profile button
+      const footerOptions = document.querySelector('.footer-options');
+      for (let option of footerOptions.children) {
+        option.classList.remove('on');
+      }
+
+      adminButton.classList.add('on');
 
       drawCreateUserForm();
       drawDeleteUserForm();
@@ -87,7 +93,7 @@ async function drawProfile(e) {
     option.classList.remove('on');
   }
 
-  e.target.setAttribute('class', 'on');
+  e.target.classList.add('on');
 
   //draw profile pane
   const pane = document.querySelector('#pane');
@@ -201,7 +207,7 @@ function drawChangPasswordForm(e) {
   changeProfileImageButton.classList.remove('on');
 
   const changePasswordButton = document.getElementById('changePasswordButton');
-  changePasswordButton.setAttribute('class', 'on');
+  changePasswordButton.classList.add('on');
 
   changePasswordDiv = document.createElement('form');
 
@@ -283,7 +289,7 @@ function drawChangeProfilePictureForm(e) {
   changePasswordButton.classList.remove('on');
 
   const changeProfileImageButton = document.getElementById('changeProfileImageButton');
-  changeProfileImageButton.setAttribute('class', 'on');
+  changeProfileImageButton.classList.add('on');
 
   const changePasswordDiv = document.querySelector('#changePasswordDiv');
   changePasswordDiv.replaceWith(changeProfilePictureDiv);

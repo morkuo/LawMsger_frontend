@@ -318,7 +318,7 @@ function drawCreateGroupForm(e) {
     option.classList.remove('on');
   }
 
-  e.target.setAttribute('class', 'on');
+  e.target.classList.add('on');
 
   const pane = document.querySelector('#pane');
   const manageDiv = document.createElement('div');
