@@ -176,6 +176,9 @@ async function uploadProfilePicture(e) {
 
   if (response.error) return setMsg(response.error, 'error');
 
+  const pictureDiv = document.getElementById('profilePictureDiv');
+  pictureDiv.style.backgroundImage = pictureInput.files[0];
+
   setMsg(response.data);
 }
 
