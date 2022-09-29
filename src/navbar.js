@@ -178,7 +178,11 @@ async function uploadProfilePicture(e) {
 
   var reader = new FileReader();
   reader.readAsDataURL(pictureInput.files[0]);
+
+  console.log('reader created, file: ' + pictureInput.files[0]);
+
   reader.addEventListener('load', () => {
+    console.log('Changing PFP!!!!');
     const pictureDiv = document.getElementById('profilePictureDiv');
     pictureDiv.style.backgroundImage = `url(${reader.result});`;
   });
