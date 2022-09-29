@@ -1,4 +1,4 @@
-import { HOST, setMsg, addClass, getJwtToken } from './helper.js';
+import { HOST, setMsg, addClass, loadingEffect, getJwtToken } from './helper.js';
 import { socket } from './socket.js';
 
 function drawCreateUserForm() {
@@ -234,6 +234,9 @@ async function uploadFirmPicture(e) {
 
   formData.append('images', pictureInput.files[0]);
 
+  //let user know the request is sent
+  const loadingDiv = loadingEffect();
+
   const res = await fetch(api, {
     method: 'POST',
     headers: {
@@ -243,6 +246,9 @@ async function uploadFirmPicture(e) {
   });
 
   const response = await res.json();
+
+  //let user know the request is sent
+  loadingDiv.remove();
 
   if (response.error) return setMsg(response.error, 'error');
 

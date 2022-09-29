@@ -178,7 +178,7 @@ async function uploadProfilePicture(e) {
 
   const response = await res.json();
 
-  //let user we got the response
+  //let user know we got the response
   loadingDiv.remove();
 
   if (response.error) return setMsg(response.error, 'error');
