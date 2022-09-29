@@ -154,11 +154,13 @@ p {
   border-bottom-right-radius: var(--border-radius);
 }
 
+#suggestions li:hover,
 #suggestions tr:hover {
   background-color: var(--options-hover-color-blue);
 }
 
-#suggestions li.on {
+#suggestions li.on,
+#suggestions tr.on {
   background-color: var(--options-hover-color-blue);
 }
 

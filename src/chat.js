@@ -502,14 +502,28 @@ async function detectInput(e) {
   const input = document.getElementById('input');
   const inputWrapper = document.querySelector('#inputWrapper');
 
-  suggestionsList.classList.remove('on');
-
   //reset suggestionsList position
   suggestionsList.style.bottom = `${inputWrapper.offsetHeight - 7}px`;
 
-  if (!currentInput) return (suggestionsList.innerHTML = '');
+  if (!currentInput) {
+    //reset all listener
+    input.removeEventListener('keydown', wordKeyPressListener);
+    input.removeEventListener('keypress', clauseKeyPressListener);
+    input.removeEventListener('keypress', matchKeyPressListener);
+    suggestionsList.removeEventListener('click', wordClickListener);
+    suggestionsList.removeEventListener('click', clauseClickListener);
+    suggestionsList.removeEventListener('click', matchClickListener);
+
+    suggestionsList.innerHTML = '';
+    suggestionsList.classList.remove('on');
+    return;
+  }
+
   if (e.key === 'Tab') {
+    // console.log(e.key);
+
     e.preventDefault();
+
     return;
   }
 
@@ -517,7 +531,7 @@ async function detectInput(e) {
   let clauseSuggestion = -1;
   let matchclausesContent = -1;
 
-  const symbols = ['#', '＃', '@', '＠', '\\', '＼'];
+  const symbols = ['#', '＃', '@', '＠', '|', '｜'];
   let maxIndex = -1;
 
   //find last symbol index
@@ -525,6 +539,9 @@ async function detectInput(e) {
     const index = currentInput.lastIndexOf(symbol);
     if (index > maxIndex) maxIndex = index;
   });
+
+  //no search symbol, hide suggestion list
+  if (maxIndex === -1) return suggestionsList.classList.remove('on');
 
   //check last symbol
   if (currentInput[maxIndex] === '#' || currentInput[maxIndex] === '＃') {
@@ -541,18 +558,13 @@ async function detectInput(e) {
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
     input.index = maxIndex;
-    input.removeEventListener('keypress', clauseKeyPressListener);
+    input.removeEventListener('keydown', clauseKeyPressListener);
+    input.removeEventListener('keydown', matchKeyPressListener);
     suggestionsList.removeEventListener('click', clauseClickListener);
-    input.removeEventListener('keypress', matchKeyPressListener);
     suggestionsList.removeEventListener('click', matchClickListener);
 
     //tab listener
-    input.addEventListener(
-      'keydown',
-      wordKeyPressListener,
-      //once the eventlistener has been fired once, remove itself
-      { once: true }
-    );
+    input.addEventListener('keydown', wordKeyPressListener);
 
     suggestionsList.addEventListener('click', wordClickListener, { once: true });
 
@@ -564,13 +576,13 @@ async function detectInput(e) {
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
     input.index = maxIndex;
-    input.removeEventListener('keypress', wordKeyPressListener);
+    input.removeEventListener('keydown', wordKeyPressListener);
+    input.removeEventListener('keydown', matchKeyPressListener);
     suggestionsList.removeEventListener('click', wordClickListener);
-    input.removeEventListener('keypress', matchKeyPressListener);
     suggestionsList.removeEventListener('click', matchClickListener);
 
     //tab listener
-    input.addEventListener('keydown', clauseKeyPressListener, { once: true });
+    input.addEventListener('keydown', clauseKeyPressListener);
 
     suggestionsList.addEventListener('click', clauseClickListener, { once: true });
 
@@ -583,15 +595,15 @@ async function detectInput(e) {
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
     input.index = maxIndex;
-    input.removeEventListener('keypress', wordKeyPressListener);
+    input.removeEventListener('keydown', wordKeyPressListener);
+    input.removeEventListener('keydown', clauseKeyPressListener);
     suggestionsList.removeEventListener('click', wordClickListener);
-    input.removeEventListener('keypress', clauseKeyPressListener);
     suggestionsList.removeEventListener('click', clauseClickListener);
 
-    suggestionsList.addEventListener('click', matchClickListener, { once: true });
-
     //tab listener
-    input.addEventListener('keydown', matchKeyPressListener, { once: true });
+    input.addEventListener('keydown', matchKeyPressListener);
+
+    suggestionsList.addEventListener('click', matchClickListener, { once: true });
 
     return;
   }
@@ -605,17 +617,17 @@ function wordKeyPressListener(e) {
 
   if (suggestionsList.children.length === 0) return;
 
-  const selected = suggestionsList.querySelector('li.on');
-
-  if (!selected) {
-    const firstLi = suggestionsList.querySelector('li');
-    firstLi.classList.add('on');
-    return;
-  }
-
   if (e.key === 'Tab') {
     //to stay in the input field
     e.preventDefault();
+
+    const selected = suggestionsList.querySelector('li.on');
+
+    if (!selected) {
+      const firstLi = suggestionsList.querySelector('li');
+      firstLi.classList.add('on');
+      return;
+    }
 
     let nextLi = selected.nextElementSibling;
     if (!nextLi) {
@@ -632,9 +644,12 @@ function wordKeyPressListener(e) {
   }
 
   if (e.key === 'Enter') {
+    e.preventDefault();
     const sugesstion = suggestionsList.querySelector('.on');
 
     input.value = currentInput.slice(0, wordSuggestion) + sugesstion.innerText;
+    input.removeEventListener('keypress', wordKeyPressListener);
+    input.removeEventListener('keypress', wordClickListener);
     suggestionsList.innerHTML = '';
     suggestionsList.classList.remove('on');
 
@@ -648,7 +663,7 @@ function wordClickListener(e) {
   const input = document.getElementById('input');
   const currentInput = input.value;
   const suggestionsList = document.getElementById('suggestions');
-  const wordSuggestion = currentInput.lastIndexOf('#');
+  const wordSuggestion = input.index;
 
   input.value = currentInput.slice(0, wordSuggestion) + e.target.innerText;
 
@@ -665,19 +680,47 @@ function clauseKeyPressListener(e) {
   const input = document.getElementById('input');
   const currentInput = input.value;
   const suggestionsList = document.getElementById('suggestions');
-  const clauseSuggestion = currentInput.lastIndexOf('@');
+  const clauseSuggestion = input.index;
+
+  if (suggestionsList.children.length === 0) return;
 
   if (e.key === 'Tab') {
+    //to stay in the input field
     e.preventDefault();
 
-    const sugesstion = suggestionsList.querySelector('tr');
+    const selected = suggestionsList.querySelector('tr.on');
 
-    if (sugesstion.innerText !== 'undefined') {
-      e.target.value = `${currentInput.slice(0, clauseSuggestion)}${sugesstion.dataset.title}第${
-        sugesstion.dataset.number
-      }條：「${sugesstion.dataset.body}」`;
-      suggestionsList.innerHTML = '';
+    if (!selected) {
+      const first = suggestionsList.querySelector('tr');
+      first.classList.add('on');
+      return;
     }
+
+    let next = selected.nextElementSibling;
+    if (!next) {
+      selected.classList.remove('on');
+
+      const first = suggestionsList.querySelector('tr');
+      first.classList.add('on');
+
+      return;
+    }
+
+    selected.classList.remove('on');
+    next.classList.add('on');
+  }
+
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const sugesstion = suggestionsList.querySelector('.on');
+
+    input.value = `${currentInput.slice(0, clauseSuggestion)}${sugesstion.dataset.title}第${
+      sugesstion.dataset.number
+    }條：「${sugesstion.dataset.body}」`;
+
+    input.removeEventListener('keypress', wordKeyPressListener);
+    input.removeEventListener('keypress', wordClickListener);
+    suggestionsList.innerHTML = '';
     suggestionsList.classList.remove('on');
 
     //resize textarea
@@ -690,7 +733,7 @@ function clauseClickListener(e) {
   const input = document.getElementById('input');
   const currentInput = input.value;
   const suggestionsList = document.getElementById('suggestions');
-  const clauseSuggestion = currentInput.lastIndexOf('@');
+  const clauseSuggestion = input.index;
 
   let targetClause = e.target;
   while (!targetClause.hasAttribute('data-body')) {
@@ -714,17 +757,48 @@ function matchKeyPressListener(e) {
   const input = document.getElementById('input');
   const currentInput = input.value;
   const suggestionsList = document.getElementById('suggestions');
-  const matchclausesContent = currentInput.lastIndexOf('\\');
+  const matchclausesContent = input.index;
+
+  if (suggestionsList.children.length === 0) return;
 
   if (e.key === 'Tab') {
+    //to stay in the input field
     e.preventDefault();
 
-    const suggestion = suggestionsList.querySelector('tr');
+    const selected = suggestionsList.querySelector('tr.on');
 
-    e.target.value = `${currentInput.slice(0, matchclausesContent)}${suggestion.dataset.title}第${
+    if (!selected) {
+      const first = suggestionsList.querySelector('tr');
+      first.classList.add('on');
+      return;
+    }
+
+    let next = selected.nextElementSibling;
+    if (!next) {
+      selected.classList.remove('on');
+
+      const first = suggestionsList.querySelector('tr');
+      first.classList.add('on');
+
+      return;
+    }
+
+    selected.classList.remove('on');
+    next.classList.add('on');
+  }
+
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const suggestion = suggestionsList.querySelector('.on');
+
+    input.value = `${currentInput.slice(0, matchclausesContent)}${suggestion.dataset.title}第${
       suggestion.dataset.number
     }條：「${suggestion.dataset.body}」`;
+
+    input.removeEventListener('keypress', wordKeyPressListener);
+    input.removeEventListener('keypress', wordClickListener);
     suggestionsList.innerHTML = '';
+    suggestionsList.classList.remove('on');
 
     const title = suggestion.dataset.title;
     const number = suggestion.dataset.number;
@@ -745,7 +819,7 @@ function matchClickListener(e) {
   const input = document.getElementById('input');
   const currentInput = input.value;
   const suggestionsList = document.getElementById('suggestions');
-  const matchclausesContent = currentInput.lastIndexOf('\\');
+  const matchclausesContent = input.index;
 
   let targetClause = e.target;
   while (!targetClause.hasAttribute('data-body')) {
