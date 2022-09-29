@@ -371,7 +371,8 @@ chat-unread-message #messages > li div {
   width: 2rem;
   height: 2rem;
   border: 5px solid #f3f3f3;
-  border-top: 6px solid var(--background-color);
+  border-top: 6px solid var(--options-hover-color-blue);
+  border-radius: 100%;
   position: absolute;
   top: 50%;
   left: 50%;

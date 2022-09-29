@@ -1,4 +1,4 @@
-import { setMsg, addClass, getJwtToken, HOST } from './helper.js';
+import { setMsg, addClass, getJwtToken, loadingEffect, HOST } from './helper.js';
 import {
   drawCreateUserForm,
   drawDeleteUserForm,
@@ -166,10 +166,7 @@ async function uploadProfilePicture(e) {
   formData.append('images', pictureInput.files[0]);
 
   //let user know the request is sent
-  const pane = document.getElementById('pane');
-  const loading = document.createElement('div');
-  loading.setAttribute('id', 'loadingEffect');
-  pane.appendChild(loading);
+  const loadingDiv = loadingEffect();
 
   const res = await fetch(api, {
     method: 'POST',
@@ -182,7 +179,7 @@ async function uploadProfilePicture(e) {
   const response = await res.json();
 
   //let user we got the response
-  loading.remove();
+  loadingDiv.remove();
 
   if (response.error) return setMsg(response.error, 'error');
 

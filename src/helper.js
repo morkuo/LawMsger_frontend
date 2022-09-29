@@ -237,6 +237,15 @@ function checkSpecialCharacter(str) {
   return true;
 }
 
+function loadingEffect() {
+  const pane = document.getElementById('pane');
+  const loading = document.createElement('div');
+  loading.setAttribute('id', 'loadingEffect');
+  pane.appendChild(loading);
+
+  return loading;
+}
+
 export {
   setMsg,
   addClass,
@@ -250,5 +259,6 @@ export {
   fetchGet,
   isImage,
   checkSpecialCharacter,
+  loadingEffect,
   HOST,
 };
