@@ -8,9 +8,9 @@ import {
   HOST,
 } from './helper.js';
 
-setSignInField();
+drawSignInForm();
 
-function setSignInField() {
+function drawSignInForm() {
   const container = document.querySelector('.container');
   const signInDiv = container.querySelector('div');
   const header = document.createElement('h3');
@@ -36,6 +36,11 @@ function setSignInField() {
   buttonIcon.setAttribute('id', 'signInIcon');
   buttonIcon.setAttribute('class', 'material-symbols-outlined');
   organizationNameInput.setAttribute('id', 'organizationNameInput');
+
+  //default account for testing convenience
+  organizationNameInput.value = 'kuoandhsu';
+  emailInput.value = 'morton@kh.com';
+  passwordInput.value = '1234';
 
   addClass(
     'auth',
