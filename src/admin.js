@@ -1,4 +1,5 @@
 import { HOST, setMsg, addClass, getJwtToken } from './helper.js';
+import { socket } from './socket.js';
 
 function drawCreateUserForm() {
   const pane = document.querySelector('#pane');
@@ -244,6 +245,19 @@ async function uploadFirmPicture(e) {
   const response = await res.json();
 
   if (response.error) return setMsg(response.error, 'error');
+
+  //show updated user pfp for current user
+  const reader = new FileReader();
+  reader.readAsDataURL(pictureInput.files[0]);
+
+  reader.addEventListener('load', () => {
+    const pictureDiv = document.getElementById('firmLogo');
+    pictureDiv.style.backgroundImage = `url(${reader.result})`;
+  });
+
+  //show updated user pfp for other user
+  const firmId = localStorage.getItem('oid');
+  socket.emit('changeFirmPicture', firmId);
 
   setMsg(response.data);
 }
