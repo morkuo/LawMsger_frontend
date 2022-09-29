@@ -176,8 +176,12 @@ async function uploadProfilePicture(e) {
 
   if (response.error) return setMsg(response.error, 'error');
 
-  const pictureDiv = document.getElementById('profilePictureDiv');
-  pictureDiv.style.backgroundImage = pictureInput.files[0];
+  var reader = new FileReader();
+  reader.readAsDataURL(pictureInput.files[0]);
+  reader.addEventListener('load', () => {
+    const pictureDiv = document.getElementById('profilePictureDiv');
+    pictureDiv.style.backgroundImage = `url(${reader.result});`;
+  });
 
   setMsg(response.data);
 }
