@@ -187,8 +187,10 @@ async function uploadProfilePicture(e) {
   });
 
   //show updated user pfp for other user
-  const userId = localStorage.getItem('id');
-  socket.emit('changeProfilePicture', userId);
+  setTimeout(() => {
+    const userId = localStorage.getItem('id');
+    socket.emit('changeProfilePicture', userId);
+  }, 2000);
 
   setMsg(response.data);
 }

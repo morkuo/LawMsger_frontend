@@ -256,8 +256,10 @@ async function uploadFirmPicture(e) {
   });
 
   //show updated user pfp for other user
-  const firmId = localStorage.getItem('oid');
-  socket.emit('changeFirmPicture', firmId);
+  setTimeout(() => {
+    const firmId = localStorage.getItem('oid');
+    socket.emit('changeFirmPicture', firmId);
+  }, 2000);
 
   setMsg(response.data);
 }
