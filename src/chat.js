@@ -358,7 +358,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   const uploadButtonIcon = document.createElement('span');
   const uploadButton = document.createElement('input');
   const previewImageDiv = document.createElement('div');
-  const unloadButton = document.createElement('div');
+  const unloadButton = document.createElement('span');
 
   pane.innerHTML = '';
 
@@ -385,7 +385,8 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   uploadButtonIcon.innerText = 'attach_file';
 
   unloadButton.setAttribute('id', 'chatUnloadFileButton');
-  unloadButton.innerText = 'X';
+  unloadButton.setAttribute('class', 'material-symbols-outlined');
+  unloadButton.innerText = 'delete';
 
   previewImageDiv.setAttribute('id', 'previewImageDiv');
   previewImageDiv.setAttribute('data-file', 'false');

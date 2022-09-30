@@ -35,11 +35,13 @@
   align-items: flex-end;
   position: absolute;
   padding-left: 0.6rem;
+  padding-right: 3rem;
   right: 2rem;
   top: 1.5rem;
   color: white;
   background-color: var(--background-color);
   border-radius: 10px;
+  height: 13rem;
 }
 
 #previewImageDiv[data-file='false'] {
@@ -48,8 +50,8 @@
 
 #chatUnloadFileButton {
   position: absolute;
-  top: 0rem;
-  right: -1rem;
+  top: 1rem;
+  right: -0.5rem;
   padding-right: 1.5rem;
   cursor: pointer;
 }
@@ -86,7 +88,6 @@
 }
 
 .chat-upload-file-preview {
-  border: 1px solid white;
   border-radius: var(--border-radius);
 }
 
@@ -97,6 +98,10 @@
   align-items: center;
   height: 10rem;
   width: 14rem;
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+  background-color: var(--options-background-color);
 }
 
 .chat-message-image-preview,
@@ -111,10 +116,12 @@
 }
 
 .chat-message-file-preview {
-  text-align: center;
-  background-color: var(--options-background-color);
+  display: inline-flex;
   color: white;
+  padding: 1rem;
+  overflow: hidden;
   border: none;
+  background-color: var(--options-background-color);
 }
 
 .chat-message-time {
