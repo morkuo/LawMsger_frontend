@@ -1,5 +1,6 @@
 import { setMsg, addClass, getJwtToken, setMessage, fetchGet, isImage, HOST } from './helper.js';
 import { socket } from './socket.js';
+import { searchTour } from './tour.js';
 
 let uploadfilesQueue = [];
 
@@ -423,6 +424,9 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 
   addUploadFileListener();
   addUnloadFileListener();
+
+  //Introduction for search;
+  searchTour();
 }
 
 function resizeTextarea() {

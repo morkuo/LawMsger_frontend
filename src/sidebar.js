@@ -9,6 +9,7 @@ import {
 } from './helper.js';
 import { socket } from './socket.js';
 import { addChatListenerToContactDivs, addGroupChatListenerToGroupDivs } from './chat.js';
+import { groupTour } from './tour.js';
 
 async function drawSidebar() {
   drawFirmPicture();
@@ -313,6 +314,9 @@ function groupAddParticipantsButton() {
     drawCreateGroupForm(e);
     drawAddAndDeleteParticipantsForm();
     addEmailInputLitener();
+
+    //introduction for group page
+    groupTour();
   });
 }
 
