@@ -641,12 +641,6 @@ function listenToChatWindow() {
 }
 
 function collapseSidebar() {
-  const contents = document.querySelectorAll('.content');
-
-  for (let content of contents) {
-    content.setAttribute('style', 'height:0');
-  }
-
   const headers = document.querySelectorAll('.header');
 
   for (let header of headers) {

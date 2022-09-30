@@ -50,6 +50,10 @@
   background-color: var(--background-color);
 }
 
+.content {
+  height: 0;
+}
+
 .contact,
 .group {
   display: flex;
