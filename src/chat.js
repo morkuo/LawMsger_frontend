@@ -871,8 +871,6 @@ function addUploadFileListener() {
       }
     }
 
-    console.log('pre file size: ' + totalSize);
-
     //check current files size
     for (let file of e.target.files) {
       if (file.size > 5 * 1024 * 1024) return setMsg('file size maximum: 5m ', 'error');
@@ -903,6 +901,8 @@ function previewFile(filesInput) {
     reader.addEventListener(
       'load',
       () => {
+        if (uploadfilesQueue.length + 1 > 3) return setMsg('one time 3 files only', 'error');
+
         if (isImage(file.name)) {
           const previewImage = document.createElement('img');
           previewImage.setAttribute('class', 'chat-upload-image-preview');
