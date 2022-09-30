@@ -38,24 +38,18 @@ function addClass(className, ...tags) {
   }
 }
 
-function storeToken(token) {
-  localStorage.setItem('token', token);
-}
+function storeUserData(userdata) {
+  const {
+    access_token,
+    user: { id, role, name, email, organizationId },
+  } = userdata;
 
-function storeUserId(userId) {
-  localStorage.setItem('id', userId);
-}
-
-function storeUsername(username) {
-  localStorage.setItem('name', username);
-}
-
-function storeUserEmail(userEmail) {
-  localStorage.setItem('email', userEmail);
-}
-
-function storeUserOrgization(userOrganizationId) {
-  localStorage.setItem('oid', userOrganizationId);
+  localStorage.setItem('token', access_token);
+  localStorage.setItem('id', id);
+  localStorage.setItem('role', role);
+  localStorage.setItem('name', name);
+  localStorage.setItem('email', email);
+  localStorage.setItem('oid', organizationId);
 }
 
 function getJwtToken() {
@@ -255,11 +249,7 @@ function loadingEffect() {
 export {
   setMsg,
   addClass,
-  storeToken,
-  storeUserId,
-  storeUsername,
-  storeUserEmail,
-  storeUserOrgization,
+  storeUserData,
   getJwtToken,
   setMessage,
   fetchGet,

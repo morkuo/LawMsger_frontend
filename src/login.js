@@ -1,12 +1,4 @@
-import {
-  addClass,
-  storeToken,
-  storeUserId,
-  storeUsername,
-  storeUserEmail,
-  storeUserOrgization,
-  HOST,
-} from './helper.js';
+import { addClass, storeUserData, HOST } from './helper.js';
 
 drawSignInForm();
 
@@ -77,11 +69,7 @@ function drawSignInForm() {
 
     if (response.error) return setSystemMessage(response.error, 'error');
 
-    storeToken(response.data.access_token);
-    storeUserId(response.data.user.id);
-    storeUsername(response.data.user.name);
-    storeUserEmail(response.data.user.email);
-    storeUserOrgization(response.data.user.organizationId);
+    storeUserData(response.data);
 
     window.location.href = `${window.location.origin}/main.html`;
   });

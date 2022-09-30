@@ -46,7 +46,7 @@ async function setNavbar() {
 
   if (response.data.role === -1) {
     const adminButton = document.createElement('span');
-    adminButton.innerText = 'admin_panel_settings';
+    adminButton.innerText = 'build';
 
     adminButton.setAttribute('class', 'material-symbols-outlined');
     adminButton.setAttribute('id', 'adminButton');
