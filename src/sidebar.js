@@ -662,7 +662,7 @@ function collapseSidebar() {
 
       //get current block root
       let headerParent = e.target;
-      while (!headerParent.classList.contains('collapse')) {
+      while (!headerParent.classList.contains('collapse-header')) {
         headerParent = headerParent.parentElement;
       }
 
