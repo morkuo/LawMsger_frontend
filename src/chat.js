@@ -519,11 +519,23 @@ async function detectInput(e) {
     return;
   }
 
+  const controlKey = [
+    'CapsLock',
+    'Shift',
+    'Control',
+    'Alt',
+    'Meta',
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight',
+    'Escape',
+  ];
+
+  if (controlKey.includes(e.key)) return;
+
   if (e.key === 'Tab') {
-    // console.log(e.key);
-
     e.preventDefault();
-
     return;
   }
 
