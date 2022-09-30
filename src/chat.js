@@ -913,7 +913,13 @@ function previewFile(filesInput) {
         } else {
           const fileDiv = document.createElement('div');
           fileDiv.setAttribute('class', 'chat-upload-file-preview');
-          fileDiv.innerText = file.name;
+
+          if (file.name.length > 20) {
+            const extensionIndex = file.name.lastIndexOf('.');
+            fileDiv.innerText =
+              file.name.slice(0, 20) + '...' + file.name.slice(extensionIndex - 3);
+          } else fileDiv.innerText = file.name;
+
           previewImageDiv.appendChild(fileDiv);
           uploadfilesQueue.push(file);
         }

@@ -140,7 +140,13 @@ async function setMessage(
           file.setAttribute('href', `${url}`);
           file.setAttribute('target', `_blank`);
           file.setAttribute('download', `testname`);
-          file.innerText = originalName;
+
+          if (originalName.length > 20) {
+            const extensionIndex = originalName.lastIndexOf('.');
+            file.innerText =
+              originalName.slice(0, 20) + '...' + originalName.slice(extensionIndex - 3);
+          } else file.innerText = originalName;
+
           filesDiv.appendChild(file);
         }
       }
