@@ -337,7 +337,7 @@ socket.on('createStarContact', response => {
   deleteStarButton.classList.add('material-symbols-outlined');
   contactDiv.appendChild(deleteStarButton);
 
-  deleteStarButton.innerText = 'person_remove';
+  deleteStarButton.innerText = 'delete';
 
   deleteStarButton.addEventListener('click', e => {
     socket.emit('deleteStarContact', targetContactUserId);
