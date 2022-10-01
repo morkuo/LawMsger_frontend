@@ -206,7 +206,7 @@ function drawContactDivs(contacts, category) {
     addClass('contact-unread-count', unreadCountDiv);
 
     //get picture from s3
-    pictureDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${contact.id}.jpg)`;
+    pictureDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${contact.id}.jpg?v=${Date.now})`;
     nameDiv.innerText = contact.name;
 
     if (contact.unread) {
