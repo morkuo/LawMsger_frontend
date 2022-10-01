@@ -56,6 +56,16 @@
   cursor: pointer;
 }
 
+span#searchTourButton {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  color: var(--background-color);
+  cursor: pointer;
+  font-size: 2rem;
+  font-variation-settings: 'wght' 700, 'opsz' 26;
+}
+
 .chat-sender-picture {
   display: flex;
   justify-content: center;

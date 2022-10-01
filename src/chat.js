@@ -360,6 +360,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   const uploadButton = document.createElement('input');
   const previewImageDiv = document.createElement('div');
   const unloadButton = document.createElement('span');
+  const tourButton = document.createElement('span');
 
   pane.innerHTML = '';
 
@@ -392,6 +393,10 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   previewImageDiv.setAttribute('id', 'previewImageDiv');
   previewImageDiv.setAttribute('data-file', 'false');
 
+  tourButton.setAttribute('id', 'searchTourButton');
+  tourButton.setAttribute('class', 'material-symbols-outlined');
+  tourButton.innerText = 'help';
+
   pane.appendChild(messages);
   pane.appendChild(form);
   form.appendChild(inputWrapper);
@@ -402,6 +407,7 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   inputWrapper.appendChild(uploadButtonWrapper);
   inputWrapper.appendChild(input);
   inputWrapper.appendChild(sendButton);
+  inputWrapper.appendChild(tourButton);
   sendButton.appendChild(sendButtonWrapper);
 
   pane.appendChild(previewImageDiv);
@@ -427,6 +433,8 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
 
   //Introduction for search;
   searchTour();
+
+  tourButton.addEventListener('click', searchTour);
 }
 
 function resizeTextarea() {

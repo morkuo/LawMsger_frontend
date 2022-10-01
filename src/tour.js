@@ -69,13 +69,14 @@ function mainTour() {
 
   // eslint-disable-next-line no-undef
   const tour = new Tour({
+    name: 'main',
     steps,
     duration,
     delay,
   });
 
   tour.init();
-  tour.restart();
+  tour.start();
 }
 
 function groupTour() {
@@ -109,51 +110,34 @@ function groupTour() {
 
   // eslint-disable-next-line no-undef
   const tour = new Tour({
+    name: 'group',
     steps,
     duration,
     delay,
   });
 
   tour.init();
-  tour.restart();
+  tour.start();
 }
 
 function searchTour() {
   const steps = [
     {
-      element: '#input',
       title: 'Search For Regulations',
-      content: 'To search regulations by their content, Enter " | " symbol followed by the keyword',
-      backdrop: true,
-      placement: 'top',
-      onNext: () => {
-        typeWriter('#input', '|電腦程式著作', 0);
-        const input = document.getElementById('input');
-        input.dispatchEvent(new KeyboardEvent('keydown'));
-      },
-    },
-    {
-      element: '#suggestions',
-      title: 'Search For Regulations',
-      content: 'Search result',
-      backdrop: true,
-      placement: 'top',
+      content:
+        'To search regulations by the name and the article,<br>enter " @ " symbol followed by the name and the article',
+      orphan: true,
     },
     {
       element: '#input',
-      content: 'Or search by the name and the article of the regulations',
       backdrop: true,
-      placement: 'top',
-    },
-    {
-      element: '#input',
-      title: 'Search For Regulations',
-      content: 'Enter " @ " symbol followed by the name of the clauses and its number',
-      backdrop: true,
-      placement: 'top',
-      onNext: () => {
-        $('#input').val('');
-        typeWriter('#input', '@民法105', 0);
+      duration: 2000,
+      onShown: () => {
+        const popover = document.querySelector('#step-1');
+        popover.style.display = 'none';
+        console.log(popover);
+
+        typeWriter('#input', '@著作權法60', 0);
         const input = document.getElementById('input');
         input.dispatchEvent(new KeyboardEvent('keydown'));
       },
@@ -162,46 +146,70 @@ function searchTour() {
       element: '#suggestions',
       title: 'Search For Regulations',
       content: 'Press "Tab" to move between results',
-      backdrop: true,
       placement: 'top',
       onShown: () => {
         const input = document.getElementById('input');
-        for (let i = 0; i < 6; i++) {
-          setTimeout(() => {
-            input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
-          }, i * 700);
-        }
+        input.focus();
+        input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+
+        input.addEventListener('keydown', function nextStep(e) {
+          if (e.key === 'Tab') {
+            tour.next();
+            input.removeEventListener('keydown', nextStep);
+          }
+        });
       },
     },
     {
       element: '#suggestions',
       title: 'Search For Regulations',
       content: 'Press " Enter " to select',
-      backdrop: true,
       placement: 'top',
-      onNext: () => {
+      onShown: tour => {
         const input = document.getElementById('input');
-        input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+        input.addEventListener('keydown', function nextStep(e) {
+          if (e.key === 'Enter') {
+            tour.next();
+            input.removeEventListener('keydown', nextStep);
+          }
+        });
       },
     },
     {
       element: '#input',
       title: 'Search For Regulations',
       content: 'The selected clause will be added',
+      duration: 5000,
       backdrop: true,
       placement: 'top',
+    },
+    {
+      title: 'Search Mode',
+      content: `<tr><td>＠著作權法60</td><td>search regulations by name and article</td></tr>
+                <tr><td>｜電腦程式著作</td><td>search regulations by keyword</td></tr>
+                <tr><td>＃著作</td><td>suggestions for legal term</td></tr>`,
+      duration: false,
+      orphan: true,
+      onShown: () => {
+        const popover = document.querySelector('#step-5');
+        const tds = popover.querySelectorAll('td');
+
+        for (let td of tds) {
+          td.style.padding = '0.5rem 1rem';
+        }
+      },
     },
   ];
 
   // eslint-disable-next-line no-undef
   const tour = new Tour({
+    name: 'search',
     steps,
-    duration,
     delay,
   });
 
   tour.init();
-  tour.restart();
+  tour.start();
 }
 
 function typeWriter(selector, text, i) {
