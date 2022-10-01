@@ -622,6 +622,11 @@ function listenToChatWindow() {
     const messages = document.getElementById('messages');
     if (!messages) return;
 
+    //remove highlight from footer button
+    footerOptions.forEach(button => {
+      button.classList.remove('on');
+    });
+
     //group
     if (messages.dataset.id === 'undefined') {
       const groupDiv = sideBar.querySelector(`[data-socket-id="${messages.dataset.socketId}"]`);
@@ -636,11 +641,6 @@ function listenToChatWindow() {
 
     currentContactDivs.forEach(div => {
       div.classList.add('on');
-    });
-
-    //remove highlight from footer button
-    footerOptions.forEach(button => {
-      button.classList.remove('on');
     });
   });
 
