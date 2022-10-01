@@ -509,6 +509,24 @@ function debounce(func, delay) {
   };
 }
 
+const paragraphMapping = {
+  I: 1,
+  II: 2,
+  III: 3,
+  IV: 4,
+  V: 5,
+  VI: 6,
+  VII: 7,
+  VIII: 8,
+  IX: 9,
+  X: 10,
+  XI: 11,
+  XII: 12,
+  XIII: 13,
+  XIV: 14,
+  XV: 15,
+};
+
 async function detectInput(e) {
   const currentInput = e.target.value;
   const suggestionsList = document.getElementById('suggestions');
@@ -739,9 +757,28 @@ function clauseKeyPressListener(e) {
     e.preventDefault();
     const sugesstion = suggestionsList.querySelector('.on');
 
-    input.value = `${currentInput.slice(0, clauseSuggestion)}${sugesstion.dataset.title}第${
-      sugesstion.dataset.number
-    }條：「${sugesstion.dataset.body}」`;
+    const number = sugesstion.dataset.number;
+
+    //regulation which includes paragraph was selected
+    if (isNaN(number[number.length - 1])) {
+      const numberCharacters = number.split('');
+
+      let article = '';
+      let paragraph = '';
+
+      for (let character of numberCharacters) {
+        if (isNaN(character) && character !== '-') paragraph += character;
+        else article += character;
+      }
+
+      input.value = `${currentInput.slice(0, clauseSuggestion)}${
+        sugesstion.dataset.title
+      }第${article}條第${paragraphMapping[paragraph]}項：「${sugesstion.dataset.body}」`;
+    } else {
+      input.value = `${currentInput.slice(0, clauseSuggestion)}${
+        sugesstion.dataset.title
+      }第${number}條：「${sugesstion.dataset.body}」`;
+    }
 
     input.removeEventListener('keypress', wordKeyPressListener);
     input.removeEventListener('keypress', wordClickListener);
@@ -765,9 +802,28 @@ function clauseClickListener(e) {
     targetClause = targetClause.parentElement;
   }
 
-  input.value = `${currentInput.slice(0, clauseSuggestion)}${targetClause.dataset.title}第${
-    targetClause.dataset.number
-  }條：「${targetClause.dataset.body}」`;
+  const number = targetClause.dataset.number;
+
+  //regulation which includes paragraph was selected
+  if (isNaN(number[number.length - 1])) {
+    const numberCharacters = number.split('');
+
+    let article = '';
+    let paragraph = '';
+
+    for (let character of numberCharacters) {
+      if (isNaN(character) && character !== '-') paragraph += character;
+      else article += character;
+    }
+
+    input.value = `${currentInput.slice(0, clauseSuggestion)}${
+      targetClause.dataset.title
+    }第${article}條第${paragraphMapping[paragraph]}項：「${targetClause.dataset.body}」`;
+  } else {
+    input.value = `${currentInput.slice(0, clauseSuggestion)}${targetClause.dataset.title}第${
+      targetClause.dataset.number
+    }條：「${targetClause.dataset.body}」`;
+  }
 
   suggestionsList.innerHTML = '';
 
