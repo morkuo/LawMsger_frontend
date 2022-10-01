@@ -608,12 +608,13 @@ function listenToChatWindow() {
   const observer = new MutationObserver(function (mutations) {
     const sideBar = document.getElementById('sidebar');
     const allContactDivs = document.querySelectorAll('.contact');
+    const allGroupDivs = document.querySelectorAll('.group');
+    const footerOptions = document.querySelectorAll('.footer-options span');
 
     allContactDivs.forEach(contactDiv => {
       contactDiv.classList.remove('on');
     });
 
-    const allGroupDivs = document.querySelectorAll('.group');
     allGroupDivs.forEach(groupDiv => {
       groupDiv.classList.remove('on');
     });
@@ -635,6 +636,11 @@ function listenToChatWindow() {
 
     currentContactDivs.forEach(div => {
       div.classList.add('on');
+    });
+
+    //remove highlight from footer button
+    footerOptions.forEach(button => {
+      button.classList.remove('on');
     });
   });
 
