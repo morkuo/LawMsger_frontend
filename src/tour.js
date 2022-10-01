@@ -1,4 +1,4 @@
-const duration = 7000;
+const duration = 3000;
 const delay = 500;
 
 mainTour();
@@ -9,7 +9,10 @@ function mainTour() {
       element: '#all',
       title: 'All Colleagues',
       content: 'Click to show all colleagues',
-      onNext: () => $('#all .header').click(),
+      onNext: tour => {
+        $('#all .header').click();
+        tour.restart();
+      },
     },
     {
       element: '.contact-add-star-button:first',
@@ -20,7 +23,10 @@ function mainTour() {
       element: '#star',
       title: 'Starred Colleagues',
       content: 'Click to show starred colleagues',
-      onNext: () => $('#star .header').click(),
+      onNext: tour => {
+        $('#star .header').click();
+        tour.restart();
+      },
     },
     {
       element: '.contact-delete-star-button:first',
@@ -31,7 +37,10 @@ function mainTour() {
       element: '#group',
       title: 'Group Channels',
       content: 'Click to show groups you have joined',
-      onNext: () => $('#group .header').click(),
+      onNext: tour => {
+        $('#group .header').click();
+        tour.restart();
+      },
     },
     {
       element: '.group-delete-button:first',
@@ -63,6 +72,7 @@ function mainTour() {
       element: '#groupAddParticipants',
       title: 'Manage Groups',
       content: 'Create group, add or delete member',
+      duration: false,
       placement: 'top',
     },
   ];
@@ -73,6 +83,7 @@ function mainTour() {
     steps,
     duration,
     delay,
+    onStart: endTourListener,
   });
 
   tour.init();
@@ -85,6 +96,7 @@ function groupTour() {
       element: 'input.group-function:first',
       title: 'Create a Group',
       content: 'Enter the name of the new group and click "create"',
+      duration: 5000,
       onShown: () => $('#group .header').click(),
       onNext: tour => {
         const groupName = 'Google v. Oracle';
@@ -112,8 +124,8 @@ function groupTour() {
   const tour = new Tour({
     name: 'group',
     steps,
-    duration,
     delay,
+    onStart: endTourListener,
   });
 
   tour.init();
@@ -206,6 +218,7 @@ function searchTour() {
     name: 'search',
     steps,
     delay,
+    onStart: endTourListener,
   });
 
   tour.init();
@@ -220,6 +233,28 @@ function typeWriter(selector, text, i) {
     i++;
     setTimeout(typeWriter, speed, selector, text, i);
   }
+}
+
+function endTourListener(tour) {
+  //1s after starting a tour, check whether there are popovers
+  setTimeout(() => {
+    if ($('.popover').length) {
+      //if there are popovers, add end tour listener to html element
+      $('html').click(function endTour(e) {
+        //if the element which is clicked by the user is not within popover, end the tour
+        if (!$(e.target).parents('.popover').length) {
+          tour.end();
+          $('.popover').remove();
+          $('html').off('click', endTour);
+        }
+
+        //if user click on the end tour button, remove end tour listener
+        if ($(e.target).data('role') === 'end') {
+          $('html').off('click', endTour);
+        }
+      });
+    }
+  }, 1000);
 }
 
 export { searchTour, groupTour };

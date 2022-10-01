@@ -434,7 +434,11 @@ function drawChatWindow(targetContactUserId, targetContactSocketId) {
   //Introduction for search;
   searchTour();
 
-  tourButton.addEventListener('click', searchTour);
+  tourButton.addEventListener('click', () => {
+    localStorage.removeItem('search_end');
+    localStorage.removeItem('search_current_step');
+    searchTour();
+  });
 }
 
 function resizeTextarea() {
