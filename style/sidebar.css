@@ -208,7 +208,7 @@ span.contact-delete-star-button {
 
 .footer-options span {
   border-radius: var(--border-radius);
-  padding: 0.1rem 1rem;
+  padding: 0.1rem 0.8rem;
   font-size: 1.8rem;
 }
 .footer-options span:hover {
