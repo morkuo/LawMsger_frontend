@@ -532,8 +532,10 @@ function drawAddAndDeleteParticipantsForm() {
 
     let authorization = getJwtToken();
 
+    const api = `${HOST}/1.0/group/participants`;
+
     const res = await fetch(api, {
-      method: 'PUT',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': authorization,
