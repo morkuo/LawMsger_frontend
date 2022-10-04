@@ -470,6 +470,7 @@ function drawAddAndDeleteParticipantsForm() {
     deleteButton
   );
 
+  //refactor url
   const api = `${HOST}/1.0/group/participants`;
 
   addButton.addEventListener('click', async e => {
