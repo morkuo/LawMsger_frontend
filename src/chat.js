@@ -46,9 +46,7 @@ async function chatListener(e) {
   drawChatWindow(targetContact.dataset.id, targetContact.dataset.socketId);
 
   //append history message to chat window
-  const { data: result } = await getMessages(targetContact.dataset.id);
-
-  const msgs = result.reverse();
+  const { data: msgs } = await getMessages(targetContact.dataset.id);
 
   for (let msg of msgs) {
     setMessage(
@@ -60,6 +58,8 @@ async function chatListener(e) {
       msg.sender_id !== targetContact.dataset.id ? 'read' : msg.isRead
     );
   }
+
+  scrollToBottom();
 
   moreMessagesListener(targetContact.dataset.id);
 
@@ -100,6 +100,13 @@ async function chatListener(e) {
   });
 }
 
+function scrollToBottom() {
+  setTimeout(() => {
+    const messages = document.getElementById('messages');
+    messages.scrollTo(0, messages.scrollHeight);
+  }, 0);
+}
+
 function moreMessagesListener(targetContactUserId) {
   const messages = document.getElementById('messages');
 
@@ -135,8 +142,7 @@ function moreMessagesListener(targetContactUserId) {
             msg.sender_id,
             msg.files,
             msg.sender_name,
-            msg.sender_id !== targetContactUserId ? 'read' : msg.isRead,
-            'more'
+            msg.sender_id !== targetContactUserId ? 'read' : msg.isRead
           );
         }
       }
@@ -166,33 +172,18 @@ async function groupChatListener(e) {
   const userName = document.querySelector('#userInfo h2');
 
   //append history message to chat window
-  const { data: history } = await getGroupMessages(targetContact.dataset.socketId);
+  const { data: msgs } = await getGroupMessages(targetContact.dataset.socketId);
 
-  for (let i = history.length - 1; i >= 0; i--) {
-    const contactDiv = document.querySelector(`.contacts [data-id="${history[i].sender_id}"]`);
+  for (let msg of msgs) {
+    const contactDiv = document.querySelector(`.contacts [data-id="${msg.sender_id}"]`);
 
     //other users
     if (contactDiv) {
       const userId = localStorage.getItem('id');
-      const isRead = history[i].isRead.includes(userId);
-
-      setMessage(
-        history[i].message,
-        history[i].created_at,
-        history[i].sender_id,
-        history[i].files,
-        history[i].sender_name,
-        isRead
-      );
+      const isRead = msg.isRead.includes(userId);
+      setMessage(msg.message, msg.created_at, msg.sender_id, msg.files, msg.sender_name, isRead);
     } else {
-      setMessage(
-        history[i].message,
-        history[i].created_at,
-        history[i].sender_id,
-        history[i].files,
-        history[i].sender_name,
-        'read'
-      );
+      setMessage(msg.message, msg.created_at, msg.sender_id, msg.files, msg.sender_name, 'read');
     }
   }
 
@@ -228,35 +219,24 @@ async function groupChatListener(e) {
         if (moreMessages.length === 0) return setMsg('No More Messages');
 
         for (let msg of moreMessages) {
-          if (msg.sender_id === userId) {
-            setMessage(
-              msg.message,
-              msg.created_at,
-              msg.sender_id,
-              msg.files,
-              msg.sender_name,
-              'read',
-              'more'
-            );
-          } else {
-            setMessage(
-              msg.message,
-              msg.created_at,
-              msg.sender_id,
-              msg.files,
-              msg.sender_name,
-              msg.isRead,
-              'more'
-            );
-          }
+          setMessage(
+            msg.message,
+            msg.created_at,
+            msg.sender_id,
+            msg.files,
+            msg.sender_name,
+            msg.sender_id === userId ? 'read' : msg.isRead,
+            'read'
+          );
         }
       }
     }, 600)
   );
 
+  scrollToBottom();
+
   //suggestions
   const input = document.getElementById('input');
-  const sugesstionsList = document.getElementById('suggestions');
   const form = document.getElementById('form');
 
   const debouncedDetectInput = debounce(detectInput, 600);
