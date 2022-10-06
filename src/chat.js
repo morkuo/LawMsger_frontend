@@ -61,7 +61,46 @@ async function chatListener(e) {
     );
   }
 
-  //get more messages when scroll to top
+  moreMessagesListener(targetContact.dataset.id);
+
+  //suggestions
+  const input = document.getElementById('input');
+  const form = document.getElementById('form');
+
+  const debouncedDetectInput = debounce(detectInput, 600);
+
+  input.addEventListener('keydown', debouncedDetectInput);
+
+  // Send message
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const messages = document.getElementById('messages');
+    const contactUserSocketId = messages.dataset.socketId;
+    const contactUserId = messages.dataset.id;
+    const contactDiv = document.querySelector(`[data-id="${contactUserId}"]`);
+
+    const contactNameDiv = contactDiv.querySelector('.contact-info div:first-child');
+    const contactName = contactNameDiv.innerText;
+
+    if (input.value || uploadfilesQueue.length) {
+      const authorization = getJwtToken();
+      const response = await uploadFile(authorization);
+
+      if (response.error) return setMsg(response.error);
+
+      const filesInfo = JSON.stringify(response);
+
+      socket.emit('msg', input.value, contactUserSocketId, contactUserId, contactName, filesInfo);
+
+      setMessage(input.value, Date.now(), userId, filesInfo, userName.innerText, 'read');
+
+      input.value = '';
+    }
+  });
+}
+
+function moreMessagesListener(targetContactUserId) {
   const messages = document.getElementById('messages');
 
   messages.addEventListener(
@@ -85,7 +124,7 @@ async function chatListener(e) {
         let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
         let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
 
-        const { data: moreMessages } = await getMessages(targetContact.dataset.id, baselineTime);
+        const { data: moreMessages } = await getMessages(targetContactUserId, baselineTime);
 
         if (!moreMessages.length) return setMsg('No More Messages');
 
@@ -96,54 +135,13 @@ async function chatListener(e) {
             msg.sender_id,
             msg.files,
             msg.sender_name,
-            msg.sender_id !== targetContact.dataset.id ? 'read' : msg.isRead,
+            msg.sender_id !== targetContactUserId ? 'read' : msg.isRead,
             'more'
           );
         }
       }
     }, 600)
   );
-
-  //suggestions
-  const input = document.getElementById('input');
-  const sugesstionsList = document.getElementById('suggestions');
-  const form = document.getElementById('form');
-
-  const debouncedDetectInput = debounce(detectInput, 600);
-
-  input.addEventListener('keydown', debouncedDetectInput);
-
-  // Send message
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    const messages = document.getElementById('messages');
-    const contactUserSocketId = messages.dataset.socketId;
-    const contactUserId = messages.dataset.id;
-    const contactDiv = document.querySelector(`[data-id="${contactUserId}"]`);
-
-    const contactNameDiv = contactDiv.querySelector('.contact-info div:first-child');
-    const contactName = contactNameDiv.innerText;
-
-    const uploadButton = document.querySelector('#chatUploadButton');
-
-    if (input.value || uploadfilesQueue.length !== 0) {
-      const authorization = getJwtToken();
-      const response = await uploadFile(authorization);
-
-      if (response.error) return setMsg(response.error);
-
-      const filesInfo = JSON.stringify(response);
-
-      socket.emit('msg', input.value, contactUserSocketId, contactUserId, contactName, filesInfo);
-
-      console.log(userId);
-
-      setMessage(input.value, Date.now(), userId, filesInfo, userName.innerText, 'read');
-
-      input.value = '';
-    }
-  });
 }
 
 async function groupChatListener(e) {
