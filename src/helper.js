@@ -154,14 +154,14 @@ async function setMessage(
     if (!isRead) item.classList.add('chat-unread-message');
   } else messages.insertAdjacentElement('afterbegin', item);
 
-  if (!senderSocketId) {
-    //get signed in user's picture
-    const userId = localStorage.getItem('id');
-    senderDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${userId}.jpg)`;
+  // if (!senderSocketId) {
+  //   //get signed in user's picture
+  //   const userId = localStorage.getItem('id');
+  //   senderDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${userId}.jpg)`;
 
-    if (!more) messages.scrollTo(0, messages.scrollHeight);
-    return;
-  }
+  //   if (!more) messages.scrollTo(0, messages.scrollHeight);
+  //   return;
+  // }
 
   senderDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${senderUserId}.jpg)`;
   if (!more) messages.scrollTo(0, messages.scrollHeight);

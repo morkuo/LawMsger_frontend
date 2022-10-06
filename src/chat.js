@@ -53,7 +53,7 @@ async function chatListener(e) {
       setMessage(
         history[i].message,
         history[i].created_at,
-        null,
+        userId,
         null,
         history[i].files,
         'read',
@@ -107,7 +107,7 @@ async function chatListener(e) {
             setMessage(
               msg.message,
               msg.created_at,
-              null,
+              userId,
               'more',
               msg.files,
               'read',
@@ -228,7 +228,7 @@ async function groupChatListener(e) {
       setMessage(
         history[i].message,
         history[i].created_at,
-        null,
+        userId,
         null,
         history[i].files,
         'read',
@@ -274,7 +274,7 @@ async function groupChatListener(e) {
             setMessage(
               msg.message,
               msg.created_at,
-              null,
+              userId,
               'more',
               msg.files,
               'read',
