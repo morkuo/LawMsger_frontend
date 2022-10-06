@@ -27,22 +27,8 @@ socket.on('msg', (msg, senderSocketId, filesInfo) => {
   const userId = localStorage.getItem('id');
 
   //append message from the sender to chat window
-  setMessage(msg, Date.now(), userId, null, filesInfo);
+  setMessage(msg, Date.now(), userId, filesInfo);
 });
-
-// socket.on('groupmsg', (msg, senderSocketId, groupId, filesInfo) => {
-//   console.log('From server:' + senderSocketId);
-
-//   //check if current user is at chat window
-//   const messages = document.getElementById('messages');
-//   if (!messages) return;
-
-//   //if message is not for current window contact, do nothing
-//   if (groupId !== messages.dataset.socketId) return;
-
-//   //append message from the sender to chat window
-//   setMessage(msg, Date.now(), senderSocketId, null, filesInfo, 'read');
-// });
 
 socket.on('suggestion', suggestions => {
   const suggestionsList = document.getElementById('suggestions');
@@ -222,7 +208,7 @@ socket.on(
     // console.log(fromUserId);
 
     //append message from the sender to chat window
-    setMessage(msg, Date.now(), fromUserId, null, filesInfo, 'read', fromUserName);
+    setMessage(msg, Date.now(), fromUserId, filesInfo, fromUserName, 'read');
   }
 );
 
@@ -254,7 +240,7 @@ socket.on(
     socket.emit('checkGroupChatWindow', userId, messageId);
 
     //append message from the sender to chat window
-    setMessage(msg, Date.now(), fromUserId, null, filesInfo, 'read', fromUserName);
+    setMessage(msg, Date.now(), fromUserId, filesInfo, fromUserName, 'read');
   }
 );
 

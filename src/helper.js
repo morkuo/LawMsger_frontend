@@ -62,7 +62,7 @@ function getJwtToken() {
   return authorization;
 }
 
-async function setMessage(msg, time, senderUserId, more, filesInfo, isRead, senderName) {
+async function setMessage(msg, time, senderUserId, filesInfo, senderName, isRead, more) {
   const messages = document.getElementById('messages');
 
   if (!messages) return;
@@ -95,7 +95,7 @@ async function setMessage(msg, time, senderUserId, more, filesInfo, isRead, send
   messageDiv.appendChild(messageWrapper);
   messageWrapper.appendChild(messageName);
 
-  if (msg !== '') {
+  if (msg) {
     messageText.innerText = msg;
     messageWrapper.appendChild(messageText);
   }
@@ -103,27 +103,22 @@ async function setMessage(msg, time, senderUserId, more, filesInfo, isRead, send
   if (filesInfo) {
     const infoArray = await JSON.parse(filesInfo).data;
 
-    if (infoArray.length !== 0) {
+    if (infoArray.length) {
       for (let info of infoArray) {
         const { location: url, originalName } = info;
 
-        if (isImage(originalName)) {
-          const aTag = document.createElement('a');
-          aTag.setAttribute('href', `${url}`);
-          aTag.setAttribute('target', `_blank`);
+        const file = document.createElement('a');
+        file.setAttribute('href', `${url}`);
+        file.setAttribute('target', `_blank`);
 
+        if (isImage(originalName)) {
           const image = document.createElement('img');
           image.setAttribute('class', 'chat-message-image-preview');
           image.src = url;
           image.alt = originalName;
-
-          filesDiv.appendChild(aTag);
-          aTag.appendChild(image);
+          file.appendChild(image);
         } else {
-          const file = document.createElement('a');
           file.setAttribute('class', 'chat-message-file-preview');
-          file.setAttribute('href', `${url}`);
-          file.setAttribute('target', `_blank`);
           file.setAttribute('download', `testname`);
 
           if (originalName.length > 20) {
@@ -131,31 +126,26 @@ async function setMessage(msg, time, senderUserId, more, filesInfo, isRead, send
             file.innerText =
               originalName.slice(0, 20) + '...' + originalName.slice(extensionIndex - 3);
           } else file.innerText = originalName;
-
-          filesDiv.appendChild(file);
         }
+
+        filesDiv.appendChild(file);
       }
 
       messageWrapper.appendChild(filesDiv);
     }
   }
 
-  if (!more) {
+  if (more) {
+    messages.insertAdjacentElement('afterbegin', item);
+  } else {
     messages.appendChild(item);
-    if (!isRead) item.classList.add('chat-unread-message');
-  } else messages.insertAdjacentElement('afterbegin', item);
+    messages.scrollTo(0, messages.scrollHeight);
+  }
 
-  // if (!senderSocketId) {
-  //   //get signed in user's picture
-  //   const userId = localStorage.getItem('id');
-  //   senderDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${userId}.jpg)`;
-
-  //   if (!more) messages.scrollTo(0, messages.scrollHeight);
-  //   return;
-  // }
+  if (!isRead) item.classList.add('chat-unread-message');
 
   senderDiv.style.backgroundImage = `url(${window.location.origin}/profile_picture/${senderUserId}.jpg)`;
-  if (!more) messages.scrollTo(0, messages.scrollHeight);
+
   return;
 }
 

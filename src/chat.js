@@ -54,20 +54,18 @@ async function chatListener(e) {
         history[i].message,
         history[i].created_at,
         history[i].sender_id,
-        null,
         history[i].files,
-        'read',
-        history[i].sender_name
+        history[i].sender_name,
+        'read'
       );
     } else {
       setMessage(
         history[i].message,
         history[i].created_at,
         history[i].sender_id,
-        null,
         history[i].files,
-        history[i].isRead,
-        history[i].sender_name
+        history[i].sender_name,
+        history[i].isRead
       );
     }
   }
@@ -106,20 +104,20 @@ async function chatListener(e) {
               msg.message,
               msg.created_at,
               msg.sender_id,
-              'more',
               msg.files,
+              msg.sender_name,
               'read',
-              msg.sender_name
+              'more'
             );
           } else {
             setMessage(
               msg.message,
               msg.created_at,
               msg.sender_id,
-              'more',
               msg.files,
+              msg.sender_name,
               msg.isRead,
-              msg.sender_name
+              'more'
             );
           }
         }
@@ -162,7 +160,7 @@ async function chatListener(e) {
 
       console.log(userId);
 
-      setMessage(input.value, Date.now(), userId, null, filesInfo, 'read', userName.innerText);
+      setMessage(input.value, Date.now(), userId, filesInfo, userName.innerText, 'read');
 
       input.value = '';
     }
@@ -205,20 +203,18 @@ async function groupChatListener(e) {
         history[i].message,
         history[i].created_at,
         history[i].sender_id,
-        null,
         history[i].files,
-        isRead,
-        history[i].sender_name
+        history[i].sender_name,
+        isRead
       );
     } else {
       setMessage(
         history[i].message,
         history[i].created_at,
         history[i].sender_id,
-        null,
         history[i].files,
-        'read',
-        history[i].sender_name
+        history[i].sender_name,
+        'read'
       );
     }
   }
@@ -260,20 +256,20 @@ async function groupChatListener(e) {
               msg.message,
               msg.created_at,
               msg.sender_id,
-              'more',
               msg.files,
+              msg.sender_name,
               'read',
-              msg.sender_name
+              'more'
             );
           } else {
             setMessage(
               msg.message,
               msg.created_at,
               msg.sender_id,
-              'more',
               msg.files,
+              msg.sender_name,
               msg.isRead,
-              msg.sender_name
+              'more'
             );
           }
         }
@@ -313,7 +309,7 @@ async function groupChatListener(e) {
 
       console.log(userId);
 
-      setMessage(input.value, Date.now(), userId, null, filesInfo, 'read', userName.innerText);
+      setMessage(input.value, Date.now(), userId, filesInfo, userName.innerText, 'read');
 
       input.value = '';
     }
