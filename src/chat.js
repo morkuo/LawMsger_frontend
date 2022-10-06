@@ -87,30 +87,18 @@ async function chatListener(e) {
 
         const { data: moreMessages } = await getMessages(targetContact.dataset.id, baselineTime);
 
-        if (moreMessages.length === 0) return setMsg('No More Messages');
+        if (!moreMessages.length) return setMsg('No More Messages');
 
         for (let msg of moreMessages) {
-          if (msg.sender_id !== targetContact.dataset.id) {
-            setMessage(
-              msg.message,
-              msg.created_at,
-              msg.sender_id,
-              msg.files,
-              msg.sender_name,
-              'read',
-              'more'
-            );
-          } else {
-            setMessage(
-              msg.message,
-              msg.created_at,
-              msg.sender_id,
-              msg.files,
-              msg.sender_name,
-              msg.isRead,
-              'more'
-            );
-          }
+          setMessage(
+            msg.message,
+            msg.created_at,
+            msg.sender_id,
+            msg.files,
+            msg.sender_name,
+            msg.sender_id !== targetContact.dataset.id ? 'read' : msg.isRead,
+            'more'
+          );
         }
       }
     }, 600)
