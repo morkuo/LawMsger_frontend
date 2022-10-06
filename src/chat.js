@@ -46,28 +46,19 @@ async function chatListener(e) {
   drawChatWindow(targetContact.dataset.id, targetContact.dataset.socketId);
 
   //append history message to chat window
-  const { data: history } = await getMessages(targetContact.dataset.id);
+  const { data: result } = await getMessages(targetContact.dataset.id);
 
-  for (let i = history.length - 1; i >= 0; i--) {
-    if (history[i].sender_id !== targetContact.dataset.id) {
-      setMessage(
-        history[i].message,
-        history[i].created_at,
-        history[i].sender_id,
-        history[i].files,
-        history[i].sender_name,
-        'read'
-      );
-    } else {
-      setMessage(
-        history[i].message,
-        history[i].created_at,
-        history[i].sender_id,
-        history[i].files,
-        history[i].sender_name,
-        history[i].isRead
-      );
-    }
+  const msgs = result.reverse();
+
+  for (let msg of msgs) {
+    setMessage(
+      msg.message,
+      msg.created_at,
+      msg.sender_id,
+      msg.files,
+      msg.sender_name,
+      msg.sender_id !== targetContact.dataset.id ? 'read' : msg.isRead
+    );
   }
 
   //get more messages when scroll to top
