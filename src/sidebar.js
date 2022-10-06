@@ -1,12 +1,4 @@
-import {
-  setMsg,
-  addClass,
-  getJwtToken,
-  setMessage,
-  fetchGet,
-  checkSpecialCharacter,
-  HOST,
-} from './helper.js';
+import { setMsg, addClass, getJwtToken, fetchGet, checkSpecialCharacter, HOST } from './helper.js';
 import { socket } from './socket.js';
 import { addChatListenerToContactDivs, addGroupChatListenerToGroupDivs } from './chat.js';
 import { groupTour } from './tour.js';

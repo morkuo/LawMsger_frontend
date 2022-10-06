@@ -62,16 +62,7 @@ function getJwtToken() {
   return authorization;
 }
 
-async function setMessage(
-  msg,
-  time,
-  senderSocketId,
-  more,
-  filesInfo,
-  isRead,
-  senderName,
-  senderUserId
-) {
+async function setMessage(msg, time, senderUserId, more, filesInfo, isRead, senderName) {
   const messages = document.getElementById('messages');
 
   if (!messages) return;
