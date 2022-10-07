@@ -135,12 +135,7 @@ async function setMessage(msg, time, senderUserId, filesInfo, senderName, isRead
     }
   }
 
-  // if (more) {
   messages.insertAdjacentElement('afterbegin', item);
-  // } else {
-  // messages.appendChild(item);
-  // messages.scrollTo(0, messages.scrollHeight);
-  // }
 
   if (!isRead) item.classList.add('chat-unread-message');
 

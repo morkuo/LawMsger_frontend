@@ -415,8 +415,7 @@ async function getMessages(targetContactUserId, baselineTime) {
   if (!baselineTime) messageApiPath += `?contactUserId=${targetContactUserId}`;
   else messageApiPath += `/more?contactUserId=${targetContactUserId}&baselineTime=${baselineTime}`;
 
-  const response = await fetchGet(messageApiPath);
-  return response;
+  return await fetchGet(messageApiPath);
 }
 
 async function getGroupMessages(targetGroupId, baselineTime) {
@@ -425,8 +424,7 @@ async function getGroupMessages(targetGroupId, baselineTime) {
   if (!baselineTime) apiPath += `?groupId=${targetGroupId}`;
   else apiPath += `/more?groupId=${targetGroupId}&baselineTime=${baselineTime}`;
 
-  const response = await fetchGet(apiPath);
-  return response;
+  return await fetchGet(apiPath);
 }
 
 function debounce(func, delay) {
