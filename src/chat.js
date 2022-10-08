@@ -172,7 +172,6 @@ async function groupChatListener(e) {
   drawChatWindow(targetContact.dataset.id, targetContact.dataset.socketId);
 
   const userId = localStorage.getItem('id');
-  const userName = document.querySelector('#userInfo h2');
 
   //append history message to chat window
   const { data: msgs } = await getGroupMessages(targetContact.dataset.socketId);
@@ -252,10 +251,6 @@ async function groupChatListener(e) {
 
     const messages = document.getElementById('messages');
     const contactUserSocketId = messages.dataset.socketId;
-    const contactUserId = messages.dataset.id;
-    const contactDiv = document.querySelector(`[data-id="${contactUserId}"]`);
-
-    const uploadButton = document.querySelector('#chatUploadButton');
 
     if (input.value || uploadfilesQueue.length !== 0) {
       const authorization = getJwtToken();
