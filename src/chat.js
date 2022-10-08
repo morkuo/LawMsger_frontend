@@ -262,8 +262,6 @@ async function groupChatListener(e) {
 
       socket.emit('groupmsg', input.value, contactUserSocketId, filesInfo);
 
-      scrollToBottom();
-
       input.value = '';
     }
   });
