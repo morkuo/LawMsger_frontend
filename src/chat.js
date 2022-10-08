@@ -269,8 +269,6 @@ async function groupChatListener(e) {
 
       console.log(userId);
 
-      setMessage(input.value, Date.now(), userId, filesInfo, userName.innerText, 'read');
-
       input.value = '';
     }
   });
