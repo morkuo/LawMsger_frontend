@@ -4,7 +4,7 @@ import { drawContactDivs, drawSidebar, drawGroups, drawDeleteGroupButton } from 
 let jwtToken = localStorage.getItem('token');
 
 // eslint-disable-next-line no-undef
-const socket = io(HOST, { query: { jwtToken } });
+const socket = io(HOST, { query: { jwtToken }, transports: ['websocket'] });
 
 socket.on('connect', async () => {
   drawSidebar();
