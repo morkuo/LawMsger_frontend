@@ -1,5 +1,5 @@
-const HOST = 'https://api.mortonkuo.solutions';
-// const HOST = 'http://localhost:3000';
+// const HOST = 'https://api.mortonkuo.solutions';
+const HOST = 'http://localhost:3000';
 
 function setMsg(messages, error = false, autoRemove = true, appendTo = '#main') {
   const container = document.querySelector(appendTo);
@@ -62,7 +62,7 @@ function getJwtToken() {
   return authorization;
 }
 
-async function setMessage(msg, time, senderUserId, filesInfo, senderName, isRead) {
+async function setMessage(msg, time, senderUserId, filesInfo, senderName, isRead, append) {
   const messages = document.getElementById('messages');
 
   if (!messages) return;
@@ -135,7 +135,8 @@ async function setMessage(msg, time, senderUserId, filesInfo, senderName, isRead
     }
   }
 
-  messages.insertAdjacentElement('afterbegin', item);
+  if (!append) messages.insertAdjacentElement('afterbegin', item);
+  else messages.append(item);
 
   if (!isRead) item.classList.add('chat-unread-message');
 
@@ -222,12 +223,20 @@ function loadingEffect() {
   return loading;
 }
 
+function scrollToBottom() {
+  setTimeout(() => {
+    const messages = document.getElementById('messages');
+    messages.scrollTo(0, messages.scrollHeight);
+  }, 0);
+}
+
 export {
   setMsg,
   addClass,
   storeUserData,
   getJwtToken,
   setMessage,
+  scrollToBottom,
   fetchGet,
   isImage,
   checkSpecialCharacter,

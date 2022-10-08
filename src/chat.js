@@ -1,4 +1,12 @@
-import { setMsg, addClass, getJwtToken, setMessage, fetchGet, isImage, HOST } from './helper.js';
+import {
+  setMsg,
+  getJwtToken,
+  setMessage,
+  scrollToBottom,
+  fetchGet,
+  isImage,
+  HOST,
+} from './helper.js';
 import { socket } from './socket.js';
 import { searchTour } from './tour.js';
 
@@ -93,18 +101,13 @@ async function chatListener(e) {
 
       socket.emit('msg', input.value, contactUserSocketId, contactUserId, contactName, filesInfo);
 
-      setMessage(input.value, Date.now(), userId, filesInfo, userName.innerText, 'read');
+      setMessage(input.value, Date.now(), userId, filesInfo, userName.innerText, 'read', 'append');
+
+      scrollToBottom();
 
       input.value = '';
     }
   });
-}
-
-function scrollToBottom() {
-  setTimeout(() => {
-    const messages = document.getElementById('messages');
-    messages.scrollTo(0, messages.scrollHeight);
-  }, 0);
 }
 
 function moreMessagesListener(targetContactUserId) {
