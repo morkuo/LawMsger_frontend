@@ -116,8 +116,8 @@ span#searchTourButton {
 
 .chat-message-image-preview,
 .chat-upload-image-preview {
-  max-height: 14rem;
-  max-width: 14rem;
+  max-height: 12rem;
+  max-width: 12rem;
 }
 
 .chat-message-image-preview,
