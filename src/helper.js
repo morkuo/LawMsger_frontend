@@ -186,8 +186,6 @@ function changeTimeFormat(target) {
   if (outputHours < 10) outputHours = `0${outputHours}`;
   if (outputMinutes < 10) outputMinutes = `0${outputMinutes}`;
 
-  // console.log(toutputMinutes);
-
   if (nowYear === messageYear && nowMonth === messageMonth && nowDate === messageDate) {
     return `Today ${outputHours}:${outputMinutes}`;
   }

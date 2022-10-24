@@ -126,11 +126,7 @@ function moreMessagesListener(targetContactUserId) {
 
       const proportion = (difference / totalHeight) * 100;
 
-      console.log('current proportion: ' + proportion);
-
       if (proportion > 85) {
-        console.log('Pull New data');
-
         let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
         let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
 
@@ -205,11 +201,7 @@ async function groupChatListener(e) {
 
       const proportion = (difference / totalHeight) * 100;
 
-      console.log('current proportion: ' + proportion);
-
       if (proportion > 85) {
-        console.log('Pull New data');
-
         let oldestMessageTimeDiv = messages.querySelector('li:first-child .chat-message-time');
         let baselineTime = oldestMessageTimeDiv.dataset.rawTime;
 
@@ -519,8 +511,6 @@ async function detectInput(e) {
   }
 
   if (wordSuggestion > -1) {
-    console.log('word emit');
-
     socket.emit('suggestion', currentInput.slice(wordSuggestion + 1));
 
     input.index = maxIndex;
@@ -538,7 +528,6 @@ async function detectInput(e) {
   }
 
   if (clauseSuggestion > -1) {
-    console.log('clause emit');
     socket.emit('suggestion', currentInput.slice(clauseSuggestion + 1), 'clauses');
 
     input.index = maxIndex;
@@ -556,8 +545,6 @@ async function detectInput(e) {
   }
 
   if (matchclausesContent > -1) {
-    console.log('match emit');
-
     socket.emit('matchedClauses', currentInput.slice(matchclausesContent + 1));
 
     input.index = maxIndex;
@@ -879,7 +866,6 @@ function addUploadFileListener() {
 function previewFile(filesInput) {
   const previewImageDiv = document.querySelector('#previewImageDiv');
 
-  // console.log(filesInput.files);
   previewImageDiv.setAttribute('data-file', 'true');
 
   for (let i = 0; i < filesInput.files.length; i++) {
@@ -929,8 +915,6 @@ async function uploadFile(authorization) {
   for (let i = 0; i < uploadfilesQueueLength; i++) {
     formData.append('images', uploadfilesQueue.shift());
   }
-
-  // console.log('Going to upload this: ', filesInput);
 
   const api = `${HOST}/1.0/message/upload`;
 

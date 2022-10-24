@@ -147,7 +147,6 @@ function searchTour() {
       onShown: () => {
         const popover = document.querySelector('#step-1');
         popover.style.display = 'none';
-        console.log(popover);
 
         typeWriter('#input', '@著作權法60', 0);
         const input = document.getElementById('input');

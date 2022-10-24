@@ -15,8 +15,6 @@ socket.on('connect_error', err => {
 });
 
 socket.on('msg', (msg, senderSocketId, filesInfo) => {
-  console.log('From server:' + senderSocketId);
-
   //check if current user is at chat window
   const messages = document.getElementById('messages');
   if (!messages) return;
@@ -161,8 +159,6 @@ socket.on(
     targetUserName,
     filesInfo
   ) => {
-    console.log('Check Window!');
-
     //check if current user is at targetUser's chat window
     const messages = document.getElementById('messages');
     let messagesUserId = null;
@@ -185,7 +181,6 @@ socket.on(
       const contactDivs = document.querySelectorAll(`[data-id="${fromUserId}"]`);
 
       contactDivs.forEach(div => {
-        console.log('Incrementing!');
         const unreadCountDiv = div.querySelector('.contact-unread-count');
         unreadCountDiv.innerText++;
         unreadCountDiv.classList.add('on');
@@ -217,18 +212,13 @@ socket.on(
 socket.on(
   'checkGroupChatWindow',
   (msg, fromSocketId, fromUserId, fromUserName, groupId, messageId, filesInfo) => {
-    console.log('Check Window!');
-
     //check if current user is at group chat window
     const messages = document.getElementById('messages');
 
     if (!messages || messages.dataset.socketId !== groupId) {
-      console.log('Here');
-
       // Unread
       const groupDiv = document.querySelector(`[data-socket-id="${groupId}"]`);
 
-      console.log('Incrementing!');
       const unreadCountDiv = groupDiv.querySelector('.group-unread-count');
       unreadCountDiv.innerText++;
       unreadCountDiv.classList.add('on');
@@ -364,8 +354,6 @@ socket.on('deleteStarContact', response => {
 socket.on('onlineStatus', (userId, socketId, status) => {
   const contactDivs = document.querySelectorAll(`.contact[data-id="${userId}"]`);
 
-  console.log(userId, socketId, status);
-
   contactDivs.forEach(div => {
     const statusDiv = div.querySelector('.contact-status');
 
@@ -450,8 +438,6 @@ socket.on('changeFirmPicture', firmId => {
 
 //Change online status to 'off' when disonnected
 socket.on('disconnect', () => {
-  console.log('Server down');
-
   const contactDivs = document.querySelectorAll(`.contact`);
 
   contactDivs.forEach(div => {
