@@ -22,6 +22,8 @@
     <script>
       const button = document.getElementById('button');
       button.addEventListener('click', () => {
+        let tokenJson = localStorage.getItem('token');
+        if (!tokenJson) return (window.location.href = `${window.location.origin}/index.html`);
         window.location.href = `${window.location.origin}/main.html`;
       });
     </script>
