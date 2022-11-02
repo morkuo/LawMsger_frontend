@@ -1,5 +1,4 @@
 const HOST = 'https://api.mortonkuo.solutions';
-// const HOST = 'http://localhost:3000';
 
 function setMsg(messages, error = false, autoRemove = true, appendTo = '#main') {
   const container = document.querySelector(appendTo);
